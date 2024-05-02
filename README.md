@@ -28,3 +28,7 @@ et le supprimer, ainsi que de supprimer n'importe quel avis.
 * Pagination pour les articles (5 par page)
 * Accès rapide aux avis et aux articles écrits sur la page de profil de l'utilisateur
 * Possibilité de supprimer un article ou un avis par un administrateur
+
+## Auteurs
+* Théo
+* Balthazar
