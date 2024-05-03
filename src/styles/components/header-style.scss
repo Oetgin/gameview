@@ -1,0 +1,33 @@
+header {
+    background-color: #333333;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+
+    img {
+        height: 2em;
+    }
+
+    .search-bar {
+        background: white;
+        border-radius: 20px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input {
+            border: none;
+            outline: none;
+            height: 1.75em;
+            width: 25em;
+        }
+
+        img {
+            height: 1em;
+            padding: 0 0.2em;
+        }
+    }
+}

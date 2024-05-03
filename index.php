@@ -35,6 +35,11 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
         <main>
             Let's go tout fonctionne
+
+            <?php
+            /* TODO */
+            ?>
+
         </main>
 
     </body>

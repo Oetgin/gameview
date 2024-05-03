@@ -1,8 +1,10 @@
 // Font imports
-
+html {
+  font-family: 'Montserrat', sans-serif;
+}
 
 // Style imports
-@import 'body-style.scss';
-@import 'header-style.scss';
-@import 'footer-style.scss';
-@import 'buttons-style.scss';
+@import 'components/body-style.scss';
+@import 'components/header-style.scss';
+@import 'components/footer-style.scss';
+@import 'components/buttons-style.scss';

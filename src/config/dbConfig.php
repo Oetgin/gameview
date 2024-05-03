@@ -4,4 +4,4 @@
 define('SERVER', 'localhost');        
 define('USER', 'root');
 define('PWD', 'root');
-define('DB_NAME', 'pokedex');
+define('DB_NAME', 'gameview');
