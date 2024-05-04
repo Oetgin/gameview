@@ -1,4 +1,7 @@
-# GameView
+![GameView Logo](assets/icons/logo/full/logo-text-white.svg)
+
+---
+
 **GameView** est un site web qui permet aux utilisateurs de créer, partager et commenter des articles sur des
 jeux vidéo.
 
@@ -12,14 +15,10 @@ une note (0-10).
 * Recherche: la recherche par nom de jeu et par catégorie est disponible pour les utilisateurs.
 * Utilisateurs: il existe plusieurs niveaux d'utilisateurs, incluant visiteur, membre, rédacteur et
 administrateur.
-        + Visiteur: peut visualiser le site sans interagir avec.
-        + Membre: peut se créer un compte ou se connecter à un compte existant, ajouter une photo de profil et m
-
-modifier ses informations personnelles.
-        + Rédacteur: a les mêmes droits que le membre, mais peut également écrire des articles, les modifier et
-
-les supprimer.
-        + Administrateur: a des droits plus élevés, notamment la possibilité de rédiger un article, le modifier 
+   + Visiteur: peut visualiser le site sans interagir avec.
+   + Membre: peut se créer un compte ou se connecter à un compte existant, ajouter une photo de profil et modifier ses informations personnelles.
+   + Rédacteur: a les mêmes droits que le membre, mais peut également écrire des articles, les modifier et les supprimer.
+   + Administrateur: a des droits plus élevés, notamment la possibilité de rédiger un article, le modifier 
 et le supprimer, ainsi que de supprimer n'importe quel avis.
 
 
