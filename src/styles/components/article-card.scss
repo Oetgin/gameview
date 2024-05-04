@@ -1,0 +1,15 @@
+.article-card {
+    border-radius: 5em;
+    //box-shadow: ;
+    display: flex;
+    flex-direction: column;
+
+    .article-card-cover {
+        border-radius: 5em;
+        padding: 5em;
+
+        img {
+            object-fit: contain;
+        }
+    }
+}

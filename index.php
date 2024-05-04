@@ -36,6 +36,15 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
         <main>
             Let's go tout fonctionne
 
+
+            <div class="main-logo">
+                <img src="assets/icons/logo/full/logo-text-black-blue.svg" alt="logo">
+            </div>
+
+            <div class="section-title">
+                <h2>Nouveaux articles</h2>
+            </div>
+            
             <?php
             /* TODO */
             ?>
