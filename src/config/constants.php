@@ -15,22 +15,22 @@ define('META_AUTHOR', "Ginguené Théo, Girot Balthazar");
 define('WEBSITE_TITLE', 'GameView');
 
 
-// __________Ressources paths__________
-// Logo text paths
-define('LOGO_TEXT_BLACK_PATH', '/ressources/icons/logos/text/logo-text-black.svg');
-define('LOGO_TEXT_WHITE_PATH', '/ressources/icons/logos/text/logo-text-white.svg');
-define('LOGO_TEXT_WHITE_BLUE_PATH', '/ressources/icons/logos/text/logo-white-blue.svg');
-define('LOGO_TEXT_BLACK_BLUE_PATH', '/ressources/icons/logos/text/logo-black-blue.svg');
+// __________Assets paths__________
+// Logo large paths
+define('LOGO_LARGE_BLACK_PATH', '/assets/icons/logo/large/logo-text-black.svg');
+define('LOGO_LARGE_WHITE_PATH', '/assets/icons/logo/large/logo-text-white.svg');
+define('LOGO_LARGE_WHITE_BLUE_PATH', '/assets/icons/logo/large/logo-white-blue.svg');
+define('LOGO_LARGE_BLACK_BLUE_PATH', '/assets/icons/logo/large/logo-black-blue.svg');
 
-// Logo letter paths
-define('LOGO_BLACK_PATH', '/ressources/icons/logos/letter/logo-black.png');
-define('LOGO_WHITE_PATH', '/ressources/icons/logos/letter/logo-white.png');
-define('LOGO_WHITE_BLUE_PATH', '/ressources/icons/logos/letter/logo-white-blue.svg');
-define('LOGO_BLACK_BLUE_PATH', '/ressources/icons/logos/letter/logo-black-blue.svg');
-define('LOGO_BLUE_PATH', '/ressources/icons/logos/letter/logo-blue.svg');
+// Logo small paths
+define('LOGO_BLACK_PATH', '/assets/icons/logo/small/logo-black.png');
+define('LOGO_WHITE_PATH', '/assets/icons/logo/small/logo-white.png');
+define('LOGO_WHITE_BLUE_PATH', '/assets/icons/logo/small/logo-white-blue.svg');
+define('LOGO_BLACK_BLUE_PATH', '/assets/icons/logo/small/logo-black-blue.svg');
+define('LOGO_BLUE_PATH', '/assets/icons/logo/small/logo-blue.svg');
 
 // Icons paths
-define('USER_ICON_PATH', '/ressources/icons/user-icon-hollow-black.png');
+define('USER_ICON_PATH', '/assets/icons/user-icon-hollow-black.png');
 
 
 // __________File paths__________
