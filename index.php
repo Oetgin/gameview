@@ -26,7 +26,7 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
     <?php
         $mysqli = connectionDB();
-        includeHead(DEFAULT_STYLE_PATH);
+        includeHead('/src/styles/pages/index.css');
     ?>
 
     <body>
@@ -34,11 +34,8 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
         <?php includeHeader(); ?>
 
         <main>
-            Let's go tout fonctionne
-
-
             <div class="main-logo">
-                <img src="assets/icons/logo/full/logo-text-black-blue.svg" alt="logo">
+                <img src="/assets/icons/logo/full/logo-text-black-blue.svg" alt="logo">
             </div>
 
             <div class="section-title">
@@ -48,6 +45,35 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
             <?php
             /* TODO */
             ?>
+
+            <!-- CARD TEST -->
+            <div class="article-card">
+                <div class="article-card-image">
+                    <img src="assets/images/covers/cyberpunk-cover.jpg" alt="CP2077">
+                    <div class="article-card-image-title">
+                        <h3>Minecraft</h3>
+                    </div>
+                </div>
+                    <div class="article-card-content">
+                    <div class="article-card-title">
+                        <h3>“THE classic everyone has to play”</h3>
+                    </div>
+                    [Scorebar]
+                    <div class="article-card-description">
+                        <p>Exploring the most sold game of all time in detail, from it's creation to now.</p>
+                    </div>
+                    <div class="article-card-author">
+                        <div class="article-card-author-info">
+                            <p>John Smith</p>
+                            <p>Reviewer</p>
+                        </div>
+                        <div class="article-card-author-image">
+                            <img src="" alt="John Smith">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CARD TEST -->
 
         </main>
 

@@ -8,3 +8,10 @@ html {
 @import 'components/header-style.scss';
 @import 'components/footer-style.scss';
 @import 'components/buttons-style.scss';
+@import 'components/article-card.scss';
+
+// Global styles
+main {
+  display: flex;
+  flex-direction: column;
+}
