@@ -49,6 +49,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
             ?>
 
             <!-- CARD TEST -->
+            <div style="display: grid; grid-template-columns: auto auto; justify-content: center;">
             <?php
                 includeArticleCard(
                     "Cyberpunk 2077",
@@ -60,7 +61,48 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     "Reviewer",
                     ""
                 );
+                includeArticleCard(
+                    "The Witcher 3",
+                    "",
+                    "One of the best RPGs of all time",
+                    "A deep dive into the world of The Witcher 3, exploring the game's mechanics and story.",
+                    7,
+                    "Jane Doe",
+                    "Reviewer",
+                    ""
+                );
+                includeArticleCard(
+                    "The Elder Scrolls V: Skyrim",
+                    "",
+                    "A classic that never gets old",
+                    "A retrospective on the game that has been released on every platform",
+                    8,
+                    "John Doe",
+                    "Reviewer",
+                    ""
+                );
+                includeArticleCard(
+                    "Red Dead Redemption 2",
+                    "",
+                    "A masterpiece of storytelling",
+                    "A deep dive into the world of Red Dead Redemption 2, exploring the game's mechanics and story.",
+                    9,
+                    "John Smith",
+                    "Reviewer",
+                    ""
+                );
+                includeArticleCard(
+                    "The Last of Us Part II",
+                    "",
+                    "A controversial sequel",
+                    "A review of the game that divided fans and critics alike",
+                    4.5,
+                    "Jane Doe",
+                    "Reviewer",
+                    ""
+                );
             ?>
+            </div>
 
         </main>
 
