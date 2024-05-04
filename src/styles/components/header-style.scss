@@ -4,7 +4,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 1em 2em;
 
     img {
         height: 2em;
@@ -13,7 +13,7 @@ header {
     .search-bar {
         background: white;
         border-radius: 20px;
-        padding: 5px;
+        padding: 0.5em;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -23,6 +23,7 @@ header {
             outline: none;
             height: 1.75em;
             width: 25em;
+            font-family: 'Montserrat', sans-serif;
         }
 
         img {
