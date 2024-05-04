@@ -1,6 +1,7 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 
-require_once 'src/components/score-bar.php';
+require_once(DOCUMENT_ROOT . '/src/components/score-bar.php');
 
 function includeArticleCard($game_name, $image_path, $title, $description, $rating, $author_name, $author_role, $author_image) {
     echo '
@@ -16,7 +17,7 @@ function includeArticleCard($game_name, $image_path, $title, $description, $rati
                 <h3>'.$title.'</h3>
             </div>
             ' .
-            includeScoreBar($rating) 
+            getScoreBar($rating) 
             . '
             <div class="article-card-description">
                 <p>'.$description.'</p>

@@ -17,6 +17,8 @@ require_once(DOCUMENT_ROOT . '/src/static/header.php');
 require_once(DOCUMENT_ROOT . '/src/static/footer.php');
 require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
+require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
+
 
 ?>
 <!DOCTYPE html>
@@ -47,33 +49,18 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
             ?>
 
             <!-- CARD TEST -->
-            <div class="article-card">
-                <div class="article-card-image">
-                    <img src="assets/images/covers/cyberpunk-cover.jpg" alt="CP2077">
-                    <div class="article-card-image-title">
-                        <h3>Minecraft</h3>
-                    </div>
-                </div>
-                    <div class="article-card-content">
-                    <div class="article-card-title">
-                        <h3>“THE classic everyone has to play”</h3>
-                    </div>
-                    [Scorebar]
-                    <div class="article-card-description">
-                        <p>Exploring the most sold game of all time in detail, from it's creation to now.</p>
-                    </div>
-                    <div class="article-card-author">
-                        <div class="article-card-author-info">
-                            <p>John Smith</p>
-                            <p>Reviewer</p>
-                        </div>
-                        <div class="article-card-author-image">
-                            <img src="" alt="John Smith">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END CARD TEST -->
+            <?php
+                includeArticleCard(
+                    "Cyberpunk 2077",
+                    "assets/images/covers/cyberpunk-cover.jpg",
+                    "A masterpiece of the genre",
+                    "Exploring the most anticipated game of the decade in detail, from it's creation to now.",
+                    9,
+                    "John Smith",
+                    "Reviewer",
+                    ""
+                );
+            ?>
 
         </main>
 
