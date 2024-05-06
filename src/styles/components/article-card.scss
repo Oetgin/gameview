@@ -60,4 +60,14 @@
 
         }
     }
+
+    // Animations
+    transition: transform 0.3s ease-in-out;
+    
+    &:hover {
+        transform: scale(1.025);
+    }
+
+    // Media queries
+    /* TODO */
 }

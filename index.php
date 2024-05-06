@@ -52,6 +52,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
             <div style="display: grid; grid-template-columns: auto auto; justify-content: center;">
             <?php
                 includeArticleCard(
+                    "1",
                     "Cyberpunk 2077",
                     "assets/images/covers/cyberpunk-cover.jpg",
                     "A masterpiece of the genre",
@@ -62,6 +63,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     ""
                 );
                 includeArticleCard(
+                    "2",
                     "The Witcher 3",
                     "",
                     "One of the best RPGs of all time",
@@ -72,6 +74,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     ""
                 );
                 includeArticleCard(
+                    "3",
                     "The Elder Scrolls V: Skyrim",
                     "",
                     "A classic that never gets old",
@@ -82,6 +85,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     ""
                 );
                 includeArticleCard(
+                    "4",
                     "Red Dead Redemption 2",
                     "",
                     "A masterpiece of storytelling",
@@ -92,6 +96,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     ""
                 );
                 includeArticleCard(
+                    "5",
                     "The Last of Us Part II",
                     "",
                     "A controversial sequel",
