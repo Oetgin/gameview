@@ -71,8 +71,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                 
                 if (isset($_GET['redirect']) && isset($_GET['msg'])) {
                     // Prevent XSS
-                    $_GET['redirect'] = htmlspecialchars($_GET['redirect']);
-                    echo '<div class="redirect redirect-'.$_GET['redirect'].'">'.$_GET['msg'].'</div>';
+                    echo '<div class="redirect redirect-'.htmlspecialchars($_GET['redirect']).'">'.htmlspecialchars($_GET['msg']).'</div>';
                 }
             ?>
 

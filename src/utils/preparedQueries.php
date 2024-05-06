@@ -12,12 +12,36 @@ $insert_user_prepared = mysqli_prepare($mysqli, $insert_user_query);
 
 
 // LOGIN
+$user_login_query = "SELECT * FROM user WHERE username = ? AND password = ?";
+
+$user_login_prepared = mysqli_prepare($mysqli, $user_login_query);
 
 
 // ARTICLES
+$get_articles_query = "SELECT * FROM article ORDER BY date_article DESC";
+$insert_article_query = "INSERT INTO article (title_article, content_article, authorID_article) VALUES (?, ?, ?)";
+$delete_article_query = "DELETE FROM article WHERE id = ?";
+
+$get_articles_prepared = mysqli_prepare($mysqli, $get_articles_query);
+$insert_article_prepared = mysqli_prepare($mysqli, $insert_article_query);
+$delete_article_prepared = mysqli_prepare($mysqli, $delete_article_query);
 
 
 // COMMENTS
+$get_comments_query = "SELECT * FROM comment WHERE articleID_comment = ? ORDER BY date_comment DESC";
+$insert_comment_query = "INSERT INTO comment (content_comment, authorID_comment, articleID_comment) VALUES (?, ?, ?)";
+$delete_comment_query = "DELETE FROM comment WHERE id = ?";
+
+$get_comments_prepared = mysqli_prepare($mysqli, $get_comments_query);
+$insert_comment_prepared = mysqli_prepare($mysqli, $insert_comment_query);
+$delete_comment_prepared = mysqli_prepare($mysqli, $delete_comment_query);
 
 
+// DELETE ACCOUNT
+$delete_articles_query = "DELETE FROM article WHERE authorID_article = ?";
+$delete_comments_query = "DELETE FROM comment WHERE authorID_comment = ?";
+$delete_user_query = "DELETE FROM user WHERE username = ? AND password = ?";
 
+$delete_articles_prepared = mysqli_prepare($mysqli, $delete_articles_query);
+$delete_comments_prepared = mysqli_prepare($mysqli, $delete_comments_query);
+$delete_user_prepared = mysqli_prepare($mysqli, $delete_user_query);
