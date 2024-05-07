@@ -21,10 +21,12 @@ $user_login_prepared = mysqli_prepare($mysqli, $user_login_query);
 $get_articles_query = "SELECT * FROM article ORDER BY date_article DESC";
 $insert_article_query = "INSERT INTO article (title_article, content_article, authorID_article) VALUES (?, ?, ?)";
 $delete_article_query = "DELETE FROM article WHERE id = ?";
+$article_search_query = "SELECT * FROM article WHERE content LIKE ? or title LIKE ? or id LIKE ? or `date` LIKE ? ORDER BY date_article DESC";
 
 $get_articles_prepared = mysqli_prepare($mysqli, $get_articles_query);
 $insert_article_prepared = mysqli_prepare($mysqli, $insert_article_query);
 $delete_article_prepared = mysqli_prepare($mysqli, $delete_article_query);
+$article_search_prepared = mysqli_prepare($mysqli, $article_search_query);
 
 
 // COMMENTS
@@ -45,3 +47,9 @@ $delete_user_query = "DELETE FROM user WHERE username = ? AND password = ?";
 $delete_articles_prepared = mysqli_prepare($mysqli, $delete_articles_query);
 $delete_comments_prepared = mysqli_prepare($mysqli, $delete_comments_query);
 $delete_user_prepared = mysqli_prepare($mysqli, $delete_user_query);
+
+
+// USER INFO
+$get_user_info_query = "SELECT * FROM user WHERE id = ?";
+
+$get_user_info_prepared = mysqli_prepare($mysqli, $get_user_info_query);

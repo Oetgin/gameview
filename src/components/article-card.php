@@ -5,7 +5,7 @@ require_once(DOCUMENT_ROOT . '/src/components/score-bar.php');
 
 function includeArticleCard($article_id, $game_name, $image_path, $title, $description, $rating, $author_name, $author_role, $author_image) {
     echo '
-    <a href="/article.php?id='.$article_id.'">
+    <a href="/src/pages/article.php?id='.$article_id.'">
         <div class="article-card">
             <div class="article-card-image">
                 <img src="'.$image_path.'" alt="'.$game_name.'">
