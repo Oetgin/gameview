@@ -36,7 +36,6 @@
 }
 .title-section .background-video video {
   position: relative;
-  width: 100%;
 }
 .title-section .background-video .gradient {
   position: absolute;
@@ -283,6 +282,14 @@
 @media screen and (max-width: 1260px) {
   .background-video video {
     top: 0;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .background-video video {
+    top: 0;
+    left: -25%;
+    width: 150%;
   }
 }
 @media screen and (min-width: 1260px) {

@@ -43,7 +43,7 @@
         video{
             position: relative;
             // Top value is in the media querries
-            width: 100%;
+            // Same for width
         }
 
         .gradient{
@@ -349,6 +349,17 @@
     .background-video{
         video{
             top: 0;
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .background-video{
+        video{
+            top: 0;
+            left: -25%;
+            width: 150%;
         }
     }
 }
