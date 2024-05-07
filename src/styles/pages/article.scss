@@ -171,5 +171,131 @@
 }
 
 .article-section{
-    height: 50vh;
+    margin: 10vh 15vw 10vh 15vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.5em;
+
+    .image-container{
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+
+        .image{
+            width: 80%;
+            border-radius: 1em;
+        }
+
+        .caption{
+            text-align: center;
+            color: #767676;
+            font-size: 0.8em;
+            font-style: italic;
+            max-width: 70%;
+        }
+    }
+
+    .article-catch{
+        font-size: 2.5em;
+        font-weight: 800;
+    }
+
+    .intro{
+        font-weight: 600;
+    }
+
+    .part-title{
+        font-size: 1.8em;
+        font-weight: 600;
+    }
+
+    .corpus{
+        line-height: 2;
+    }
+    
+    .plus-minus-wrapper{
+        margin-top: 3em;
+
+        width: 100%;
+        height: max-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .plus-minus-container{
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 3em;
+
+            background: #E1E1E1;
+            border-radius: 1em;
+            box-shadow: 0 0 1em rgba(0,0,0,0.5);
+
+            .column{
+                width: 45%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+
+                .column-title{
+                    font-size: 1.5em;
+                    font-weight: 600;
+                }
+
+                ul{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5em;
+
+                    li{
+                        display: flex;
+
+                        line-height: 1.25;
+
+                        &:before{
+                            flex-shrink: 0;
+                            margin-top: 0.15em;
+                            margin-right: 0.5em;
+                            height: 1em;
+                            width: 1em;
+
+                            content: '';
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                        }
+
+                        &.plus::before{
+                            background-image: url("/assets/icons/plus.svg");
+                        }
+
+                        &.minus::before{
+                            background-image: url("/assets/icons/minus.svg");
+                        }
+                    }
+                }
+            }
+
+            .plus-minus-divider{
+                height: 80%;
+                width: 2px;
+                background: #E1E1E1;
+            }
+        }
+    }
+}
+
+.avis-section{
+    height: 100vh;
+    background: #000;
 }
