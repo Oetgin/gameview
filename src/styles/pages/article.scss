@@ -42,7 +42,7 @@
 
         video{
             position: relative;
-            top: -30%;
+            // Top value is in the media querries
             width: 100%;
         }
 
@@ -298,4 +298,22 @@
 .avis-section{
     height: 100vh;
     background: #000;
+}
+
+
+
+@media screen and (max-width: 1260px) {
+    .background-video{
+        video{
+            top: 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1260px) {
+    .background-video{
+        video{
+            top: -20vh;
+        }
+    }
 }

@@ -36,7 +36,6 @@
 }
 .title-section .background-video video {
   position: relative;
-  top: -30%;
   width: 100%;
 }
 .title-section .background-video .gradient {
@@ -246,4 +245,15 @@
 .avis-section {
   height: 100vh;
   background: #000;
+}
+
+@media screen and (max-width: 1260px) {
+  .background-video video {
+    top: 0;
+  }
+}
+@media screen and (min-width: 1260px) {
+  .background-video video {
+    top: -20vh;
+  }
 }/*# sourceMappingURL=article.css.map */
