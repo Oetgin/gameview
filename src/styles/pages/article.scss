@@ -1,0 +1,175 @@
+.title-section{
+    position: relative;
+
+    .title-content{
+        position: relative;
+        z-index: 99;
+        width: 100%;
+        height: 80vh;
+        padding: 5em;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+
+        text-align: center;
+        color: #FFF;
+
+        .game{
+            z-index: 99;
+            font-size: 5em;
+            font-weight: 200;
+        }
+
+        .title{
+            font-size: 1.5em;
+            font-style: italic;
+        }
+
+        .reviewer{
+            font-size: 1em;
+        }
+    }
+
+    .background-video{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        video{
+            position: relative;
+            top: -30%;
+            width: 100%;
+        }
+
+        .gradient{
+            position: absolute;
+            bottom: 0;
+
+            width: 100%;
+            height: 100%;
+            background: rgb(0,0,0);
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+        }
+    }
+}
+
+.recap-section{
+    background: #000;
+    color: #FFF;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    height: fit-content;
+    padding-bottom: 3em;
+    
+    .game-container{
+        width: 45%;
+        position: relative;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1em;
+
+        .cover{
+            border-radius: 0.5em;
+            height: 14em;
+
+            box-shadow: 0 0 1em #FFF;
+        }
+
+        .game-info-container{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 0.5em;
+
+            .underline{
+                text-decoration: underline;
+            }
+
+            .game-title{
+                font-size: 2em;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .reviews-container{
+        width: 45%;
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 1em;
+
+
+        .grade-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1em;
+
+            .grade{
+                width: 6rem;
+                height: 6rem;
+                
+                box-shadow: 0 0 0.7rem #FFF;
+                border-radius: 0.5rem;
+    
+                display: flex;
+                justify-content: center;
+                align-items: center;
+    
+                font-size: 3.5rem;
+                font-weight: 500;
+
+                &.good{
+                    background: #00CE7A;
+                }
+
+                &.average{
+                    background: #FFBD3F;
+                }
+            }
+
+            .grades-info-container{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+
+                .grade-info-title{
+                    font-size: 2rem;
+                    font-weight: 600;
+                }
+
+                .grade-info-more{
+                    font-style: italic;
+                }
+            }
+        }
+
+    }
+}
+
+.divider{
+    width: 100%;
+}
+
+.article-section{
+    height: 50vh;
+}

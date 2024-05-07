@@ -1,0 +1,143 @@
+.title-section {
+  position: relative;
+}
+.title-section .title-content {
+  position: relative;
+  z-index: 99;
+  width: 100%;
+  height: 80vh;
+  padding: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  text-align: center;
+  color: #FFF;
+}
+.title-section .title-content .game {
+  z-index: 99;
+  font-size: 5em;
+  font-weight: 200;
+}
+.title-section .title-content .title {
+  font-size: 1.5em;
+  font-style: italic;
+}
+.title-section .title-content .reviewer {
+  font-size: 1em;
+}
+.title-section .background-video {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.title-section .background-video video {
+  position: relative;
+  top: -30%;
+  width: 100%;
+}
+.title-section .background-video .gradient {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+}
+
+.recap-section {
+  background: #000;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-bottom: 3em;
+}
+.recap-section .game-container {
+  width: 45%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1em;
+}
+.recap-section .game-container .cover {
+  border-radius: 0.5em;
+  height: 14em;
+  box-shadow: 0 0 1em #FFF;
+}
+.recap-section .game-container .game-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5em;
+}
+.recap-section .game-container .game-info-container .underline {
+  text-decoration: underline;
+}
+.recap-section .game-container .game-info-container .game-title {
+  font-size: 2em;
+  font-weight: 600;
+}
+.recap-section .reviews-container {
+  width: 45%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1em;
+}
+.recap-section .reviews-container .grade-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+}
+.recap-section .reviews-container .grade-container .grade {
+  width: 6rem;
+  height: 6rem;
+  box-shadow: 0 0 0.7rem #FFF;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+  font-weight: 500;
+}
+.recap-section .reviews-container .grade-container .grade.good {
+  background: #00CE7A;
+}
+.recap-section .reviews-container .grade-container .grade.average {
+  background: #FFBD3F;
+}
+.recap-section .reviews-container .grade-container .grades-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.recap-section .reviews-container .grade-container .grades-info-container .grade-info-title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.recap-section .reviews-container .grade-container .grades-info-container .grade-info-more {
+  font-style: italic;
+}
+
+.divider {
+  width: 100%;
+}
+
+.article-section {
+  height: 50vh;
+}/*# sourceMappingURL=article.css.map */
