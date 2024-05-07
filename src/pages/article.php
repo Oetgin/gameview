@@ -66,7 +66,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                 <div class="reviews-container">
                         <div class="grade-container">
                             <div class="grade global-grade average">
-                                86
+                                75
                             </div>
                             <div class="grades-info-container">
                                 <p class="grade-info-title">Note moyenne</p>
@@ -113,31 +113,41 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     Cyberpunk 2077 revient de loin, de très loin même, et sa résurrection est à la hauteur de ses débuts chaotiques. Avec les changements opérés par CD Projekt RED via la mise à jour 2.0, cet Action-RPG gomme les derniers errements des versions vanilla et 1.6, optimise ce qui devait l'être, et rend la personnalisation plus “Nova” que jamais. Assister à l'ascension de V dans les rues malfamées de Night City n'a jamais été aussi grisant. Cyberpunk 2077 renaît définitivement de ses cendres... et c'est un sans faute (ou presque) !
                 </p>
 
-                <div class="plus-minus-wrapper">
-                    <div class="plus-minus-container">
-                        <div class="plus-container column">
-                            <div class="column-title">
-                                Points forts
+                <div class="final-grade-plus-minus-wrapper">
+                    <div class="plus-minus-wrapper">
+                        <div class="final-grade-container">
+                            <div class="final-grade-title">
+                                La note de GameView
                             </div>
-                            <ul>
-                                <li class="plus">L'expérience Cyberpunk 2077 sublimée</li>
-                                <li class="plus">Les interventions de la Police</li>
-                                <li class="plus">La refonte du système d'avantages et des implants</li>
-                            </ul>
+                            <div class="grade average">
+                                    75
+                            </div>
                         </div>
 
-                        <div class="plus-minus-divider"></div>
-
-                        <div class="minus-container column">
-                            <div class="column-title">
-                                    Points faibles
+                        <div class="plus-minus-container">
+                            <div class="plus-container column">
+                                <div class="column-title">
+                                    Points forts
+                                </div>
+                                <ul>
+                                    <li class="plus">L'expérience Cyberpunk 2077 sublimée</li>
+                                    <li class="plus">Les interventions de la Police</li>
+                                    <li class="plus">La refonte du système d'avantages et des implants</li>
+                                </ul>
                             </div>
-                            <ul>
-                                <li class="minus">L'IA ennemie toujours perfectible</li>
-                                <li class="minus">Le manque de nouveau contenu</li>
-                            </ul>
+                            
+                            <div class="minus-container column">
+                                <div class="column-title">
+                                        Points faibles
+                                </div>
+                                <ul>
+                                    <li class="minus">L'IA ennemie toujours perfectible</li>
+                                    <li class="minus">Le manque de nouveau contenu</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </section>
 

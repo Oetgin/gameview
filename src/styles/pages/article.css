@@ -180,46 +180,84 @@
 .article-section .corpus {
   line-height: 2;
 }
-.article-section .plus-minus-wrapper {
-  margin-top: 3em;
+.article-section .final-grade-plus-minus-wrapper {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper {
+  margin-top: 3em;
+  width: 75%;
   height: -moz-max-content;
   height: max-content;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-.article-section .plus-minus-wrapper .plus-minus-container {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  gap: 1em;
   padding: 3em;
   background: #E1E1E1;
   border-radius: 1em;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
 }
-.article-section .plus-minus-wrapper .plus-minus-container .column {
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .final-grade-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .final-grade-container .final-grade-title {
+  font-size: 1.5em;
+  font-weight: 600;
+  text-align: center;
+}
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .final-grade-container .grade {
+  width: 6rem;
+  height: 6rem;
+  box-shadow: 0 0 0.7rem #FFF;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+  font-weight: 500;
+}
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .final-grade-container .grade.good {
+  background: #00CE7A;
+}
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .final-grade-container .grade.average {
+  background: #FFBD3F;
+}
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container .column {
   width: 45%;
   height: 100%;
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
-.article-section .plus-minus-wrapper .plus-minus-container .column .column-title {
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container .column .column-title {
   font-size: 1.5em;
   font-weight: 600;
 }
-.article-section .plus-minus-wrapper .plus-minus-container .column ul {
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container .column ul {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
-.article-section .plus-minus-wrapper .plus-minus-container .column ul li {
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container .column ul li {
   display: flex;
   line-height: 1.25;
 }
-.article-section .plus-minus-wrapper .plus-minus-container .column ul li:before {
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container .column ul li:before {
   flex-shrink: 0;
   margin-top: 0.15em;
   margin-right: 0.5em;
@@ -230,16 +268,11 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.article-section .plus-minus-wrapper .plus-minus-container .column ul li.plus::before {
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container .column ul li.plus::before {
   background-image: url("/assets/icons/plus.svg");
 }
-.article-section .plus-minus-wrapper .plus-minus-container .column ul li.minus::before {
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container .column ul li.minus::before {
   background-image: url("/assets/icons/minus.svg");
-}
-.article-section .plus-minus-wrapper .plus-minus-container .plus-minus-divider {
-  height: 80%;
-  width: 2px;
-  background: #E1E1E1;
 }
 
 .avis-section {

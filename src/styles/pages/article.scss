@@ -220,76 +220,119 @@
         line-height: 2;
     }
     
-    .plus-minus-wrapper{
-        margin-top: 3em;
 
+    .final-grade-plus-minus-wrapper{
         width: 100%;
-        height: max-content;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
 
-        .plus-minus-container{
-            position: relative;
+        .plus-minus-wrapper{
+            margin-top: 3em;
+
+            width: 75%;
+            height: max-content;
             display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+
             padding: 3em;
 
             background: #E1E1E1;
             border-radius: 1em;
             box-shadow: 0 0 1em rgba(0,0,0,0.5);
 
-            .column{
-                width: 45%;
-                height: 100%;
+            .final-grade-container{
                 display: flex;
                 flex-direction: column;
-                gap: 1em;
+                justify-content: center;
+                align-items: center;
+                gap: 0.5em;
 
-                .column-title{
+                .final-grade-title{
                     font-size: 1.5em;
                     font-weight: 600;
+                    text-align: center;
                 }
 
-                ul{
+                .grade{
+                    width: 6rem;
+                    height: 6rem;
+                    
+                    box-shadow: 0 0 0.7rem #FFF;
+                    border-radius: 0.5rem;
+        
                     display: flex;
-                    flex-direction: column;
-                    gap: 0.5em;
+                    justify-content: center;
+                    align-items: center;
+        
+                    font-size: 3.5rem;
+                    font-weight: 500;
 
-                    li{
-                        display: flex;
+                    &.good{
+                        background: #00CE7A;
+                    }
 
-                        line-height: 1.25;
-
-                        &:before{
-                            flex-shrink: 0;
-                            margin-top: 0.15em;
-                            margin-right: 0.5em;
-                            height: 1em;
-                            width: 1em;
-
-                            content: '';
-                            background-position: center;
-                            background-repeat: no-repeat;
-                            background-size: cover;
-                        }
-
-                        &.plus::before{
-                            background-image: url("/assets/icons/plus.svg");
-                        }
-
-                        &.minus::before{
-                            background-image: url("/assets/icons/minus.svg");
-                        }
+                    &.average{
+                        background: #FFBD3F;
                     }
                 }
             }
 
-            .plus-minus-divider{
-                height: 80%;
-                width: 2px;
-                background: #E1E1E1;
+            .plus-minus-container{
+                position: relative;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+
+                .column{
+                    width: 45%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1em;
+
+                    .column-title{
+                        font-size: 1.5em;
+                        font-weight: 600;
+                    }
+
+                    ul{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5em;
+
+                        li{
+                            display: flex;
+
+                            line-height: 1.25;
+
+                            &:before{
+                                flex-shrink: 0;
+                                margin-top: 0.15em;
+                                margin-right: 0.5em;
+                                height: 1em;
+                                width: 1em;
+
+                                content: '';
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                            }
+
+                            &.plus::before{
+                                background-image: url("/assets/icons/plus.svg");
+                            }
+
+                            &.minus::before{
+                                background-image: url("/assets/icons/minus.svg");
+                            }
+                        }
+                    }
+                }
             }
         }
     }
