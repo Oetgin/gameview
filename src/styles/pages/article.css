@@ -295,5 +295,6 @@
 @media screen and (min-width: 1260px) {
   .background-video video {
     top: -20vh;
+    width: 100%;
   }
 }/*# sourceMappingURL=article.css.map */
