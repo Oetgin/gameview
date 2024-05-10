@@ -18,6 +18,7 @@ require_once(DOCUMENT_ROOT . '/src/static/footer.php');
 require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
+require_once(DOCUMENT_ROOT . '/src/components/review.php');
 
 
 ?>
@@ -153,8 +154,20 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 
             <img class="divider triangle" src="/assets/images/utils/triangle-divider-to-black.svg" alt="divider">
 
-            <section class="avis-section">
+            <section class="review-section">
+                
+                <div class="review-section-title">
+                    Avis des internautes
+                </div>
 
+                <div class="review-list-container">
+
+                <?php
+                    includeReview("Nagui", "/assets/images/pp/nagui.jpg", "12 janvier 2024", "11", "09", "Nul.", "Cyberpunk 2077 ? Plus un foutu désastre qu'un jeu. Ces enfoirés de chez CD Projekt Red ont réussi à nous balancer un tas de merde mal finie au visage et à appeler ça un chef d\'oeuvre. Des putains de bugs à chaque putain de coin de rue, des graphismes qui ressemblent à du vomi numérique, et une histoire aussi plate qu\'une vieille bière laissée au soleil. Sur console ? C\'est comme essayer de jouer sur une console en carton. J\'ai plus perdu mon temps avec ce jeu qu'à essayer de trouver du PQ pendant le confinement. Évitez cette bouse comme la peste, sérieux.")
+                ?>
+
+                </div>
+            
             </section>
 
         </main>

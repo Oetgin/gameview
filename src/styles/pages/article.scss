@@ -139,10 +139,17 @@
 
                 &.good{
                     background: #00CE7A;
+                    box-shadow: 0 0 0.7rem #00CE7A;
                 }
 
                 &.average{
                     background: #FFBD3F;
+                    box-shadow: 0 0 0.7rem #FFBD3F;
+                }
+
+                &.bad{
+                    background: #FD0000;
+                    box-shadow: 0 0 0.7rem #FD0000;
                 }
             }
 
@@ -274,10 +281,17 @@
 
                     &.good{
                         background: #00CE7A;
+                        box-shadow: 0 0 0.7rem #00CE7A;
                     }
 
                     &.average{
                         background: #FFBD3F;
+                        box-shadow: 0 0 0.7rem #FFBD3F;
+                    }
+
+                    &.bad{
+                        background: #FD0000;
+                        box-shadow: 0 0 0.7rem #FD0000;
                     }
                 }
             }
@@ -338,10 +352,162 @@
     }
 }
 
-.avis-section{
-    height: 100vh;
+.review-section{
     background: #000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8em;
+
+    padding: 6em 20%;
+
+    .review-section-title{
+        color: #FFF;
+        font-size: 3em;
+        font-weight: bold;
+    }
+
+
+    .review-wrapper{
+        position: relative;
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8em;
+        
+        .review-container{
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+
+            width: fit-content;
+            padding: 5em 5em 2em 5em;
+
+            background: #E1E1E1;
+            border-radius: 1em;
+
+            .grade{
+                position: absolute;
+                top: -3rem;
+                left: calc(50% - 3rem);
+
+                width: 6rem;
+                height: 6rem;
+                
+                border-radius: 0.5rem;
+    
+                display: flex;
+                justify-content: center;
+                align-items: center;
+    
+                font-size: 3.5rem;
+                font-weight: 500;
+
+                &.good{
+                    background: #00CE7A;
+                    box-shadow: 0 0 0.7rem #00CE7A;
+                }
+
+                &.average{
+                    background: #FFBD3F;
+                    box-shadow: 0 0 0.7rem #FFBD3F;
+                }
+
+                &.bad{
+                    background: #FD0000;
+                    box-shadow: 0 0 0.7rem #FD0000;
+                }
+            }
+
+            .review-title{
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.5em;
+            }
+
+            .review-content{
+                text-align: center;
+                line-height: 1.5;
+            }
+
+            .review-divider{
+                margin-top: 1em;
+                background: #767676;
+                opacity: 50%;
+                width: 100%;
+                height: 0.1em;
+            }
+
+            .reviewer-wrapper{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 0.1em;
+
+                .reviewer-container{
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 1em;
+
+                    .reviewer-pp{
+                        height: 4.5rem;
+                        width: 4.5rem;
+                        border-radius: 100%;
+                        overflow: hidden;
+                        border: 0.2em solid #B7DDFF;
+
+                        img{
+                            width: 100%;
+                        }
+                    }
+
+                    .reviewer-info{
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+
+                        .reviewer-name{
+                            font-weight: bold;
+                            font-size: 1.3em;
+                        }
+
+                        .reviewer-time{
+                            span{
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
