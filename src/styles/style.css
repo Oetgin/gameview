@@ -3,6 +3,10 @@ html {
   font-family: "Montserrat", sans-serif;
 }
 
+input {
+  font-family: "Montserrat", sans-serif;
+}
+
 header {
   background-color: #333333;
   position: sticky;

@@ -54,10 +54,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     echo '<div class="from-group redirect redirect-'.htmlspecialchars($_GET['redirect']).'"><p>'.htmlspecialchars($_GET['msg']).'</p></div>';
                 }
             ?>
-                <div class="form-group">
-                    <a href="/src/pages/forgot-password.php">Forgot password?</a>
-                </div>
-                <div class="form-group">
+                <div class="form-group form-section">
                     <p>Don't have an account?</p>
                     <button type="button" onclick="window.location.href='/src/pages/register.php'">Register</button>
                 </div>
