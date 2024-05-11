@@ -36,6 +36,7 @@ define('USER_ICON_PATH', '/assets/icons/user-icon-hollow-black.png');
 // __________File paths__________
 define('NORMALIZE_PATH', '/src/styles/normalize.css');
 define('DEFAULT_STYLE_PATH', '/src/styles/style.css');
+define('COVERS_FOLDER_PATH', '/assets/images/covers/');
 
 
 // __________Pages paths__________

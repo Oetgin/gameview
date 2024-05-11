@@ -11,6 +11,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 
 require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
 require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
+require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
 require_once(DOCUMENT_ROOT . '/src/static/head.php');
 require_once(DOCUMENT_ROOT . '/src/static/header.php');
@@ -18,7 +19,7 @@ require_once(DOCUMENT_ROOT . '/src/static/footer.php');
 require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
-require_once(DOCUMENT_ROOT . '/src/components/review.php');
+require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
 
 ?>
@@ -29,7 +30,28 @@ require_once(DOCUMENT_ROOT . '/src/components/review.php');
 
     <?php
         $mysqli = connectionDB();
+
+        // Get article id
+        if (isset($_GET["id"])) {
+            $article_id = $_GET["id"];
+        } else {
+            header('Location: ../../index.php');
+        }
+
+        // Get all useful info
+        $article = readQuery($mysqli, "SELECT * FROM article WHERE id = $article_id");
+        $game = readQuery($mysqli, 'SELECT * FROM game WHERE id = '. $article[0]["gameID_article"]);
+        $game_category = readQuery($mysqli, 'SELECT category FROM gamecategories WHERE gameID_category = ' . $game[0]["id"]);
+        $author = readQuery($mysqli, 'SELECT * FROM user WHERE id = ' .$article[0]["authorID_article"]);
+        
+        $game[0] = array_merge($game[0], array("cover-path" => COVERS_FOLDER_PATH . 'cover-' . $game[0]["id"] . '.png'));
+        $game[0] = array_merge($game[0], array("categories" => $game_category));
+
         includeHead('/src/styles/pages/article.css');
+
+        // echo '<pre>';
+        // print_r($game);
+        // echo '</pre>';
     ?>
 
     <body>
@@ -37,54 +59,12 @@ require_once(DOCUMENT_ROOT . '/src/components/review.php');
         <?php includeHeader(); ?>
 
         <main>
-            <section class="title-section">
-                <div class="title-content">
-                    <h2 class="game">Cyberpunk 2077</h2>
-                    <p class="title">"Le jeu de la décennie"</p>
-                    <p class="reviewer">Review par John Doe</p>
-                </div>
-                <div class="background-video">
-                    <video class="boomerang" id="background-video" autoplay loop muted plays-inline>
-                        <source src="/assets/videos/cyberpunk.webm" type="video/webm">
-                    </video>
-                    <div class="gradient"></div>
-                </div>
-            </section>
+            <?php 
+                includeArticleHeader($article_id, $game[0]["title"], $article[0]["title"], $author[0]["username"]);
 
+                includeArticleRecap($game[0]["title"], $game[0]["releaseDate"], $game[0]["categories"], $game[0]["price"], $game[0]["synopsis"], $game[0]["cover-path"], $article[0]["rating"], 95);
+            ?>
 
-            <section class="recap-section">
-                <div class="game-container">
-                    <img class="cover" src="/assets/images/covers/cyberpunk-cover.jpg" alt="Cyberpunk Cover">
-                    <div class="game-info-container">
-                        <p class="game-title">Cyberpunk 2077</p>
-                        <p class="release-date"><span class="underline">Date de sortie :</span> 10 décembre 2020</p>
-                        <p class="devs"><span class="underline">Développeurs :</span> CD Projekt RED</p>
-                        <p class="game-type"><span class="underline">Genre :</span> RPG, FPS</p>
-                        <p class="-game-description">Cyberpunk 2077 est un jeu vidéo d'action-RPG en vue à la première personne développé par CD Projekt RED et édité par CD Projekt, inspiré du jeu de rôle sur table Cyberpunk 2020 conçu par Mike Pondsmith.</p>
-                    </div>
-                </div>
-
-                <div class="reviews-container">
-                        <div class="grade-container">
-                            <div class="grade global-grade average">
-                                75
-                            </div>
-                            <div class="grades-info-container">
-                                <p class="grade-info-title">Note moyenne</p>
-                                <p class="grade-info-more">Généralement favorable</p>
-                            </div>
-                        </div>
-                        <div class="grade-container">
-                            <div class="grade global-grade good">
-                                95
-                            </div>
-                            <div class="grades-info-container">
-                                <p class="grade-info-title">Votre note</p>
-                                <p class="grade-info-more">Très favorable</p>
-                            </div>
-                        </div>
-                </div>
-            </section>
 
             <img class="divider triangle" src="/assets/images/utils/triangle-divider-to-white.svg" alt="divider">
 
