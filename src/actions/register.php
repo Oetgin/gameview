@@ -22,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
     require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
+    require_once(DOCUMENT_ROOT . '/src/utils/validInputs.php');
+
     // Get form data
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -35,18 +37,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username) || empty($email) || empty($password) || empty($password_confirm) || empty($surname) || empty($name) || empty($birthdate)) {
         redirect('/src/pages/register.php', 'error', 'Please fill in all fields');
     }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // Check if email is valid
-        redirect('/src/pages/register.php', 'error', 'Invalid email');
-    }
-
+    
     if ($password !== $password_confirm) {
         redirect('/src/pages/register.php', 'error', 'Passwords do not match');
     }
+    
+    if (!validPassword($password)) {
+        redirect('/src/pages/register.php', 'error', 'Invalid password. Please use at least 8 characters, one uppercase, one lowercase, one digit and one special character');
+    }
 
-    /* TODO : Add minimum password requirements */
+    if (!validEmail($email)) {
+        redirect('/src/pages/register.php', 'error', 'Invalid email');
+    }
 
-
+    if (!validUsername($username)) {
+        redirect('/src/pages/register.php', 'error', 'Invalid username. Please use 3-25 characters, letters, numbers, underscores and hyphens');
+    }
+    
     // Check if user already exists
     mysqli_stmt_bind_param($user_exists_prepared, 'ss', $username, $email);
     $user_exists = readDB($user_exists_prepared);
