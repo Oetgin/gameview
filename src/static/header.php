@@ -13,10 +13,20 @@ function includeHeader() {
             <input type="text" placeholder="Search">
         </div>
         <div class="user">
-            <a href="/src/pages/login.php">
+            <a href="' . profileLink() . '">
                 <img src="/assets/icons/user-icon-hollow-black.png" alt="user">
             </a>
         </div>
-    </header>    
+    </header>
     ';
+}
+
+function profileLink() {
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/src/utils/login.php');
+    if (loggedIn()) {
+        return '/src/pages/profile.php';
+    }
+    else {
+        return '/src/pages/login.php';
+    }
 }
