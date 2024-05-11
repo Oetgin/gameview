@@ -9,8 +9,12 @@ function includeHeader() {
             </a>
         </div>
         <div class="search-bar">
-            <img src="/assets/icons/search.svg" alt="search">
-            <input type="text" placeholder="Search">
+            <form action="/src/pages/search.php" method="get">
+                <button type="submit">
+                    <img src="/assets/icons/search.svg" alt="search">
+                </button>
+                <input type="text" name="search" placeholder="Search">
+            </form>
         </div>
         <div class="user">
             <a href="' . profileLink() . '">

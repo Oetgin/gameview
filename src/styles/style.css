@@ -28,16 +28,25 @@ header .search-bar {
   align-items: center;
   justify-content: space-between;
 }
-header .search-bar input {
+header .search-bar form {
+  display: flex;
+  align-items: center;
+}
+header .search-bar form button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+header .search-bar form button img {
+  height: 1em;
+  padding: 0 0.2em;
+}
+header .search-bar form input {
   border: none;
   outline: none;
   height: 1.75em;
   width: 25em;
   font-family: "Montserrat", sans-serif;
-}
-header .search-bar img {
-  height: 1em;
-  padding: 0 0.2em;
 }
 
 body {
