@@ -13,9 +13,9 @@ function includeArticleHeader($game_id, $game_name, $title, $author_name) {
     
     <section class="title-section">
         <div class="title-content">
-            <h2 class="game">' .$game_name. '</h2>
-            <p class="title">"' .$title. '"</p>
-            <p class="reviewer">Review par ' .$author_name. '</p>
+            <h2 class="game">' .stripslashes($game_name). '</h2>
+            <p class="title">"' .stripslashes($title). '"</p>
+            <p class="reviewer">Review par ' .stripslashes($author_name). '</p>
         </div>
         <div class="background-video">
             <video class="boomerang" id="background-video" autoplay loop muted plays-inline>
@@ -80,11 +80,11 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
     <div class="game-container">
         <img class="cover" src="' .$cover_path. '" alt="Cyberpunk Cover">
         <div class="game-info-container">
-            <p class="game-title">' .$title. '</p>
+            <p class="game-title">' .stripslashes($title). '</p>
             <p class="release-date"><span class="underline">Date de sortie :</span> ' .$date. '</p>
             <p class="devs"><span class="underline">Prix :</span> ' .$price. '</p>
-            <p class="game-type"><span class="underline">Genre :</span> ' .$categories_string. '</p>
-            <p class="-game-description">'.$synopsis.'</p>
+            <p class="game-type"><span class="underline">Genre :</span> ' .stripslashes($categories_string). '</p>
+            <p class="-game-description">'.stripslashes($synopsis).'</p>
         </div>
     </div>
 
@@ -113,8 +113,130 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
 }
 
 
-function includeArticleContent($article_id, $game_name, $image_path, $title, $description, $rating) {
+function includeArticleContent($game_name, $article_title, $content, $article_rating, $points) {
+    // Grade display
+    if(intval($article_rating) > 79) {
+        $article_rating_background_class = "good";
+    } else if (intval($article_rating) < 80 && intval($article_rating) > 39) {
+        $article_rating_background_class = "average";
+    } else{
+        $article_rating_background_class = "bad";
+    }
 
+    echo '
+        <section class="article-section">
+            <h3 class="article-catch">' .$game_name. ' : ' .$article_title. '</h3>
+
+    ';
+
+    foreach($content as $key => $value) {
+        $type = $value[0];
+        $element_content = $value[1];
+
+        if ($type == "intro") {
+
+            echo '
+                <p class="intro">
+                    ' .stripslashes($element_content). '
+                </p> 
+            ';
+
+        } else if ($type == "part-title") {
+
+            echo '
+                <h4 class="part-title">
+                    ' .stripslashes($element_content). '
+                </h4>
+            ';
+
+        } else if ($type == "corpus") {
+
+            echo '
+            <p class="corpus">
+                ' .stripslashes($element_content). '
+            </p>
+            ';
+
+        } else if ($type == "image") {
+
+            $image_path = $element_content[0];
+            $image_caption = stripslashes($element_content[1]);
+            $image_alt = stripslashes($element_content[2]);
+
+            echo '
+            <div class="image-container">
+                <img class="image" src="' .$image_path. '" alt="' .$image_alt. '">
+                <p class="caption">
+                    ' .$image_caption. '
+                </p>
+            </div>
+            ';
+
+        } else {
+            
+            // If the types doesnt exist (it should not happen anyways) we consider its just text
+            echo '
+                <p class="corpus">
+                    ' .$element_content. '
+                </p>
+            ';
+
+        }
+    }
+
+    echo '
+
+            <div class="final-grade-plus-minus-wrapper">
+                <div class="plus-minus-wrapper">
+                    <div class="final-grade-container">
+                        <div class="final-grade-title">
+                            La note de GameView
+                        </div>
+                        <div class="grade ' .$article_rating_background_class. '">
+                                '.$article_rating.'
+                        </div>
+                    </div>
+
+                    <div class="plus-minus-container">
+                        <div class="plus-container column">
+                            <div class="column-title">
+                                Points forts
+                            </div>
+                            <ul>
+    ';
+
+    // display positive points
+    $positive_points = $points[0];
+    foreach ($positive_points as $key => $value) {
+        echo '<li class="plus">' .stripslashes($value). '</li>';
+    }
+
+    echo '
+                            </ul>
+                        </div>
+                        
+                        <div class="minus-container column">
+                            <div class="column-title">
+                                    Points faibles
+                            </div>
+                            <ul>
+    ';
+
+    // display positive points
+    $negative_points = $points[1];
+    foreach ($negative_points as $key => $value) {
+        echo '<li class="minus">' .stripslashes($value). '</li>';
+    }
+
+    echo '
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    ';
 }
 
 
