@@ -11,6 +11,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 
 require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
 require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
+require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
 require_once(DOCUMENT_ROOT . '/src/static/head.php');
 require_once(DOCUMENT_ROOT . '/src/static/header.php');
@@ -45,67 +46,40 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
             </div>
             
             <?php
-            /* TODO */
-            ?>
+            $page_length = 5;
 
-            <!-- CARD TEST -->
-            <div style="display: grid; grid-template-columns: auto auto; justify-content: center;">
-            <?php
-                includeArticleCard(
-                    "1",
-                    "Cyberpunk 2077",
-                    "assets/images/covers/cyberpunk-cover.jpg",
-                    "A masterpiece of the genre",
-                    "Exploring the most anticipated game of the decade in detail, from it's creation to now.",
-                    9,
-                    "John Smith",
-                    "Reviewer",
-                    ""
-                );
-                includeArticleCard(
-                    "2",
-                    "The Witcher 3",
-                    "",
-                    "One of the best RPGs of all time",
-                    "A deep dive into the world of The Witcher 3, exploring the game's mechanics and story.",
-                    7,
-                    "Jane Doe",
-                    "Reviewer",
-                    ""
-                );
-                includeArticleCard(
-                    "3",
-                    "The Elder Scrolls V: Skyrim",
-                    "",
-                    "A classic that never gets old",
-                    "A retrospective on the game that has been released on every platform",
-                    8,
-                    "John Doe",
-                    "Reviewer",
-                    ""
-                );
-                includeArticleCard(
-                    "4",
-                    "Red Dead Redemption 2",
-                    "",
-                    "A masterpiece of storytelling",
-                    "A deep dive into the world of Red Dead Redemption 2, exploring the game's mechanics and story.",
-                    9,
-                    "John Smith",
-                    "Reviewer",
-                    ""
-                );
-                includeArticleCard(
-                    "5",
-                    "The Last of Us Part II",
-                    "",
-                    "A controversial sequel",
-                    "A review of the game that divided fans and critics alike",
-                    4.5,
-                    "Jane Doe",
-                    "Reviewer",
-                    ""
-                );
+            $get_articles = readQuery($mysqli, $get_articles_query);
+
+            // Pas d'articles 
+            if (count($get_articles) == 0) {
+                echo '<div class="no-articles">Aucun article n\'a été publié pour le moment...</div>';
+            }
+
+            else {
+                // Récupération de la page actuelle
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+                for ($i = ($page-1)*$page_length; $i < ($page-1)*$page_length+$page_length; $i++) {
+                    if ($i >= count($get_articles)) {
+                        // Fin de la liste d'articles
+                        break;
+                    }
+                    $article = $get_articles[$i];
+                    mysqli_stmt_bind_param($article_info_prepared, "i", $article['id']);
+                    $article_info = readDB($article_info_prepared);
+                    includeArticleCard(
+                        $article['id'],
+                        $article_info['gameTitle'],
+                        $article_info['cover'],
+                        $article_info['title'],
+                        $article_info['description'],
+                        $article_info['rating'],
+                        $article_info['username'],
+                        $article_info['role'],
+                        $article_info['pp']
+                    );
+                }
+            }
             ?>
             </div>
 

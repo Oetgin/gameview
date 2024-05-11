@@ -26,8 +26,8 @@ function closeDB($mysqli) {
 }
 
 
-# For read requests
-function readDB($sql_stmt) {
+# For read requests (prepared queries)
+function readDB(mysqli_stmt $sql_stmt) {
 
 	mysqli_stmt_execute($sql_stmt);
 
@@ -39,8 +39,20 @@ function readDB($sql_stmt) {
 		$data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		return $data;
 	}
-}
+}	
 
+# For read requests (simple queries)
+function readQuery(mysqli $mysqli, string $query) {
+	
+	$result = mysqli_query($mysqli, $query);
+
+	if($result == false || $result == null) {
+		return array();
+	} else {
+		$data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		return $data;
+	}
+}
 
 # For write requests
 function writeDB($sql_stmt) {
