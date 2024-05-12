@@ -36,7 +36,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
         <?php includeHeader(); ?>
 
         <main>
-            <form action="/src/actions/login.php" method="post">
+            <form action="/src/actions/login.php" method="post" class="classic-form">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required>
