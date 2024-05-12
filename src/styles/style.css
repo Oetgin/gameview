@@ -84,6 +84,58 @@ footer .box {
   justify-content: center;
 }
 
+.btn {
+  cursor: pointer;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.add-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1em 1.5em;
+  background: #E6E6E6;
+  border-radius: 3em;
+  transition: all 0.3s;
+}
+.add-btn .add-icon {
+  height: 1em;
+}
+.add-btn .add-btn-content {
+  font-weight: 600;
+  font-size: 1em;
+}
+.add-btn:hover {
+  background: #238BE8;
+}
+
+.submit-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1rem 2rem;
+  background: #238BE8;
+  border: none;
+  border-radius: 3em;
+  color: #FFF;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 1.25em;
+  transition: all 0.3s;
+}
+.submit-btn:hover {
+  background: rgb(0, 104, 196);
+}
+
 .article-card {
   border-radius: 1em;
   box-shadow: 0.4em 0.1em 1em rgba(0, 0, 0, 0.2);

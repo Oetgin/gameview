@@ -1,0 +1,141 @@
+.content-wrapper{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7em;
+
+    width: 100%;
+    padding: 4em 20%;
+
+    .title-section{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5em;
+
+        .title-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+
+            img{
+                height: 4em;
+            }
+
+            .title{
+                font-size: 4em;
+                font-weight: bold;
+            }
+        }
+
+        .description{
+            font-size: 1.25em;
+            font-weight: 500;
+        }
+
+        .cover{
+            height: 12rem;
+            border-radius: 1em;
+        }
+    }
+
+
+    .editor-section{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3em;
+
+        .editor-title{
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        #article-editor-form{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3em;
+
+            .all-inputs-container{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2em;
+
+                .input-container{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.25em;
+
+                    label{
+                        font-weight: bold;
+                        text-align: center;
+                        font-size: 1.5em;
+                    }
+
+                    input{
+                        width: 100%;
+                        padding: 1em;
+
+                        border: 0.15em solid rgba(0,0,0,0.1);
+                        outline: none;
+                        border-radius: 1rem;
+                        
+                        font-size: 1.25rem;
+                        
+                        &#title{
+                            height: 3em;
+                        }
+
+                        &:focus{
+                            border: 0.15em solid #238BE8;
+                        }
+                    }
+
+                    textarea{
+                        width: 100%;
+                        padding: 1em;
+
+                        border: 0.15em solid rgba(0,0,0,0.1);
+                        outline: none;
+                        border-radius: 1rem;
+                        
+                        font-size: 1.25rem;
+                        
+                        &#title{
+                            height: 3em;
+                        }
+
+                        &:focus{
+                            border: 0.15em solid #238BE8;
+                        }
+                    }
+                }
+            }
+
+            .add-container{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 2em;
+            }
+        }
+    }
+}
