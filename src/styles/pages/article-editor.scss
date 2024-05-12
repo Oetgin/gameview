@@ -37,11 +37,13 @@
         .description{
             font-size: 1.25em;
             font-weight: 500;
+            text-decoration: underline;
         }
 
         .cover{
             height: 12rem;
             border-radius: 1em;
+            box-shadow: 0 0 1em rgba(0,0,0,0.5);
         }
     }
 

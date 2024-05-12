@@ -31,10 +31,12 @@
 .content-wrapper .title-section .description {
   font-size: 1.25em;
   font-weight: 500;
+  text-decoration: underline;
 }
 .content-wrapper .title-section .cover {
   height: 12rem;
   border-radius: 1em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
 }
 .content-wrapper .editor-section {
   width: 100%;
