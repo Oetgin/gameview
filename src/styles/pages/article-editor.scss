@@ -89,7 +89,7 @@
                         font-size: 1.5em;
                     }
 
-                    input{
+                    .input{
                         width: 100%;
                         padding: 1em;
 
@@ -98,32 +98,39 @@
                         border-radius: 1rem;
                         
                         font-size: 1.25rem;
+                        font-family: 'Montserrat';
+                        font-weight: 500;
                         
-                        &#title{
-                            height: 3em;
-                        }
 
                         &:focus{
                             border: 0.15em solid #238BE8;
                         }
-                    }
 
-                    textarea{
-                        width: 100%;
-                        padding: 1em;
+                        &.all-image-attributes{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            justify-content: center;
+                            gap: 1em;
 
-                        border: 0.15em solid rgba(0,0,0,0.1);
-                        outline: none;
-                        border-radius: 1rem;
-                        
-                        font-size: 1.25rem;
-                        
-                        &#title{
-                            height: 3em;
-                        }
+                            .image-attribute-container{
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
+                                justify-content: center;
+                                gap: 0.2em;
 
-                        &:focus{
-                            border: 0.15em solid #238BE8;
+                                .image-attribute-name{
+                                    position: relative;
+                                    left: 0.5em;
+                                }
+
+                                .input{
+                                    padding: 0.5em 1em;
+                                }
+                            }
                         }
                     }
                 }

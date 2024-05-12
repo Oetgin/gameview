@@ -43,14 +43,29 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
 
         // __________Get all useful info__________
-        $game_title = readQuery($mysqli, "SELECT title FROM game WHERE id = $game_id")[0]["title"];
+        $game_title = readQuery($mysqli, "SELECT title FROM game WHERE id = $game_id");
         $game_cover_path = COVERS_FOLDER_PATH . 'cover-' . $game_id . '.png';
+        session_start();
+        // $author_id = $_SESSION['user_id'];
+        $author_id = 1;
 
         // if the article isnt in the db
         if (empty($game_title)) {
             header('Location: ../../index.php');
             exit;
+        } else {
+            $game_title = $game_title[0]["title"];
         }
+
+        
+        // __________If the game already has an article__________
+        $article_id = readQuery($mysqli, "SELECT id FROM article WHERE gameID_article = $game_id");
+        if (empty($article_id)) {
+            $article_id = -1;                       // It means it's a new article
+        } else {
+            $article_id = $article_id[0]["id"];     // already exists
+        }
+        
 
 
         // __________Temp tests__________
@@ -68,6 +83,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
     <body>
         
         <?php includeHeader(); ?>
+        <script src="../components/article-editor.js"></script>
 
         <main>
 
@@ -96,36 +112,36 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                         Contenu de l'article
                     </div>
 
-                    <form id="article-editor-form" method="post" action="">
+                    <form id="article-editor-form" method="post" action="<?php echo '../actions/post-article.php?game_id=' .$game_id. '&author_id=' .$author_id. '&article_id=' .$article_id ?>" enctype="multipart/form-data">
                         
-                        <div class="all-inputs-container">
+                        <div id="all-inputs-container" class="all-inputs-container">
                             <div class="input-container">
                                 <label for="title">Titre</label>
-                                <input id="title" name="title" type="text" maxlength="199" required>
+                                <input class="input" id="title" name="title" type="text" maxlength="199" required>
                             </div>
 
                             <div class="input-container">
                                 <label for="intro">Introduction</label>
-                                <textarea id="intro" name="intro" rows="10" required></textarea>
+                                <textarea class="input" id="intro" name="intro" rows="5" required></textarea>
                             </div>
                         </div>
 
                         <div class="add-container">
-                            <a id="add-part-title" class="btn add-btn">
+                            <a id="add-part-title" class="btn add-btn" onclick="addPartTitleInput()">
                                 <img class="add-icon" src="/assets/icons/add.svg" alt="Icone ajouter">
                                 <div class="add-btn-content">
                                     Titre de partie
                                 </div>
                             </a>
 
-                            <a id="add-corpus" class="btn add-btn">
+                            <a id="add-corpus" class="btn add-btn" onclick="addCorpusInput()">
                                 <img class="add-icon" src="/assets/icons/add.svg" alt="Icone ajouter">
                                 <div class="add-btn-content">
                                     Contenu texte
                                 </div>
                             </a>
 
-                            <a id="add-image" class="btn add-btn">
+                            <a id="add-image" class="btn add-btn" onclick="addImageInput()">
                                 <img class="add-icon" src="/assets/icons/add.svg" alt="Icone ajouter">
                                 <div class="add-btn-content">
                                     Image
