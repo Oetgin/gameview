@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : sam. 11 mai 2024 à 16:40
+-- Généré le : dim. 12 mai 2024 à 00:11
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -34,8 +34,16 @@ CREATE TABLE `article` (
   `rating` float NOT NULL,
   `date` date NOT NULL,
   `authorID_article` bigint(20) UNSIGNED NOT NULL,
-  `gameID_article` bigint(20) UNSIGNED NOT NULL
+  `gameID_article` bigint(20) UNSIGNED NOT NULL,
+  `points` mediumtext
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `article`
+--
+
+INSERT INTO `article` (`id`, `title`, `content`, `rating`, `date`, `authorID_article`, `gameID_article`, `points`) VALUES
+(1, 'S\'éprendre d\'une ville qui vous méprise', '[[\"intro\",\"Le lancement de Cyberpunk 2077 en d\\u00e9cembre 2020 fut pour le moins chaotique, mais CD Projekt RED n\\\\\'a jamais abdiqu\\u00e9. Au contraire, les studios polonais se sont attel\\u00e9s \\u00e0 rectifier le tir une update apr\\u00e8s l\\\\\'autre afin de s\\\\\'assurer que leur Action-RPG futuriste tienne toutes ses promesses. Avec la mise \\u00e0 jour 2.0, V acc\\u00e8de-t-elle au statut de l\\u00e9gende ? Il est grand temps de retourner \\u00e0 Night City en qu\\u00eate de r\\u00e9ponses.\"],[\"part-title\",\"Un univers toujours plus \\\"Premios\\\"\"],[\"corpus\",\"Le monde ouvert b\\u00e2ti par CD Projekt RED \\u00e9tait l\\\\\'une des forces de Cyberpunk 2077 avec ses quartiers aux ambiances vari\\u00e9es d\\u00e9bordant de vie. Toutefois, cet univers imagin\\u00e9 \\u00e0 l\\\\\'origine par Mike Pondsmith en 1988 ne pouvait pleinement s\\\\\'\\u00e9panouir sans une intelligence artificielle digne de ce nom. Si le comportement des citoyens lambda demeurent dans les grandes lignes inchang\\u00e9s, il en va autrement pour les ennemis qui se dressent sur le chemin de V. L\\\\\'update 2.0 de CP 2077 a mis \\u00e0 jour leur logiciel ce qui leur permet d\\\\\'opposer une r\\u00e9sistance un peu plus coriace. Les paumards et autres edgerunners font parfois preuve \\\\\'initiative, et mettent en avant leurs atouts pour prendre le dessus lors des affrontements. Ces derniers utilisent r\\u00e9guli\\u00e8rement les piratages rapides, tentent de vous d\\u00e9loger avec des grenades et misent sur leurs forces pour vous \\u00e9liminer. Les comportements demeurent encore artificiels, voire sommaires, mais la diff\\u00e9rence est notable. N\\u00e9anmoins, ce sont les forces de l\\\\\'ordre de Night City qui b\\u00e9n\\u00e9ficient de la mise \\u00e0 jour la plus significative.\"],[\"image\",[\"\\/assets\\/images\\/illustrations\\/cyberpunk-illustration.jpg\",\"Depuis la mise \\u00e0 jour 2.0, Night City est plus r\\u00e9aliste que jamais. Le jeu nous offre un ape\\u00e7u fascinant et effrayant des villes du futur.\",\"Image ingame de Cyberpunk 2077\"]],[\"part-title\",\"Une personnalisation plus \\\"Nova\\\" que jamais\"],[\"corpus\",\"La personnalisation de V avait s\\u00e9duit les joueurs, mais restait perfectible sur de nombreux points. Conscients de cela, les d\\u00e9veloppeurs proposent avec la mise \\u00e0 jour 2.0 une refonte totale des m\\u00e9caniques RPG de Cyberpunk 2077 afin de coller au plus pr\\u00e8s de l\\\\\'univers et donner une plus grande libert\\u00e9 aux mercenaires. Cela passe en premier lieu par un nouveau syst\\u00e8me d\\\\\'avantages qui n\\\\\'a plus rien \\u00e0 voir avec l\\\\\'ancien, m\\u00eame s\\\\\'il repose toujours sur les attributs du protagoniste (Constitution, R\\u00e9flexes, Capacit\\u00e9 Technique, Sang Froid et Intelligence). La majorit\\u00e9 des attributs ont \\u00e9t\\u00e9 modifi\\u00e9s tandis que d\\\\\'autres font une entr\\u00e9e remarqu\\u00e9e. Cette nouvelle approche a pour principal objectif de traduire par le gameplay vos choix et donc d\\\\\'impacter l\\\\\'exp\\u00e9rience de jeu dans sa globalit\\u00e9. Il en va de m\\u00eame pour les implants qui deviennent encore plus essentiels. Point important, l\\\\\'armure est d\\u00e9sormais li\\u00e9e \\u00e0 votre mat\\u00e9riel cybern\\u00e9tique et non \\u00e0 vos v\\u00eatements. Il est \\u00e9galement conseill\\u00e9 d\\\\\'am\\u00e9liorer votre matos en recyclant les composants, ce qui permet d\\\\\'\\u00e9viter de repasser \\u00e0 la caisse. CD Projekt RED s\\\\\'assure ainsi que vos augmentations influent sur l\\\\\'\\u00e9volution de votre personnage, et c\\\\\'est d\\\\\'autant plus vrai avec la limitation mise en place. En effet, V ne peut supporter qu\\\\\'une quantit\\u00e9 limit\\u00e9e d\\\\\'implants ce qui vous force \\u00e0 faire des choix parfois drastiques. Fort heureusement, cette limitation augmente en parall\\u00e8le du gain d\\\\\'exp\\u00e9rience et garantit \\u00e0 votre mercenaire une destin\\u00e9e hors du commun. L\\\\\'immersion se veut ludique, mais aussi visuelle. Les visites chez le charcudoc b\\u00e9n\\u00e9ficient d\\\\\'une interface repens\\u00e9e et de cin\\u00e9matiques post-op\\u00e9ratoires, histoire de ressentir un peu plus les changements effectu\\u00e9s sur votre corps m\\u00eame si cela reste au final un gimmick plaisant. Enfin, la mise \\u00e0 jour 2.0 vous force \\u00e0 r\\u00e9attribuer vos points d\\\\\'avantages d\\u00e9j\\u00e0 gagn\\u00e9s avec votre version de V, \\u00e0 moins que vous ne souhaitiez recommencer l\\\\\'aventure du d\\u00e9but... ce qui peut avoir son charme.\"],[\"part-title\",\"Conclusion\"],[\"corpus\",\"Cyberpunk 2077 revient de loin, de tr\\u00e8s loin m\\u00eame, et sa r\\u00e9surrection est \\u00e0 la hauteur de ses d\\u00e9buts chaotiques. Avec les changements op\\u00e9r\\u00e9s par CD Projekt RED via la mise \\u00e0 jour 2.0, cet Action-RPG gomme les derniers errements des versions vanilla et 1.6, optimise ce qui devait l\\\\\'\\u00eatre, et rend la personnalisation plus \\u201cNova\\u201d que jamais. Assister \\u00e0 l\\\\\'ascension de V dans les rues malfam\\u00e9es de Night City n\\\\\'a jamais \\u00e9t\\u00e9 aussi grisant. Cyberpunk 2077 rena\\u00eet d\\u00e9finitivement de ses cendres... et c\\\\\'est un sans faute (ou presque) !\"]]', 75, '2024-05-11', 1, 1, '[[\"L\\\\\'exp\\u00e9rience Cyberpunk 2077 sublim\\u00e9e\",\"Les interventions de la Police\",\"La refonte du syst\\u00e8me d\'avantages et des implants\"],[\"L\'IA ennemie toujours perfectible\",\"Le manque de nouveau contenu\"]]');
 
 -- --------------------------------------------------------
 
@@ -291,7 +299,7 @@ ALTER TABLE `userstats`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `comment`

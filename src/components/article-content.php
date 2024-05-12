@@ -278,7 +278,7 @@ function includeReview($reviewer_name, $pp_path, $date, $played_time, $rating, $
                     </div>
                     
                     <div class="reviewer-info">
-                        <div class="reviewer-name">' .$reviewer_name. '</div>
+                        <div class="reviewer-name">' .stripslashes($reviewer_name). '</div>
                         <div class="reviewer-time">A joué <span>' .$played_time. ' h</span> à Cyberpunk 2077</div>
                     </div>
                 </div>

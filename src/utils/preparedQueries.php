@@ -36,12 +36,20 @@ $user_login_prepared = mysqli_prepare($mysqli, $user_login_query);
 // $article_info_prepared = mysqli_prepare($mysqli, $article_info_query);
 
 
-// FOR ONE ARTICLE PAGE
+// ONE ARTICLE PAGE
 $get_one_article_query = "SELECT * FROM article WHERE id = ?";
 $get_article_author_query = "SELECT * FROM user WHERE id = ?";
 
 $get_one_article_prepared = mysqli_prepare($mysqli, $get_one_article_query);
 $get_article_author_prepared = mysqli_prepare($mysqli, $get_article_author_query);
+
+
+// TO UPDATE OR POST ARTICLES CONTENT AND POINTS
+$update_article_content_query = "UPDATE article SET content = ? WHERE id = ?";
+$update_article_points_query = "UPDATE article SET points = ? WHERE id = ?";
+
+$update_article_content_prepared = mysqli_prepare($mysqli, $update_article_content_query);
+$update_article_points_prepared = mysqli_prepare($mysqli, $update_article_points_query);
 
 // COMMENTS
 $get_comments_query = "SELECT * FROM comment WHERE articleID_comment = ? ORDER BY creationDate DESC";
