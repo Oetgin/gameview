@@ -39,9 +39,11 @@ $user_login_prepared = mysqli_prepare($mysqli, $user_login_query);
 // ONE ARTICLE PAGE
 $get_one_article_query = "SELECT * FROM article WHERE id = ?";
 $get_article_author_query = "SELECT * FROM user WHERE id = ?";
+$article_exists_query = "SELECT COUNT(*) as count FROM article WHERE id = ?";
 
 $get_one_article_prepared = mysqli_prepare($mysqli, $get_one_article_query);
 $get_article_author_prepared = mysqli_prepare($mysqli, $get_article_author_query);
+$article_exists_prepared = mysqli_prepare($mysqli, $article_exists_query);
 
 
 // TO UPDATE OR POST ARTICLES CONTENT AND POINTS
