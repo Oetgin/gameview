@@ -12,7 +12,13 @@ function addPartTitleInput() {
 
     // We wanna recreate this structure :
     // <div class="input-container">
-    //     <label for="part-title">Titre de partie</label>
+    //     <label for="corpus">
+            //     Contenu texte
+                    // <a class="btn delete-btn" onclick="deleteSection(this)">
+                    //     <img src="/assets/icons/minus.svg" alt="Supprimer">
+                    //     <div class="hover-msg">Supprimer cette section</div>
+                    // </a>
+            // </label>
     //     <textarea class="input" id="part-title" name="part-title" rows="1" maxlength="199" required></textarea>
     // </div>
 
@@ -27,6 +33,26 @@ function addPartTitleInput() {
     label.textContent = "Titre de partie";
     label.setAttribute("for", "part-title-"+partTitleNumber);
     inputContainer.appendChild(label);
+
+    //     <div class="btn delete-btn" onclick="deleteSection(this)">
+    let deleteBtn = document.createElement("a");
+    deleteBtn.classList.add("btn");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.setAttribute("onclick", "deleteSection(this)");
+
+    //         <img src="/assets/icons/minus.svg" alt="Supprimer">
+    let img = document.createElement("img");
+    img.setAttribute("src", "/assets/icons/minus.svg");
+    img.setAttribute("alt", "Supprimer");
+    deleteBtn.appendChild(img);
+
+    //         <div class="hover-msg">Supprimer cette section</div>
+    let hoverMsg = document.createElement("div");
+    hoverMsg.classList.add("hover-msg");
+    hoverMsg.textContent = "Supprimer cette section";
+    deleteBtn.appendChild(hoverMsg);
+
+    label.appendChild(deleteBtn);
 
     //     <textarea class="input" id="part-title-i" name="part-title" rows="1" maxlength="199" required></textarea>
     let textarea = document.createElement("textarea");
@@ -50,7 +76,13 @@ function addCorpusInput() {
 
     // We wanna recreate this structure :
     // <div class="input-container">
-    //     <label for="corpus">Contenu texte</label>
+    //     <label for="corpus">
+            //     Contenu texte
+                    // <a class="btn delete-btn" onclick="deleteSection(this)">
+                    //     <img src="/assets/icons/minus.svg" alt="Supprimer">
+                    //     <div class="hover-msg">Supprimer cette section</div>
+                    // </a>
+            // </label>
     //     <textarea class="input" name="corpus" id="corpus-i" rows="10" required></textarea>
     // </div>
 
@@ -63,6 +95,26 @@ function addCorpusInput() {
     label.textContent = "Contenu texte";
     label.setAttribute("for", "corpus-"+corpusNumber);
     inputContainer.appendChild(label);
+
+    //     <div class="btn delete-btn" onclick="deleteSection(this)">
+    let deleteBtn = document.createElement("a");
+    deleteBtn.classList.add("btn");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.setAttribute("onclick", "deleteSection(this)");
+
+    //         <img src="/assets/icons/minus.svg" alt="Supprimer">
+    let img = document.createElement("img");
+    img.setAttribute("src", "/assets/icons/minus.svg");
+    img.setAttribute("alt", "Supprimer");
+    deleteBtn.appendChild(img);
+
+    //         <div class="hover-msg">Supprimer cette section</div>
+    let hoverMsg = document.createElement("div");
+    hoverMsg.classList.add("hover-msg");
+    hoverMsg.textContent = "Supprimer cette section";
+    deleteBtn.appendChild(hoverMsg);
+
+    label.appendChild(deleteBtn);
 
     //     <textarea class="input" name="corpus-i" id="corpus-i" rows="10" required></textarea>
     let textarea = document.createElement("textarea");
@@ -85,8 +137,13 @@ function addImageInput() {
 
     // We wanna recreate this structure :
     // <div class="input-container">
-    //     <label for="image[]">Image</label>
-
+    //     <label for="corpus">
+            //     Contenu texte
+                    // <a class="btn delete-btn" onclick="deleteSection(this)">
+                    //     <img src="/assets/icons/minus.svg" alt="Supprimer">
+                    //     <div class="hover-msg">Supprimer cette section</div>
+                    // </a>
+            // </label>
     //     <div class="input all-image-attributes">
         
     //         <div class="image-attribute-container">
@@ -122,6 +179,26 @@ function addImageInput() {
     label.textContent = "Image";
     label.setAttribute("for", "image-"+imageNumber+"[]");
     inputContainer.appendChild(label);
+
+    //     <div class="btn delete-btn" onclick="deleteSection(this)">
+    let deleteBtn = document.createElement("a");
+    deleteBtn.classList.add("btn");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.setAttribute("onclick", "deleteSection(this)");
+
+    //         <img src="/assets/icons/minus.svg" alt="Supprimer">
+    let img = document.createElement("img");
+    img.setAttribute("src", "/assets/icons/minus.svg");
+    img.setAttribute("alt", "Supprimer");
+    deleteBtn.appendChild(img);
+
+    //         <div class="hover-msg">Supprimer cette section</div>
+    let hoverMsg = document.createElement("div");
+    hoverMsg.classList.add("hover-msg");
+    hoverMsg.textContent = "Supprimer cette section";
+    deleteBtn.appendChild(hoverMsg);
+
+    label.appendChild(deleteBtn);
 
     //     <div class="input all-image-attributes">
     let allImageAttributes = document.createElement("div");
@@ -197,4 +274,11 @@ function addImageInput() {
     allInputsContainer.appendChild(inputContainer);
 
     imageNumber++;
+}
+
+
+// To delete a section
+function deleteSection(element) {
+    let elementToDelete = element.parentNode.parentNode;
+    elementToDelete.remove();
 }

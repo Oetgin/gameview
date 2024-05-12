@@ -73,9 +73,16 @@
   gap: 0.25em;
 }
 .content-wrapper .editor-section #article-editor-form .all-inputs-container .input-container label {
+  position: relative;
   font-weight: bold;
   text-align: center;
   font-size: 1.5em;
+}
+.content-wrapper .editor-section #article-editor-form .all-inputs-container .input-container label .delete-btn {
+  position: absolute;
+  right: -1.5em;
+  top: calc(50% - 0.6em);
+  height: 0.9em;
 }
 .content-wrapper .editor-section #article-editor-form .all-inputs-container .input-container .input {
   width: 100%;

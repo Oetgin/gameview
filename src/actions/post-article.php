@@ -82,7 +82,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo 'L article n existe pas ';
         createArticle($mysqli, $article_id, $article_title, $article_content, "88", "2020-04-05", $author_id, $game_id, $points);
     }
-    
+
+
+    // Redirect
+    closeDB($mysqli);
+    header('Location: ../pages/article.php?id='.$article_id);
+    exit;
 
 }
 else {

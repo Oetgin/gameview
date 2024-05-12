@@ -114,6 +114,27 @@ footer .box {
   background: #238BE8;
 }
 
+.delete-btn:hover .hover-msg {
+  display: block;
+}
+.delete-btn .hover-msg {
+  display: none;
+  position: absolute;
+  top: -1em;
+  left: 3em;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5em 1em;
+  font-size: 0.5em;
+  background: #c70303;
+  border-radius: 0.5em;
+  box-shadow: 0 0 1em rgba(255, 0, 0, 0.5);
+  color: white;
+}
+.delete-btn img {
+  height: 100%;
+}
+
 .submit-btn {
   display: flex;
   flex-direction: row;

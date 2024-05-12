@@ -33,6 +33,34 @@
     }
 }
 
+.delete-btn{
+    &:hover{
+        .hover-msg{
+            display: block;
+        }
+    }
+
+    .hover-msg{
+        display: none;
+        position: absolute;
+        top: -1em;
+        left: 3em;
+        width: max-content;
+        padding: 0.5em 1em;
+        font-size: 0.5em;
+
+        background: #c70303;
+        border-radius: 0.5em;
+        box-shadow: 0 0 1em rgba(255,0,0,0.5);
+
+        color: white;
+    }
+
+    img{
+        height: 100%;
+    }
+}
+
 
 .submit-btn{
     display: flex;
