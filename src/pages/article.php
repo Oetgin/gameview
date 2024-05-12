@@ -75,7 +75,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
         <main>
             <?php 
-                includeArticleHeader($article_id, $game[0]["title"], $article[0]["title"], $author[0]["username"]);
+                includeArticleHeader($game[0]["id"], $game[0]["title"], $article[0]["title"], $author[0]["username"]);
 
                 includeArticleRecap($game[0]["title"], $game[0]["releaseDate"], $game[0]["categories"], $game[0]["price"], $game[0]["synopsis"], $game[0]["cover-path"], $article[0]["rating"], 95);
             ?>

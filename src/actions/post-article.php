@@ -38,26 +38,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($key == "title") {
 
-            $article_title = $value;
+            $article_title = addslashes($value);
 
         } else if($key == "intro") {
 
-            $article_content[$counter] = array("intro", $value);
+            $article_content[$counter] = array("intro", addslashes($value));
 
         } else if (str_starts_with($key, "part-title")) {
 
-            $article_content[$counter] = array("part-title", $value);
+            $article_content[$counter] = array("part-title", addslashes($value));
 
         } else if (str_starts_with($key, "corpus")) {
 
-            $article_content[$counter] = array("corpus", $value);
+            $article_content[$counter] = array("corpus", addslashes($value));
 
         } else if (str_starts_with($key, "image")) {
 
 
             $file_path = $_FILES[$key]["tmp_name"]["file"];
-            $caption = $value["caption"];
-            $alt = $value["alt"];
+            $caption = addslashes($value["caption"]);
+            $alt = addslashes($value["alt"]);
 
             $article_content[$counter] = array("image", array($file_path, $caption, $alt));
 
@@ -77,9 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // If the article already exists
     if ($article_id > -1) {
-        updateArticleContent($mysqli, $article_id, $article_content);
+        updateArticle($mysqli, $article_id, $article_title, $article_content);
     } else {
-        createArticle($mysqli, $article_id, $article_content, 88, "2020-04-05", $author_id, $game_id, $points);
+        echo 'L article n existe pas ';
+        createArticle($mysqli, $article_id, $article_title, $article_content, "88", "2020-04-05", $author_id, $game_id, $points);
     }
     
 

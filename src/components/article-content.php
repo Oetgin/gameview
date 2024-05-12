@@ -103,7 +103,7 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
                     ' .$global_rating. '
                 </div>
                 <div class="grades-info-container">
-                    <p class="grade-info-title">Votre note</p>
+                    <p class="grade-info-title">Note des joueurs</p>
                     <p class="grade-info-more">' .$global_rating_text. '</p>
                 </div>
             </div>
@@ -125,7 +125,7 @@ function includeArticleContent($game_name, $article_title, $content, $article_ra
 
     echo '
         <section class="article-section">
-            <h3 class="article-catch">' .$game_name. ' : ' .$article_title. '</h3>
+            <h3 class="article-catch">' .stripslashes($game_name). ' : ' .stripslashes($article_title). '</h3>
 
     ';
 
