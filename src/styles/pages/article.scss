@@ -247,13 +247,12 @@
         .plus-minus-wrapper{
             margin-top: 3em;
 
-            width: 75%;
             height: max-content;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 1em;
+            gap: 2em;
 
             padding: 3em;
 
@@ -266,7 +265,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 0.5em;
+                gap: 1em;
 
                 .final-grade-title{
                     font-size: 1.5em;
@@ -312,7 +311,7 @@
                 justify-content: space-between;
 
                 .column{
-                    width: 45%;
+                    max-width: 45%;
                     height: 100%;
                     display: flex;
                     flex-direction: column;
@@ -321,6 +320,7 @@
                     .column-title{
                         font-size: 1.5em;
                         font-weight: 600;
+                        width: max-content;
                     }
 
                     ul{
