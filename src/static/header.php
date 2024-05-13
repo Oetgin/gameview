@@ -1,5 +1,7 @@
 <?php
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/src/utils/login.php');
+
 function includeHeader() {
     echo '
     <header>
@@ -26,7 +28,6 @@ function includeHeader() {
 }
 
 function profileLink() {
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/src/utils/login.php');
     if (loggedIn()) {
         return '/src/pages/profile.php';
     }

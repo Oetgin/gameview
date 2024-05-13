@@ -12,7 +12,7 @@ $insert_user_prepared = mysqli_prepare($mysqli, $insert_user_query);
 
 
 // LOGIN
-$user_login_query = "SELECT * FROM user WHERE username = ? AND password = ?";
+$user_login_query = "SELECT * FROM user WHERE username = ?";
 
 $user_login_prepared = mysqli_prepare($mysqli, $user_login_query);
 

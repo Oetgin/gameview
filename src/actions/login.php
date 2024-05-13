@@ -10,7 +10,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 // Check for POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<div class="process-message">
-    <p>Trying to register your account</p>
+    <p>Trying to log in to your account</p>
     </div>';
     
     require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
@@ -28,21 +28,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Hash password
-    $hashed_password = hashPassword($password);
 
-    // Insert user into database
-    mysqli_stmt_bind_param($user_login_prepared, 'ss', $username, $hashed_password);
-    $user_login = readDB($user_login_prepared);
+    // Get user info
+    mysqli_stmt_bind_param($user_login_prepared, 's', $username);
+    $user_login = readDB($user_login_prepared)[0];
 
-    if (!$user_login) {
-        closeDB($mysqli);
-
-        // Start session
-        session_start();
-        $_SESSION['user_id'] = $user_login['id'];
-
-        redirect('/index.php', 'success', 'Logged in successfully');
+    // Check if user exists
+    if ($user_login) {
+        // Check password
+        if (password_verify($password, $user_login['password'])) {
+            closeDB($mysqli);
+            
+            // Start session
+            session_start();
+            $_SESSION['user_id'] = $user_login['id'];
+            
+            redirect('/index.php', 'success', 'Logged in successfully');
+        }
+        else {
+            closeDB($mysqli);
+            redirect('/src/pages/login.php', 'error', 'Incorrect password');
+        }
     }
     else {
         closeDB($mysqli);
