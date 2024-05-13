@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
     require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
+
+    $mysqli = connectionDB();
     require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
     // Get form data
@@ -33,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_stmt_bind_param($user_login_prepared, 'ss', $username, $hashed_password);
     $user_login = readDB($user_login_prepared);
 
-    if ($user_login) {
+    if (!$user_login) {
         closeDB($mysqli);
 
         // Start session
