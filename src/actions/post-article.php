@@ -28,11 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $game_id = $_GET['game_id'];
     $author_id = $_GET['author_id'];
     $article_id = $_GET['article_id'];
+    $date = date('Y-m-d');
+    $rating = "88";    // to do
 
 
     // Get all the content elements in right order
-    $article_content = array();     // To store the content
-    $counter = 0;                   // Position of the content (we skip title cauz it's not part of the content)
+    $article_content = array();                     // To store the content
+    $article_points = array(array(),array());       // To store the positive and negative points
+    $counter = 0;                                   // Position of the content (we skip title cauz it's not part of the content)
 
     foreach ($_POST as $key => $value) {
 
@@ -44,13 +47,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $article_content[$counter] = array("intro", addslashes($value));
 
+            $counter++;
+
         } else if (str_starts_with($key, "part-title")) {
 
             $article_content[$counter] = array("part-title", addslashes($value));
 
+            $counter++;
+
         } else if (str_starts_with($key, "corpus")) {
 
             $article_content[$counter] = array("corpus", addslashes($value));
+
+            $counter++;
 
         } else if (str_starts_with($key, "image")) {
 
@@ -61,15 +70,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $article_content[$counter] = array("image", array($file_path, $caption, $alt));
 
+            $counter++;
+
+        } else if (str_starts_with($key, "positive")) {
+
+            foreach ($value as $index => $point) {
+                array_push($article_points[0], addslashes($point));
+            }
+
+        } else if (str_starts_with($key, "negative")) {
+
+            foreach ($value as $index => $point) {
+                array_push($article_points[1], addslashes($point));
+            }
         }
-
-        $counter++;
-
     }
 
     echo '<pre>';
     print_r($article_content);
     echo '</pre>';
+    echo 'article id: '.$article_id;
+    echo 'game id: '. $game_id;
 
     // Update the database
     $mysqli = connectionDB();
@@ -77,17 +98,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // If the article already exists
     if ($article_id > -1) {
-        updateArticle($mysqli, $article_id, $article_title, $article_content);
+        updateArticle($mysqli, $article_id, $article_title, $article_content, $rating, $date,$author_id, $article_points);
     } else {
         echo 'L article n existe pas ';
-        createArticle($mysqli, $article_id, $article_title, $article_content, "88", "2020-04-05", $author_id, $game_id, $points);
+        createArticle($mysqli, $article_id, $article_title, $article_content, $rating, $date, $author_id, $game_id, $article_points);
     }
 
 
     // Redirect
-    closeDB($mysqli);
-    header('Location: ../pages/article.php?id='.$article_id);
-    exit;
+    // closeDB($mysqli);
+    // header('Location: ../pages/article.php?id='.$article_id);
+    // exit;
 
 }
 else {

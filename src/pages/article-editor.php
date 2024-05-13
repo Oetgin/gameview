@@ -149,6 +149,101 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                             </a>
                         </div>
 
+                        <div class="points-container">
+
+                            <div class="points-title-container">
+                                <div class="points-title">
+                                    Points positifs/négatifs
+                                </div>
+                                <div class="points-info-msg">
+                                    Entez au moins un point positif et un point négatif
+                                </div>
+                            </div>
+
+                            <div class="all-points-container">
+                                    
+                                <div class="input-container">
+                                    <label for="positive[]">
+                                        Points positifs
+                                    </label>
+
+                                    <div class="input all-points">
+                                    
+                                        <div class="point-container">
+                                            <div class="point-name">
+                                                Point positif 1
+                                            </div>
+                                            <input class="input positive" id="positive-point-1" name="positive[]" type="text" maxlength="199" required>
+                                        </div>
+                                        
+                                        <div class="point-container">
+                                            <div class="point-name">
+                                                Point positif 2
+                                            </div>
+                                            <input class="input positive" id="positive-point-2" name="positive[]" type="text" maxlength="199">
+                                        </div>
+
+                                        <div class="point-container">
+                                            <div class="point-name">
+                                                Point positif 3
+                                            </div>
+                                            <input class="input positive" id="positive-point-3" name="positive[]" type="text" maxlength="199">
+                                        </div>
+
+                                        <div class="point-container">
+                                            <div class="point-name">
+                                                Point positif 4
+                                            </div>
+                                            <input class="input positive" id="positive-point-4" name="positive[]" type="text" maxlength="199">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="all-points-container">
+                                    
+                                <div class="input-container">
+                                    <label for="negative[]">
+                                        Points négatifs
+                                    </label>
+                                    
+                                    <div class="input all-points">
+                                    
+                                        <div class="point-container">
+                                            <div class="point-name">
+                                                Point négatif 1
+                                            </div>
+                                            <input class="input negative" id="negative-point-1" name="negative[]" type="text" maxlength="199" requiered>
+                                        </div>
+                                        
+                                        <div class="point-container">
+                                            <div class="point-name">
+                                                Point négatif 2
+                                            </div>
+                                            <input class="input negative" id="negative-point-2" name="negative[]" type="text" maxlength="199">
+                                        </div>
+
+                                        <div class="point-container">
+                                            <div class="point-name">
+                                                Point négatif 3
+                                            </div>
+                                            <input class="input negative" id="negative-point-3" name="negative[]" type="text" maxlength="199">
+                                        </div>
+
+                                        <div class="point-container">
+                                            <div class="point-name">
+                                                Point négatif 4
+                                            </div>
+                                            <input class="input negative" id="negative-point-4" name="negative[]" type="text" maxlength="199">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div class="submit-container">
                             <input class="btn submit-btn" type="submit" value="Poster l'article">
                         </div>

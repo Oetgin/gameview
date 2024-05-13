@@ -16,9 +16,9 @@ function createArticle($mysqli, $article_id, $article_title, $content, $rating, 
     $query = "INSERT INTO article (title, content, rating, date, authorID_article, gameID_article, points) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $prepared_query = mysqli_prepare($mysqli, $query);
-    $temp = "temp";     // Temporary content. It will be updated right after with updateArticleContent funciton
+    $temp = "temp";     // Temporary content and points. It will be updated right after with updateArticleContent funciton
 
-    mysqli_stmt_bind_param($prepared_query, "ssdsiis", $article_title, $temp, $rating, $date, $author_id, $game_id, $points);    
+    mysqli_stmt_bind_param($prepared_query, "ssdsiis", $article_title, $temp, $rating, $date, $author_id, $game_id, $temp);    
 
     writeDB($prepared_query);
 
@@ -32,9 +32,11 @@ function createArticle($mysqli, $article_id, $article_title, $content, $rating, 
 
 
 // To update an entire article
-function updateArticle($mysqli, $article_id, $article_title, $article_content) {
+function updateArticle($mysqli, $article_id, $article_title, $article_content, $rating, $article_date, $author_id, $article_points) {
     updateArticleTitle($mysqli, $article_id, $article_title);
     updateArticleContent($mysqli, $article_id, $article_content);
+    updateArticlePoints($mysqli, $article_id, $article_points);
+    updateArticleAttributes($mysqli, $article_id, $rating, $article_date, $author_id);
 }
 
 
@@ -63,7 +65,19 @@ function updateArticleContent($mysqli, $article_id, $article_content) {
 
 // To update article points
 function updateArticlePoints($mysqli, $article_id, $article_points) {
-    $json_formatted_content = json_encode($article_points);
+
+    // We only keep the not empty points
+    $new_article_points = array(array(), array());
+
+    foreach($article_points as $type => $value) {
+        foreach($value as $index => $point) {
+            if($point != "") {
+                array_push($new_article_points[$type], $point);
+            }
+        }
+    }
+
+    $json_formatted_content = json_encode($new_article_points);
 
     $query = "UPDATE article SET points = ? WHERE id = ?";
     $prepared_query = mysqli_prepare($mysqli, $query);
@@ -71,4 +85,17 @@ function updateArticlePoints($mysqli, $article_id, $article_points) {
     mysqli_stmt_bind_param($prepared_query, "si", $json_formatted_content, $article_id);
 
     writeDB($prepared_query);
+}
+
+// To update article attributes (date, $price, author)
+function updateArticleAttributes($mysqli, $article_id, $rating, $date, $author_id) {
+
+    $query = "UPDATE article SET rating = ?, date = ?, authorID_article = ? WHERE id = ?";
+
+    $prepared_query = mysqli_prepare($mysqli, $query);
+
+    mysqli_stmt_bind_param($prepared_query, "dsii", $rating, $date, $author_id, $article_id);
+
+    writeDB($prepared_query);
+
 }
