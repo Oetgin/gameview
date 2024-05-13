@@ -53,10 +53,14 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
         $game = readQuery($mysqli, 'SELECT * FROM game WHERE id = '. $article[0]["gameID_article"]);
         $game_category = readQuery($mysqli, 'SELECT category FROM gamecategories WHERE gameID_category = ' . $game[0]["id"]);
+        $categories = array();
+        foreach ($game_category as $row) {
+            $categories[] = $row['category'];
+        }
         $author = readQuery($mysqli, 'SELECT * FROM user WHERE id = ' .$article[0]["authorID_article"]);
         
         $game[0] = array_merge($game[0], array("cover-path" => COVERS_FOLDER_PATH . 'cover-' . $game[0]["id"] . '.png'));
-        $game[0] = array_merge($game[0], array("categories" => $game_category));
+        $game[0] = array_merge($game[0], array("categories" => $categories));
         $article[0]["content"] = json_decode($article[0]["content"]);
         $article[0]["points"] = json_decode($article[0]["points"]);
 

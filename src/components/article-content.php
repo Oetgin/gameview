@@ -30,17 +30,18 @@ function includeArticleHeader($game_id, $game_name, $title, $author_name) {
 
 
 function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cover_path, $article_rating, $global_rating) {
-
     // Clean categories display
-    if(count($categories[0]) == 0){
+    if(count($categories) == 0){
         $categories_string = "";
     } else {
-        $categories_string = $categories[0]["category"];
+        $categories_string = $categories[0];
     }
 
-    if (count($categories[0]) > 1) {
-        foreach($categories[0] as $key => $value) {
-            $categories_string = $categories_string . ', ' . $value;
+    if (count($categories) > 1) {
+        foreach($categories as $key => $value) {
+            if ($key > 0){
+                $categories_string = $categories_string . ', ' . $value;
+            }
         }
     }
 
