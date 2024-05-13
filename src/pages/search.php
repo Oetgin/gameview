@@ -11,7 +11,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 
 require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
 require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
-require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
 require_once(DOCUMENT_ROOT . '/src/static/head.php');
 require_once(DOCUMENT_ROOT . '/src/static/header.php');
@@ -26,10 +25,11 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 
 <html lang="fr">
     
-
+    
     <?php
         $mysqli = connectionDB();
-        includeHead('/src/styles/pages/index.css');
+        require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
+        includeHead('/src/styles/pages/search.css');
     ?>
 
     <body>
@@ -37,8 +37,38 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
         <?php includeHeader(); ?>
 
         <main>
+            <?php
+                $search = $_GET['search'];
 
+                if (empty($search)) {
+                    echo '<p>Veuillez entrer un terme de recherche.</p>';
+                    exit();
+                }
 
+                mysqli_stmt_bind_param($article_search_prepared, 'ssss', $search, $search, $search, $search);
+                $article_search = readDB($article_search_prepared);
+
+                if (count($article_search) > 0) {
+                    echo '<h2>Résultats de la recherche pour : ' . $search . '</h2>';
+                    for ($i = 0; $i < count($article_search); $i++) {
+                        mysqli_stmt_bind_param($article_info_prepared, 'i', $article_search[$i]['id']);
+                        $article_info = readDB($article_info_prepared);
+                        includeArticleCard(
+                            $article['id'],
+                            $article_info['gameTitle'],
+                            $article_info['cover'],
+                            $article_info['title'],
+                            $article_info['description'],
+                            $article_info['rating'],
+                            $article_info['username'],
+                            $article_info['role'],
+                            $article_info['pp']
+                    );
+                    }
+                } else {
+                    echo '<p>Aucun article ne correspond à votre recherche.</p>';
+                }
+            ?>
         </main>
 
     </body>
