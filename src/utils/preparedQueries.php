@@ -23,10 +23,10 @@ $insert_article_query = "INSERT INTO article (title, content, authorID_article) 
 $delete_article_query = "DELETE FROM article WHERE id = ?";
 $article_search_query = "SELECT * FROM article WHERE content LIKE ? or title LIKE ? or id LIKE ? or `date` LIKE ? ORDER BY `date` DESC";
 $article_info_query = "SELECT 
-article.title as title, article.description as `description`, article.rating as rating, user.username as username, user.role as `role`, user.photo as pp, game.title as gameTitle, game.cover as cover, gameplatforms.platform as platform 
-FROM article INNER JOIN game ON article.gameID_article = game.id 
-INNER JOIN user ON article.authorID_article = user.id 
-INNER JOIN gameplatforms ON gameplatforms.gameID_platform = game.id 
+article.title as title, article.description as `description`, article.rating as rating, user.username as username, user.role as `role`, user.id as authorId, game.title as gameTitle, game.id as gameId 
+FROM article
+INNER JOIN game ON article.gameID_article = game.id
+INNER JOIN user ON article.authorID_article = user.id
 WHERE article.id = ?
 ORDER BY article.date DESC";
 
@@ -34,6 +34,12 @@ $insert_article_prepared = mysqli_prepare($mysqli, $insert_article_query);
 $delete_article_prepared = mysqli_prepare($mysqli, $delete_article_query);
 $article_search_prepared = mysqli_prepare($mysqli, $article_search_query);
 $article_info_prepared = mysqli_prepare($mysqli, $article_info_query);
+
+
+// GAMES
+$game_platform_query = "SELECT gameplatforms.platform FROM game INNER JOIN gameplatforms ON gameplatforms.gameID_platform = game.id WHERE game.id = ?";
+
+$game_platform_prepared = mysqli_prepare($mysqli, $game_platform_query);
 
 
 // COMMENTS
@@ -57,6 +63,12 @@ $delete_user_prepared = mysqli_prepare($mysqli, $delete_user_query);
 
 
 // USER INFO
-$get_user_info_query = "SELECT * FROM user WHERE id = ?";
+$user_info_query = "SELECT * FROM user WHERE id = ?";
 
-$get_user_info_prepared = mysqli_prepare($mysqli, $get_user_info_query);
+$user_info_prepared = mysqli_prepare($mysqli, $user_info_query);
+
+
+// USER STATS
+$user_stats_query = "SELECT * FROM userstats WHERE userID_stats = ?";
+
+$user_stats_prepared = mysqli_prepare($mysqli, $user_stats_query);
