@@ -21,9 +21,12 @@ $user_login_prepared = mysqli_prepare($mysqli, $user_login_query);
 $get_articles_query = "SELECT * FROM article ORDER BY `date` DESC";
 $insert_article_query = "INSERT INTO article (title, content, authorID_article) VALUES (?, ?, ?)";
 $delete_article_query = "DELETE FROM article WHERE id = ?";
-$article_search_query = "SELECT * FROM article WHERE content LIKE ? or title LIKE ? or id LIKE ? or `date` LIKE ? ORDER BY `date` DESC";
+$article_search_query = "SELECT article.id FROM article 
+INNER JOIN game ON article.gameID_article = game.id
+WHERE article.content LIKE ? or article.title LIKE ? or article.id LIKE ? or article.date LIKE ? OR article.rating LIKE ? OR article.points LIKE ? OR authorID_article LIKE ? OR game.title LIKE ? or game.id LIKE ? or game.synopsis LIKE ? OR game.releaseDate LIKE ? OR game.price LIKE ?
+ORDER BY `date` DESC";
 $article_info_query = "SELECT 
-article.title as title, article.description as `description`, article.rating as rating, user.username as username, user.role as `role`, user.id as authorId, game.title as gameTitle, game.id as gameId 
+article.id as id, article.title as title, article.description as `description`, article.rating as rating, user.username as username, user.role as `role`, user.id as authorId, game.title as gameTitle, game.id as gameId 
 FROM article
 INNER JOIN game ON article.gameID_article = game.id
 INNER JOIN user ON article.authorID_article = user.id
@@ -66,9 +69,3 @@ $delete_user_prepared = mysqli_prepare($mysqli, $delete_user_query);
 $user_info_query = "SELECT * FROM user WHERE id = ?";
 
 $user_info_prepared = mysqli_prepare($mysqli, $user_info_query);
-
-
-// USER STATS
-$user_stats_query = "SELECT * FROM userstats WHERE userID_stats = ?";
-
-$user_stats_prepared = mysqli_prepare($mysqli, $user_stats_query);

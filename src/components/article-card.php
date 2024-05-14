@@ -31,7 +31,7 @@ function includeArticleCard($article_id, $game_name, $game_id, $title, $descript
                             <p>'.$author_role.'</p>
                         </div>
                         <div class="article-card-author-image">
-                            <img src="/assets/images/pp/pp-'.$author_id.'.png" alt="'.$author_name.'">
+                            <img src="/assets/images/pp/pp-'.$author_id.'.png" alt="'.$author_name.' class="profile-picture">
                         </div>
                     </div>
                 </div>

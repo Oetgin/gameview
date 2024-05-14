@@ -20,7 +20,7 @@ function includeHeader() {
         </div>
         <div class="user">
             <a href="' . profileLink() . '">
-                <img src="/assets/icons/user-icon-hollow-black.png" alt="user">
+                '. profilePicture() .'
             </a>
         </div>
     </header>
@@ -33,5 +33,15 @@ function profileLink() {
     }
     else {
         return '/src/pages/login.php';
+    }
+}
+
+function profilePicture() {
+    if (!loggedIn()) {
+        return '<img src="/assets/icons/user-icon-hollow-black.png" alt="user" class="profile-picture">';
+    }
+    else {
+        $user_id = getId();
+        return '<img src="/assets/images/pp/pp-'.$user_id.'.png" alt="profile picture" class="profile-picture">';
     }
 }

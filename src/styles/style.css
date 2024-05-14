@@ -118,6 +118,7 @@ footer .box {
   width: 100%;
   height: -moz-fit-content;
   height: fit-content;
+  display: flex;
   box-shadow: inset 0.2em 0 1em rgba(0, 0, 0, 0.2);
 }
 .article-card .article-card-image img {
@@ -203,4 +204,8 @@ footer .box {
 main {
   display: flex;
   flex-direction: column;
+}
+
+.profile-picture {
+  border-radius: 50%;
 }/*# sourceMappingURL=style.css.map */
