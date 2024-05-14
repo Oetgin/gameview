@@ -29,7 +29,7 @@ function includeArticleHeader($game_id, $game_name, $title, $author_name) {
 }
 
 
-function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cover_path, $article_rating, $global_rating) {
+function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cover_path, $article_rating, $global_rating, $platforms) {
     // Clean categories display
     if(count($categories) == 0){
         $categories_string = "";
@@ -43,6 +43,12 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
                 $categories_string = $categories_string . ', ' . $value;
             }
         }
+    }
+
+    // Clean game platforms display
+    $game_platforms_display = "";
+    foreach($platforms as $key => $value) {
+        $game_platforms_display = $game_platforms_display . '<img class="platform" src="/assets/icons/platforms/'. strtolower($value) .'.svg" alt="Plateform '. $value .'">';
     }
 
     // Grade display
@@ -79,7 +85,15 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
     echo '
     <section class="recap-section">
     <div class="game-container">
-        <img class="cover" src="' .$cover_path. '" alt="Cyberpunk Cover">
+        <div class="cover-and-platforms-wrapper">
+            <div class="cover-wrapper">
+                <img class="cover" src="' .$cover_path. '" alt="Cyberpunk Cover">
+                <div class="platforms-container">
+                    '.$game_platforms_display.'
+                </div>
+            </div>
+        </div>
+        
         <div class="game-info-container">
             <p class="game-title">' .stripslashes($title). '</p>
             <p class="release-date"><span class="underline">Date de sortie :</span> ' .$date. '</p>

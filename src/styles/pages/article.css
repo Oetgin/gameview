@@ -72,10 +72,40 @@
   align-items: flex-start;
   gap: 1em;
 }
-.recap-section .game-container .cover {
-  border-radius: 0.5em;
+.recap-section .game-container .cover-and-platforms-wrapper {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.recap-section .game-container .cover-and-platforms-wrapper .cover-wrapper {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
   height: 14em;
+}
+.recap-section .game-container .cover-and-platforms-wrapper .cover-wrapper .cover {
+  border-radius: 0.5em;
+  height: 100%;
   box-shadow: 0 0 1em #FFF;
+}
+.recap-section .game-container .cover-and-platforms-wrapper .cover-wrapper .platforms-container {
+  position: absolute;
+  bottom: 0;
+  border-radius: 0.5em;
+  width: 14em;
+  height: 7em;
+  padding: 0.5em 0.3em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-around;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 100%);
+}
+.recap-section .game-container .cover-and-platforms-wrapper .cover-wrapper .platforms-container .platform {
+  height: 1.5rem;
 }
 .recap-section .game-container .game-info-container {
   display: flex;

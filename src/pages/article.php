@@ -53,6 +53,13 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
         $game = readQuery($mysqli, 'SELECT * FROM game WHERE id = '. $article[0]["gameID_article"]);
         $game_category = readQuery($mysqli, 'SELECT category FROM gamecategories WHERE gameID_category = ' . $game[0]["id"]);
+        $game_platforms = readQuery($mysqli, 'SELECT platform FROM gameplatforms WHERE gameID_platform = ' . $game[0]["id"]);
+
+        $platforms = array();
+        foreach($game_platforms as $row) {
+            $platforms[] = $row["platform"];
+        }
+
         $categories = array();
         foreach ($game_category as $row) {
             $categories[] = $row['category'];
@@ -81,7 +88,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
             <?php 
                 includeArticleHeader($game[0]["id"], $game[0]["title"], $article[0]["title"], $author[0]["username"]);
 
-                includeArticleRecap($game[0]["title"], $game[0]["releaseDate"], $game[0]["categories"], $game[0]["price"], $game[0]["synopsis"], $game[0]["cover-path"], $article[0]["rating"], 95);
+                includeArticleRecap($game[0]["title"], $game[0]["releaseDate"], $game[0]["categories"], $game[0]["price"], $game[0]["synopsis"], $game[0]["cover-path"], $article[0]["rating"], 95, $platforms);
             ?>
 
 

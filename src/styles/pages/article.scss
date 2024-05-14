@@ -86,12 +86,47 @@
         align-items: flex-start;
         gap: 1em;
 
-        .cover{
-            border-radius: 0.5em;
-            height: 14em;
+        .cover-and-platforms-wrapper{
+            position: relative;
+            width: fit-content;
+            height: fit-content;
 
-            box-shadow: 0 0 1em #FFF;
+            .cover-wrapper{
+                position: relative;
+                width: fit-content;
+                height: 14em;
+
+                .cover{
+                    border-radius: 0.5em;
+                    height: 100%;
+        
+                    box-shadow: 0 0 1em #FFF;
+                }
+
+                .platforms-container{
+                    position: absolute;
+                    bottom: 0;
+                    border-radius: 0.5em;
+                    width: 14em;
+                    height: 7em;
+                    padding: 0.5em 0.3em;
+
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-end;
+                    justify-content: space-around;
+                    
+                    background: rgb(255,255,255);
+                    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%);
+
+                    .platform{
+                        height: 1.5rem;
+                    }
+                }
+
+            }
         }
+
 
         .game-info-container{
             display: flex;
