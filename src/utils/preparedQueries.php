@@ -67,5 +67,9 @@ $delete_user_prepared = mysqli_prepare($mysqli, $delete_user_query);
 
 // USER INFO
 $user_info_query = "SELECT * FROM user WHERE id = ?";
+$user_comments_query = "SELECT * FROM comment WHERE authorID_comment = ?";
+$user_articles_query = "SELECT * FROM article WHERE authorID_article = ?";
 
 $user_info_prepared = mysqli_prepare($mysqli, $user_info_query);
+$user_comments_prepared = mysqli_prepare($mysqli, $user_comments_query);
+$user_articles_prepared = mysqli_prepare($mysqli, $user_articles_query);

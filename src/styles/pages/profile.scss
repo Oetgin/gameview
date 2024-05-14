@@ -1,0 +1,136 @@
+h2 {
+    text-align: center;
+    padding: 2em 0 1em 0;
+    font-weight: 200;
+    font-size: 2.5em;
+    text-transform: uppercase;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2em 0 5em 0;
+    gap: 2em;
+
+    .profile-main {
+        display: flex;
+        align-items: center;
+        gap: 2em;
+
+        .profile-user {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            
+            .profile-picture {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                overflow: hidden;
+    
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            p {
+                text-align: center;
+            }
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            .name {
+                display: flex;
+                gap: 0.5em;
+            }
+        }
+    }
+
+    .profile-stats {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        margin-top: 2em;
+    }
+
+    .user-content {
+        > h3 {
+            font-size: 1.5em;
+            font-weight: 200;
+            text-align: center;
+            padding-top: 2em;
+        }
+
+        .articles {
+            display: grid;
+            grid-template-columns: auto auto;
+            width: fit-content;
+            align-self: center;
+        
+        
+            @media (max-width: 768px) {
+                grid-template-columns: auto;
+            }
+        
+            > * {
+                justify-self: center;
+                display: flex;
+            }
+        
+            .pagination {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 1em;
+                
+                h3 {
+                    padding: 0.5em;
+                    font-size: 2.5em;
+                    font-weight: 200;
+                    text-align: center;
+                    text-transform: uppercase;
+                }
+        
+                .pagination-nav {
+                    display: flex;
+                    justify-content: center;
+                    padding: 1em;
+        
+                    h4 {
+                        align-self: center;
+                        padding: 0.5em 2em;
+                        font-size: 1.5em;
+                        font-weight: 200;
+                        font-style: italic;
+                        text-transform: capitalize;
+                        text-decoration: 1px underline;
+                    }
+                }
+            }
+        }           
+    }
+}
+
+.button {
+    font-size: 1em;
+    font-weight: 200;
+    font-style: italic;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.5em;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover {
+        background-color: #e0e0e0;
+    }
+}
