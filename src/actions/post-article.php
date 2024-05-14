@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $author_id = $_GET['author_id'];
     $article_id = $_GET['article_id'];
     $date = date('Y-m-d');
-    $rating = "88";    // to do
 
 
     // Get all the content elements in right order
@@ -78,6 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 array_push($article_points[0], addslashes($point));
             }
 
+        } else if (str_starts_with($key, "rating")) {
+
+            $rating = $value;
+
         } else if (str_starts_with($key, "negative")) {
 
             foreach ($value as $index => $point) {
@@ -87,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     echo '<pre>';
-    print_r($article_content);
+    print_r($_POST);
     echo '</pre>';
     echo 'article id: '.$article_id;
     echo 'game id: '. $game_id;

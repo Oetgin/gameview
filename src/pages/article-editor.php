@@ -244,6 +244,17 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
                         </div>
 
+                        <div class="grade-container">
+
+                            <div class="all-inputs-container">
+                                <div class="input-container">
+                                    <label for="rating">Note finale (/100)</label>
+                                    <input class="input" id="rating" name="rating" type="number" min="0" max="100" required>
+                                </div>
+                            </div>
+                            
+                        </div>
+
                         <div class="submit-container">
                             <input class="btn submit-btn" type="submit" value="Poster l'article">
                         </div>
