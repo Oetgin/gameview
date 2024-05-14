@@ -45,28 +45,32 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     exit();
                 }
 
-                mysqli_stmt_bind_param($article_search_prepared, 'ssss', $search, $search, $search, $search);
+                $search_str = '%' . $search . '%'; // Permet de rechercher des articles contenant le terme de recherche (et non seulement ceux qui sont exactement égaux)
+
+                mysqli_stmt_bind_param($article_search_prepared, 'ssssssssssss', $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str);
                 $article_search = readDB($article_search_prepared);
 
                 if (count($article_search) > 0) {
                     echo '<h2>Résultats de la recherche pour : ' . $search . '</h2>';
+                    echo '<div class="articles">';
                     for ($i = 0; $i < count($article_search); $i++) {
                         mysqli_stmt_bind_param($article_info_prepared, 'i', $article_search[$i]['id']);
-                        $article_info = readDB($article_info_prepared);
+                        $article_info = readDB($article_info_prepared)[0];
                         includeArticleCard(
-                            $article['id'],
+                            $article_info['id'],
                             $article_info['gameTitle'],
-                            $article_info['cover'],
+                            $article_info['gameId'],
                             $article_info['title'],
                             $article_info['description'],
                             $article_info['rating'],
                             $article_info['username'],
                             $article_info['role'],
-                            $article_info['pp']
+                            $article_info['authorId'],
                     );
                     }
+                    echo '</div>';
                 } else {
-                    echo '<p>Aucun article ne correspond à votre recherche.</p>';
+                    echo '<h2>Aucun article ne correspond à votre recherche.</h2>';
                 }
             ?>
         </main>

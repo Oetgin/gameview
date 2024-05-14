@@ -1,0 +1,54 @@
+.articles {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: fit-content;
+    align-self: center;
+
+
+    @media (max-width: 768px) {
+        grid-template-columns: auto;
+    }
+
+    > * {
+        justify-self: center;
+        display: flex;
+    }
+
+    .pagination {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1em;
+        
+        h3 {
+            padding: 0.5em;
+            font-size: 2.5em;
+            font-weight: 200;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .pagination-nav {
+            display: flex;
+            justify-content: center;
+            padding: 1em;
+
+            h4 {
+                align-self: center;
+                padding: 0.5em 2em;
+                font-size: 1.5em;
+                font-weight: 200;
+                font-style: italic;
+                text-transform: capitalize;
+                text-decoration: 1px underline;
+            }
+        }
+    }
+}   
+
+h2 {
+    text-align: center;
+    padding: 2em 0 1em 0;
+    font-size: larger;
+    font-style: italic;
+}
