@@ -5,6 +5,11 @@ require_once(DOCUMENT_ROOT . '/src/components/score-bar.php');
 
 function includeArticleCard($article_id, $game_name, $game_id, $title, $description, $rating, $author_name, $author_role, $author_id) {
     $rating = $rating/10; // Convert rating from 0-100 to 0-10
+    // Strip backslashes
+    $game_name = stripcslashes($game_name); 
+    $title = stripcslashes($title);
+    $description = stripcslashes($description);
+
     echo '
     <a href="/src/pages/article.php?id='.$article_id.'">
         <div class="article-card">
