@@ -52,6 +52,8 @@ function updateArticleTitle($mysqli, $article_id, $article_title) {
 
 // To udpate article content
 function updateArticleContent($mysqli, $article_id, $article_content) {
+    
+    // Update content
     $json_formatted_content = json_encode($article_content);
 
     $query = "UPDATE article SET content = ? WHERE id = ?";
@@ -98,4 +100,26 @@ function updateArticleAttributes($mysqli, $article_id, $rating, $date, $author_i
 
     writeDB($prepared_query);
 
+}
+
+
+// To delete recursivly a dir
+function deleteDirectory($directory) {
+    if (!is_dir($directory)) {
+        return false;
+    }
+
+    $items = array_diff(scandir($directory), ['.', '..']);
+    foreach ($items as $item) {
+        $path = "$directory/$item";
+        if (is_dir($path)) {
+            deleteDirectory($path);
+        } else {
+            if (!unlink($path)) {
+                return false;
+            }
+        }
+    }
+
+    return rmdir($directory);
 }

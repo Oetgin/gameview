@@ -128,7 +128,7 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
 }
 
 
-function includeArticleContent($game_name, $article_title, $content, $article_rating, $points) {
+function includeArticleContent($article_id, $game_name, $article_title, $content, $article_rating, $points) {
     // Grade display
     if(intval($article_rating) > 79) {
         $article_rating_background_class = "good";
@@ -143,7 +143,7 @@ function includeArticleContent($game_name, $article_title, $content, $article_ra
             <h3 class="article-catch">' .stripslashes($game_name). ' : ' .stripslashes($article_title). '</h3>
 
     ';
-
+    $img_number = 0;
     foreach($content as $key => $value) {
         $type = $value[0];
         $element_content = $value[1];
@@ -174,7 +174,7 @@ function includeArticleContent($game_name, $article_title, $content, $article_ra
 
         } else if ($type == "image") {
 
-            $image_path = $element_content[0];
+            $image_path = '/assets/images/articles/article-'.$article_id.'/img-'.$img_number.'.png';
             $image_caption = stripslashes($element_content[1]);
             $image_alt = stripslashes($element_content[2]);
 
@@ -186,6 +186,8 @@ function includeArticleContent($game_name, $article_title, $content, $article_ra
                 </p>
             </div>
             ';
+
+            $img_number ++;
 
         } else {
             

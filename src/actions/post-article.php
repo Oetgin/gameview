@@ -63,7 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else if (str_starts_with($key, "image")) {
 
 
-            $file_path = $_FILES[$key]["tmp_name"]["file"];
+            $file_path = $_FILES[$key]["tmp_name"];
+            $file_name = $_FILES[$key]["name"];
+
             $caption = addslashes($value["caption"]);
             $alt = addslashes($value["alt"]);
 
@@ -94,6 +96,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '</pre>';
     echo 'article id: '.$article_id;
     echo 'game id: '. $game_id;
+
+    // __________Update the images__________
+    $dir_path = DOCUMENT_ROOT . '/assets/images/articles/article-'.$article_id;
+    
+    $images = array();
+    foreach ($article_content as $key => $value) {
+        if ($value[0] == "image") {
+            $images[] = $value[1][0];
+        }
+    }
+
+    // Delete the folder if it already exists
+    deleteDirectory($dir_path);
+
+    // Create the new folder
+    mkdir($dir_path);
+
+    // Fill the new folder with the uploaded images
+    foreach ($images as $key => $value) {
+        move_uploaded_file($value['file'], $dir_path.'/' . basename('img-'.$key.'.png'));
+    }
 
     // Update the database
     $mysqli = connectionDB();

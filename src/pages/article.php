@@ -96,7 +96,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
 
             <?php
-                includeArticleContent($game[0]["title"], $article[0]["title"], $article[0]["content"], $article[0]["rating"], $article[0]["points"])
+                includeArticleContent($article_id, $game[0]["title"], $article[0]["title"], $article[0]["content"], $article[0]["rating"], $article[0]["points"])
             ?>
 
 
