@@ -14,6 +14,15 @@ h2 {
     margin: 2em 0 5em 0;
     gap: 2em;
 
+    .hide {
+        display: none;
+    }
+
+    input {
+        outline: none;
+        border: none;
+    }
+
     .profile-main {
         display: flex;
         align-items: center;
@@ -29,11 +38,36 @@ h2 {
                 height: 200px;
                 border-radius: 50%;
                 overflow: hidden;
+                position: relative;
     
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                }
+
+                .profile-picture-overlay { 
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 100%;
+                    height: 100%;
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    * {
+                        text-align: center;
+                        text-shadow: 0 0 5px black;
+                        color: white;
+
+                    }
+
+                    input[type="file"] {
+                        display: none;
+                    }
                 }
             }
 
@@ -55,22 +89,33 @@ h2 {
     }
 
     .bio {
+        width:50%;
+
         h3 {
             font-size: 1.5em;
             font-weight: 200;
             text-align: center;
             padding: 2em 0 1em 0;
         }
-    }
 
-    form {
-        margin-top: 2em;
-    }
-
-    .logout {
-        .button {
-            color:red;
+        p {
+            text-align: center;
         }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 1em;
+            border-radius: 0.5em;
+            border: 1px solid #f0f0f0;
+            resize: none;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+    }
+
+    a {
+        margin-top: 2em;
     }
 
     .profile-stats {
@@ -136,20 +181,18 @@ h2 {
             }
         }           
     }
-}
 
-.button {
-    font-size: 1em;
-    font-weight: 200;
-    font-style: italic;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 0.5em;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    transition: background-color 0.15s ease-in-out;
+    .actions {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        gap: 1em;
 
-    &:hover {
-        background-color: #e0e0e0;
+        .section {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            align-items: end;
+        }
     }
 }

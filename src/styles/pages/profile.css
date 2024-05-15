@@ -14,6 +14,13 @@ h2 {
   margin: 2em 0 5em 0;
   gap: 2em;
 }
+.profile .hide {
+  display: none;
+}
+.profile input {
+  outline: none;
+  border: none;
+}
 .profile .profile-main {
   display: flex;
   align-items: center;
@@ -29,12 +36,32 @@ h2 {
   height: 200px;
   border-radius: 50%;
   overflow: hidden;
+  position: relative;
 }
 .profile .profile-main .profile-user .profile-picture img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.profile .profile-main .profile-user .profile-picture .profile-picture-overlay {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profile .profile-main .profile-user .profile-picture .profile-picture-overlay * {
+  text-align: center;
+  text-shadow: 0 0 5px black;
+  color: white;
+}
+.profile .profile-main .profile-user .profile-picture .profile-picture-overlay input[type=file] {
+  display: none;
 }
 .profile .profile-main .profile-user p {
   text-align: center;
@@ -48,17 +75,30 @@ h2 {
   display: flex;
   gap: 0.5em;
 }
+.profile .bio {
+  width: 50%;
+}
 .profile .bio h3 {
   font-size: 1.5em;
   font-weight: 200;
   text-align: center;
   padding: 2em 0 1em 0;
 }
-.profile form {
-  margin-top: 2em;
+.profile .bio p {
+  text-align: center;
 }
-.profile .logout .button {
-  color: red;
+.profile .bio textarea {
+  width: 100%;
+  height: 200px;
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid #f0f0f0;
+  resize: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+}
+.profile a {
+  margin-top: 2em;
 }
 .profile .profile-stats {
   display: flex;
@@ -116,8 +156,22 @@ h2 {
   -webkit-text-decoration: 1px underline;
           text-decoration: 1px underline;
 }
+.profile .actions {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 1em;
+}
+.profile .actions .section {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  align-items: end;
+}
 
 .button {
+  height: -moz-fit-content;
+  height: fit-content;
   font-size: 1em;
   font-weight: 200;
   font-style: italic;
@@ -130,4 +184,8 @@ h2 {
 }
 .button:hover {
   background-color: #e0e0e0;
+}
+
+.button-danger {
+  color: red;
 }/*# sourceMappingURL=profile.css.map */

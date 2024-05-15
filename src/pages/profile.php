@@ -77,17 +77,17 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                 <h3>Bio</h3>
                 <p><?php echo ($user_info['bio']==null?"Cet utilisateur n'a pas de bio":$user_info['bio']); ?></p>
             </div>
-            <form action="/src/pages/updateProfile.php" method="post">
+            <a href="/src/pages/updateProfile.php">
                 <button type="submit" class="button">Modifier mon profil</button>
-            </form> 
+            </a> 
             <div class="profile-stats">
                 <p class="last-connection">Dernière connexion : <?php echo $user_info['lastConnection']; ?></p>
                 <p class="comment-count">Commentaires : <?php echo $user_info['commentCount']; ?></p>
                 <p class="article-count">Articles : <?php echo $user_info['articleCount']; ?></p>
             </div>
-            <form action="/src/utils/logout.php" method="post" class="logout">
-                <button type="submit" class="button">Se déconnecter</button>
-            </form>
+            <a href="/src/utils/logout.php" class="logout">
+                <button type="submit" class="button button-danger">Se déconnecter</button>
+            </a>
             <div class="user-content">
                 <h3>Articles</h3>
                 <div class="articles">
