@@ -167,4 +167,13 @@ h2 {
   justify-content: center;
   gap: 1em;
   align-items: end;
+}
+
+.redirect {
+  margin-bottom: 5em;
+  text-align: center;
+}
+
+.redirect-error {
+  color: red;
 }/*# sourceMappingURL=profile.css.map */

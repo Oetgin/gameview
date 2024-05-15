@@ -44,4 +44,9 @@ header {
             }
         }
     }
+
+    .profile-picture {
+        width: 2em;
+        object-fit: cover;      
+    }
 }

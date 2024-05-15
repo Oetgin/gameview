@@ -47,6 +47,11 @@ header .search-bar form input {
   width: 25em;
   font-family: "Montserrat", sans-serif;
 }
+header .profile-picture {
+  width: 2em;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 
 body {
   display: flex;

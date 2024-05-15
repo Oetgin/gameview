@@ -59,7 +59,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
             <div class="profile-main">
                 <div class="profile-user">
                     <div class="profile-picture">
-                        <img src="/assets/images/pp/pp-<?php echo $user_id; ?>.png" alt="<?php echo $user_info['username']; ?>">
+                        <img src="/assets/images/pp/pp-<?php echo $user_id; ?>.png?<?php echo intval(microtime(true)) ?>" alt="<?php echo $user_info['username']; ?>">
                     </div>
                     <p class="username"><?php echo $user_info['username']; ?></p>
                 </div>

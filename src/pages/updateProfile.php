@@ -56,15 +56,15 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                 $user_info = readDB($user_info_prepared)[0];
         ?>
         <h2>Modifier mon profil</h2>
-        <form class="modify-profile" action="/src/pages/updateProfile.php" method="post">
+        <form class="modify-profile" action="/src/actions/updateProfile.php" method="post" enctype="multipart/form-data">
             <div class="profile">
                 <div class="profile-main">
                     <div class="profile-user">
                         <div class="profile-picture">
-                            <img src="/assets/images/pp/pp-<?php echo $user_id; ?>.png" alt="<?php echo $user_info['username']; ?>" id="profile-picture-image">
+                            <img src="/assets/images/pp/pp-<?php echo $user_id; ?>.png?<?php echo intval(microtime(true)) ?>" alt="<?php echo $user_info['username']; ?>" id="profile-picture-image">
                             <div class="profile-picture-overlay">
                                 <label for="profile-picture-input">Changer de photo de profil</label>
-                                <input type="file" name="profile-picture-input" id="profile-picture-input">
+                                <input type="file" name="profile-picture-input" id="profile-picture-input" accept="image/png, image/jpeg">
                             </div>
                         </div>
                         <p class="username"><?php echo $user_info['username']; ?></p>
@@ -75,7 +75,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                         <div class="name">
                             <label for="surname" class="hide">Prénom</label>
                             <input type="text" name="surname" id="surname" value="<?php echo $user_info['surname']; ?>">
-                            <label for="surname" class="hide">Nom</label>
+                            <label for="name" class="hide">Nom</label>
                             <input type="text" name="name" id="name" value="<?php echo $user_info['name']; ?>">
                         </div>
                         <label for="birthdate" class="hide">Date de naissance</label>
@@ -104,7 +104,14 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     </div>
                 </div>
             </div>
+            <?php
+                // Redirect messages
                 
+                if (isset($_GET['redirect']) && isset($_GET['msg'])) {
+                    // Prevent XSS
+                    echo '<div class="redirect redirect-'.htmlspecialchars($_GET['redirect']).'">'.htmlspecialchars($_GET['msg']).'</div>';
+                }
+            ?>
         </form>
             <?php
                     }

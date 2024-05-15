@@ -42,6 +42,6 @@ function profilePicture() {
     }
     else {
         $user_id = getId();
-        return '<img src="/assets/images/pp/pp-'.$user_id.'.png" alt="profile picture" class="profile-picture">';
+        return '<img src="/assets/images/pp/pp-'.$user_id.'.png?'.intval(microtime(true)).'" alt="profile picture" class="profile-picture">'; // Add microtime to force refresh
     }
 }
