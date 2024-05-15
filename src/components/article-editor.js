@@ -218,7 +218,7 @@ function addImageInput() {
     //             <input class="btn" id="image-file" name="image-i[file]" type="file">
     let inputFile = document.createElement("input");
     inputFile.classList.add("btn");
-    inputFile.setAttribute("id", "image-file");
+    inputFile.setAttribute("id", "image-file-"+imageNumber);
     inputFile.setAttribute("name", "image-"+imageNumber+"[file]");
     inputFile.setAttribute("type", "file");
     imageAttributeContainer1.appendChild(inputFile);
@@ -238,7 +238,7 @@ function addImageInput() {
     //             <input class="input" id="image-alt" name="image-i[alt]" type="text" maxlength="199" required>
     let inputAlt = document.createElement("input");
     inputAlt.classList.add("input");
-    inputAlt.setAttribute("id", "image-alt");
+    inputAlt.setAttribute("id", "image-alt-"+imageNumber);
     inputAlt.setAttribute("name", "image-"+imageNumber+"[alt]");
     inputAlt.setAttribute("type", "text");
     inputAlt.setAttribute("maxlength", "199");
@@ -260,7 +260,7 @@ function addImageInput() {
     //             <input class="input" id="image-caption" name="image-i[caption]" type="text" maxlength="199">
     let inputCaption = document.createElement("input");
     inputCaption.classList.add("input");
-    inputCaption.setAttribute("id", "image-caption");
+    inputCaption.setAttribute("id", "image-caption-"+imageNumber);
     inputCaption.setAttribute("name", "image-"+imageNumber+"[caption]");
     inputCaption.setAttribute("type", "text");
     inputCaption.setAttribute("maxlength", "199");
@@ -281,4 +281,29 @@ function addImageInput() {
 function deleteSection(element) {
     let elementToDelete = element.parentNode.parentNode;
     elementToDelete.remove();
+}
+
+
+// To fill an input
+function fillInput(element, index, content) {
+	
+	if (element == "image") {
+		console.log("image ok");
+
+		let imageToFill = document.getElementById("image-file-"+index);
+		let altToFill = document.getElementById("image-alt-"+index);
+		let captionToFill = document.getElementById("image-caption-"+index);
+
+		altToFill.value = content[1];
+		captionToFill.value = content[2];
+
+
+
+	} else {
+
+		let elementToFill = document.getElementById(element+"-"+index);
+
+		elementToFill.value = content
+
+	}
 }

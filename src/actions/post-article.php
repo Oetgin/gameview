@@ -38,11 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     foreach ($_POST as $key => $value) {
 
-        if ($key == "title") {
+        if ($key == "title-0") {
 
             $article_title = addslashes($value);
 
-        } else if($key == "intro") {
+        } else if($key == "intro-0") {
 
             $article_content[$counter] = array("intro", addslashes($value));
 
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     echo '<pre>';
-    print_r($_POST);
+    print_r($article_content);
     echo '</pre>';
     echo 'article id: '.$article_id;
     echo 'game id: '. $game_id;

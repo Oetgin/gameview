@@ -99,7 +99,7 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
             <p class="release-date"><span class="underline">Date de sortie :</span> ' .$date. '</p>
             <p class="devs"><span class="underline">Prix :</span> ' .$price. '</p>
             <p class="game-type"><span class="underline">Genre :</span> ' .stripslashes($categories_string). '</p>
-            <p class="-game-description">'.stripslashes($synopsis).'</p>
+            <p class="-game-description">'.stripslashes(nl2br($synopsis)).'</p>
         </div>
     </div>
 
@@ -152,7 +152,7 @@ function includeArticleContent($game_name, $article_title, $content, $article_ra
 
             echo '
                 <p class="intro">
-                    ' .stripslashes($element_content). '
+                    ' .stripslashes(nl2br($element_content)). '
                 </p> 
             ';
 
@@ -168,15 +168,15 @@ function includeArticleContent($game_name, $article_title, $content, $article_ra
 
             echo '
             <p class="corpus">
-                ' .stripslashes($element_content). '
+                ' .stripslashes(nl2br($element_content)). '
             </p>
             ';
 
         } else if ($type == "image") {
 
             $image_path = $element_content[0];
-            $image_caption = stripslashes($element_content[1]);
-            $image_alt = stripslashes($element_content[2]);
+            $image_caption = stripslashes($element_content[2]);
+            $image_alt = stripslashes($element_content[1]);
 
             echo '
             <div class="image-container">

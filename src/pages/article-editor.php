@@ -78,9 +78,6 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
         $points = array(array("L\'expérience Cyberpunk 2077 sublimée", "Les interventions de la Police", "La refonte du système d'avantages et des implants"), array("L'IA ennemie toujours perfectible", "Le manque de nouveau contenu"));
 
         
-        echo '<pre>';
-        print_r($article);
-        echo '</pre>';
 
         includeHead('/src/styles/pages/article-editor.css');
     ?>
@@ -121,13 +118,13 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                         
                         <div id="all-inputs-container" class="all-inputs-container">
                             <div class="input-container">
-                                <label for="title">Titre</label>
-                                <input class="input" id="title" name="title" type="text" maxlength="199" required>
+                                <label for="title-0">Titre</label>
+                                <input class="input" id="title-0" name="title-0" type="text" maxlength="199" value="" required>
                             </div>
 
                             <div class="input-container">
-                                <label for="intro">Introduction</label>
-                                <textarea class="input" id="intro" name="intro" rows="5" required></textarea>
+                                <label for="intro-0">Introduction</label>
+                                <textarea class="input" id="intro-0" name="intro-0" rows="5" value="" required></textarea>
                             </div>
                         </div>
 
@@ -178,28 +175,28 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                                             <div class="point-name">
                                                 Point positif 1
                                             </div>
-                                            <input class="input positive" id="positive-point-1" name="positive[]" type="text" maxlength="199" required>
+                                            <input class="input positive" id="positive-point-1" name="positive[]" type="text" maxlength="199" value="" required>
                                         </div>
                                         
                                         <div class="point-container">
                                             <div class="point-name">
                                                 Point positif 2
                                             </div>
-                                            <input class="input positive" id="positive-point-2" name="positive[]" type="text" maxlength="199">
+                                            <input class="input positive" id="positive-point-2" name="positive[]" type="text" maxlength="199" value="">
                                         </div>
 
                                         <div class="point-container">
                                             <div class="point-name">
                                                 Point positif 3
                                             </div>
-                                            <input class="input positive" id="positive-point-3" name="positive[]" type="text" maxlength="199">
+                                            <input class="input positive" id="positive-point-3" name="positive[]" type="text" maxlength="199" value="">
                                         </div>
 
                                         <div class="point-container">
                                             <div class="point-name">
                                                 Point positif 4
                                             </div>
-                                            <input class="input positive" id="positive-point-4" name="positive[]" type="text" maxlength="199">
+                                            <input class="input positive" id="positive-point-4" name="positive[]" type="text" maxlength="199" value="">
                                         </div>
 
                                     </div>
@@ -219,28 +216,28 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                                             <div class="point-name">
                                                 Point négatif 1
                                             </div>
-                                            <input class="input negative" id="negative-point-1" name="negative[]" type="text" maxlength="199" requiered>
+                                            <input class="input negative" id="negative-point-1" name="negative[]" type="text" maxlength="199" value="" requiered>
                                         </div>
                                         
                                         <div class="point-container">
                                             <div class="point-name">
                                                 Point négatif 2
                                             </div>
-                                            <input class="input negative" id="negative-point-2" name="negative[]" type="text" maxlength="199">
+                                            <input class="input negative" id="negative-point-2" name="negative[]" type="text" maxlength="199" value="">
                                         </div>
 
                                         <div class="point-container">
                                             <div class="point-name">
                                                 Point négatif 3
                                             </div>
-                                            <input class="input negative" id="negative-point-3" name="negative[]" type="text" maxlength="199">
+                                            <input class="input negative" id="negative-point-3" name="negative[]" type="text" maxlength="199" value="">
                                         </div>
 
                                         <div class="point-container">
                                             <div class="point-name">
                                                 Point négatif 4
                                             </div>
-                                            <input class="input negative" id="negative-point-4" name="negative[]" type="text" maxlength="199">
+                                            <input class="input negative" id="negative-point-4" name="negative[]" type="text" maxlength="199" value="">
                                         </div>
 
                                     </div>
@@ -254,7 +251,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                             <div class="all-inputs-container">
                                 <div class="input-container">
                                     <label for="rating">Note finale (/100)</label>
-                                    <input class="input" id="rating" name="rating" type="number" min="0" max="100" required>
+                                    <input class="input" id="rating-0" name="rating" type="number" value="" min="0" max="100" required>
                                 </div>
                             </div>
                             
@@ -266,6 +263,82 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
                     </form>
 
+                <?php
+
+                // To fill the inputs if the article already exists
+                if ($article_id != -1) {
+                    $part_title_number = 0;
+                    $corpus_number = 0;
+                    $image_number = 0;
+
+                    // Fill the title
+                    echo '<script type="text/javascript">fillInput("title", 0, "'.$article[0]["title"].'");</script>';
+
+                    // Fill the rating
+                    echo '<script type="text/javascript">fillInput("rating", 0, "'.$article[0]["rating"].'");</script>';
+
+                    // Display the requiered text areas so that the article is pre filled
+                    foreach ($article[0]["content"] as $key => $value){
+                        $current_type = $value[0];
+                        $current_content = json_encode($value[1]);
+
+                        if ($current_type == "intro") {
+
+                            echo '<script type="text/javascript">fillInput("intro", 0, '.$current_content.');</script>';
+
+                        } else if ($current_type == "part-title") {
+
+                            echo '
+                            <script type="text/javascript">
+                                addPartTitleInput();
+                                fillInput("part-title", '.$part_title_number.', '.$current_content.');
+                            </script>
+                            ';
+
+                            $part_title_number ++;
+
+                        } else if ($current_type == "corpus") {
+                            
+                            echo '
+                            <script type="text/javascript">
+                                addCorpusInput();
+                                fillInput("corpus", '.$corpus_number.', '.$current_content.');
+                            </script>
+                            ';
+
+                            $corpus_number ++;
+
+                        } else if ($current_type == "image") {
+                            $current_content = array($value[1][0], $value[1][1], $value[1][2]);
+                            $current_content = json_encode($current_content);
+
+                            echo '
+                            <script type="text/javascript">
+                                addImageInput();
+                                fillInput("image", '.$image_number.', '.$current_content.');
+                            </script>
+                            ';
+
+                            $image_number ++;
+                        }
+                    }
+                    
+                    // Fill the positive points
+                    foreach ($article[0]["points"][0] as $key => $point) {
+
+                        echo '<script type="text/javascript">fillInput("positive-point", '.($key+1).', "'.$point.'");</script>';
+
+                    }
+
+                    // Fill the negative points
+                    foreach ($article[0]["points"][0] as $key => $point) {
+
+                        echo '<script type="text/javascript">fillInput("negative-point", '.($key+1).', "'.$point.'");</script>';
+
+                    }
+                }
+            
+                ?>
 
                 </section>
 
