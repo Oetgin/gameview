@@ -95,7 +95,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                         </a>
                     </div>
                     <div class="section">
-                        <a href="/src/pages/updatePassword.php">
+                        <a href="/src/pages/changePassword.php">
                             <button type="button" class="button button-danger" id="update-password">Modifier mon mot de passe</button>
                         </a>
                         <a href="/src/pages/deleteAccount.php">

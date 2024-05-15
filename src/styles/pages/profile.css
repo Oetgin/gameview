@@ -167,25 +167,4 @@ h2 {
   justify-content: center;
   gap: 1em;
   align-items: end;
-}
-
-.button {
-  height: -moz-fit-content;
-  height: fit-content;
-  font-size: 1em;
-  font-weight: 200;
-  font-style: italic;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 0.5em;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  transition: background-color 0.15s ease-in-out;
-}
-.button:hover {
-  background-color: #e0e0e0;
-}
-
-.button-danger {
-  color: red;
 }/*# sourceMappingURL=profile.css.map */

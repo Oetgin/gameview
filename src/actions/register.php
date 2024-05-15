@@ -27,22 +27,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $old_password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
     $surname = $_POST['surname'];
     $name = $_POST['name'];
     $birthdate = $_POST['birthdate'];
 
     // Validate form data
-    if (empty($username) || empty($email) || empty($password) || empty($password_confirm) || empty($surname) || empty($name) || empty($birthdate)) {
+    if (empty($username) || empty($email) || empty($old_password) || empty($password_confirm) || empty($surname) || empty($name) || empty($birthdate)) {
         redirect('/src/pages/register.php', 'error', 'Please fill in all fields');
     }
     
-    if ($password !== $password_confirm) {
+    if ($old_password !== $password_confirm) {
         redirect('/src/pages/register.php', 'error', 'Passwords do not match');
     }
     
-    if (!validPassword($password)) {
+    if (!validPassword($old_password)) {
         redirect('/src/pages/register.php', 'error', 'Invalid password. Please use at least 8 characters, one uppercase, one lowercase, one digit and one special character');
     }
 
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // Hash password
-    $hashed_password = hashPassword($password);
+    $hashed_password = hashPassword($old_password);
 
     // Insert user into database
     mysqli_stmt_bind_param($insert_user_prepared, 'ssssss', $username, $email, $hashed_password, $surname, $name, $birthdate);

@@ -10,7 +10,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 // Check for POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<div class="process-message">
-    <p>Trying to log in to your account</p>
+    <p>Trying to delete your account</p>
     </div>';
     
     require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Get form data
     $username = $_POST['username'];
-    $old_password = $_POST['password'];
+    $old_password = $_POST['old-password'];
 
 
     // Get user info
@@ -36,14 +36,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if user exists
     if ($user_login) {
         // Check password
-        if (password_verify($old_password, $user_login['password'])) {
+        if (password_verify($old_password, $user_login['old-password'])) {
             closeDB($mysqli);
             
             // Start session
             session_start();
             $_SESSION['user_id'] = $user_login['id'];
             
-            redirect('/index.php', 'success', 'Logged in successfully');
+            $new_password = $_POST['new-password'];
+            $old_password = $_POST['old-password'];
+
+            // Validate form data
+            if ($new_password != $new_password_verify) {
+                redirect('/src/pages/changePassword.php', 'error', 'Passwords do not match');
+            }
+            if (!validPassword($new_password)) {
+                redirect('/src/pages/changePassword.php', 'error', 'Invalid password. Please use at least 8 characters, one uppercase, one lowercase, one digit and one special character');
+            }
+
+            // Hash password
+            $hashed_password = hashPassword($old_password);
+
+            // Insert new password
+            mysqli_stmt_bind_param($change_password_prepared, 'si', $hashed_password, $user_id);
+            $insert_user = writeDB($change_password_prepared);
+
+            if ($insert_user) {
+                closeDB($mysqli);
+                redirect('/index.php', 'success', 'Password changed successfully');
+            }
+            else {
+                closeDB($mysqli);
+                redirect('/src/pages/changePassword.php', 'error', 'Failed to change password');
+            }
         }
         else {
             closeDB($mysqli);
@@ -52,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     else {
         closeDB($mysqli);
-        redirect('/src/pages/login.php', 'error', 'Failed to login');
+        redirect('/src/pages/deleteAccount.php', 'error', 'Failed to delete account');
     }
 
 }

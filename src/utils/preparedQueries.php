@@ -17,6 +17,12 @@ $user_login_query = "SELECT * FROM user WHERE username = ?";
 $user_login_prepared = mysqli_prepare($mysqli, $user_login_query);
 
 
+// CHANGE PASSWORD
+$change_password_query = "UPDATE user SET password = ? WHERE id = ?";
+
+$change_password_prepared = mysqli_prepare($mysqli, $change_password_query);
+
+
 // ARTICLES
 $get_articles_query = "SELECT * FROM article ORDER BY `date` DESC";
 $insert_article_query = "INSERT INTO article (title, content, authorID_article) VALUES (?, ?, ?)";
@@ -56,7 +62,7 @@ $delete_comment_prepared = mysqli_prepare($mysqli, $delete_comment_query);
 
 
 // DELETE ACCOUNT
-$delete_articles_query = "DELETE FROM article WHERE authorID_article = ?";
+$delete_articles_query = "DELETE article, comment FROM article INNER JOIN comment ON comment.articleId_comment = article.id WHERE authorID_article = ?";
 $delete_comments_query = "DELETE FROM comment WHERE authorID_comment = ?";
 $delete_user_query = "DELETE FROM user WHERE username = ? AND password = ?";
 

@@ -10,7 +10,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 // Check for POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<div class="process-message">
-    <p>Trying to log in to your account</p>
+    <p>Trying to delete your account</p>
     </div>';
     
     require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
@@ -43,7 +43,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION['user_id'] = $user_login['id'];
             
-            redirect('/index.php', 'success', 'Logged in successfully');
+            // Delete account (user, articles, comments)
+            $user_id = $user_login['id'];
+            mysqli_stmt_bind_param($delete_comments_prepared, 'i', $user_id);
+            mysqli_stmt_bind_param($delete_articles_prepared, 'i', $user_id);
+            mysqli_stmt_bind_param($delete_user_prepared, 'i', $user_id);
+
+            $delete_comments = writeDB($delete_comments_prepared);
+            $delete_articles = writeDB($delete_articles_prepared);
+            $delete_user = writeDB($delete_user_prepared);
+        
+
+            redirect('/index.php', 'success', 'Account deleted successfully');
         }
         else {
             closeDB($mysqli);
@@ -52,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     else {
         closeDB($mysqli);
-        redirect('/src/pages/login.php', 'error', 'Failed to login');
+        redirect('/src/pages/deleteAccount.php', 'error', 'Failed to delete account');
     }
 
 }
