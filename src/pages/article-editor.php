@@ -307,10 +307,11 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                         } else if ($current_type == "image") {
                             $current_content = array($value[1][0], $value[1][2], $value[1][1]);
                             $current_content = json_encode($current_content);
+                            $img_path = '/assets/images/articles/article-'.$article_id.'/img-'.$image_number.'.png';
 
                             echo '
                             <script type="text/javascript">
-                                addImageInput();
+                                addImageInput("'.$img_path.'");
                                 fillInput("image", '.$image_number.', '.$current_content.');
                             </script>
                             ';

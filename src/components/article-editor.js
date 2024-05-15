@@ -132,7 +132,8 @@ function addCorpusInput() {
 }
 
 
-function addImageInput() {
+function addImageInput(img_path = "") {
+    console.log(img_path);
     let allInputsContainer = document.getElementById("all-inputs-container");
 
     // We wanna recreate this structure :
@@ -148,9 +149,14 @@ function addImageInput() {
         
     //         <div class="image-attribute-container">
     //             <div class="image-attribute-name">
-    //                 Fichier
+    //                 <div class="title">Fichier</div>
+    //                 <img class="preview-icon" src="/assets/icons/preview.svg"></img>
+    //                 <img class="preview" src="img_path"></img>
     //             </div>
-    //             <input class="btn" id="image-file" name="image[file]" type="file">
+    //             <div class="file-input-container">
+    //                  <input class="btn" id="image-file" name="image[file]" type="file">
+    //             </div>
+    //        
     //         </div>
 
     //         <div class="image-attribute-container">
@@ -212,16 +218,51 @@ function addImageInput() {
     //             <div class="image-attribute-name">
     let imageAttributeName1 = document.createElement("div");
     imageAttributeName1.classList.add("image-attribute-name");
-    imageAttributeName1.textContent = "Fichier";
-    imageAttributeContainer1.appendChild(imageAttributeName1);
 
-    //             <input class="btn" id="image-file" name="image-i[file]" type="file">
+    //                 <div class="title">Fichier</div>
+    if (img_path != "") {
+        let title = document.createElement("div");
+        title.classList.add("title");
+        title.textContent = "Image actuelle";
+        imageAttributeName1.appendChild(title);
+
+        //                 <img class="preview-icon" src="/assets/icons/preview.svg"></img>
+        let previewIcon = document.createElement("img");
+        previewIcon.classList.add("preview-icon");
+        previewIcon.setAttribute("src", "/assets/icons/preview.svg");
+        imageAttributeName1.appendChild(previewIcon);
+
+        //                 <img class="preview" src="img_path"></img>
+        let preview = document.createElement("img");
+        preview.classList.add("preview");
+        preview.setAttribute("src", img_path);
+        imageAttributeName1.appendChild(preview);
+
+        imageAttributeContainer1.appendChild(imageAttributeName1);
+    } else {
+        let title = document.createElement("div");
+        title.classList.add("title");
+        title.textContent = "Fichier";
+        imageAttributeName1.appendChild(title);
+
+        imageAttributeContainer1.appendChild(imageAttributeName1);
+
+    }
+
+
+    //             <div class="file-input-container">
+    let fileInputContainer = document.createElement("div");
+    fileInputContainer.classList.add("file-input-container");
+
+    //                  <input class="btn" id="image-file" name="image-i[file]" type="file">
     let inputFile = document.createElement("input");
     inputFile.classList.add("btn");
     inputFile.setAttribute("id", "image-file-"+imageNumber);
     inputFile.setAttribute("name", "image-"+imageNumber+"[file]");
     inputFile.setAttribute("type", "file");
-    imageAttributeContainer1.appendChild(inputFile);
+    fileInputContainer.appendChild(inputFile);
+
+    imageAttributeContainer1.appendChild(fileInputContainer);
 
     allImageAttributes.appendChild(imageAttributeContainer1);
 
@@ -288,22 +329,20 @@ function deleteSection(element) {
 function fillInput(element, index, content) {
 	
 	if (element == "image") {
-		console.log("image ok");
 
 		let imageToFill = document.getElementById("image-file-"+index);
 		let altToFill = document.getElementById("image-alt-"+index);
 		let captionToFill = document.getElementById("image-caption-"+index);
 
-		altToFill.value = content[1];
-		captionToFill.value = content[2];
+		altToFill.value = content[1].replace(/\\/g, '');
+		captionToFill.value = content[2].replace(/\\/g, '');
 
 
 
 	} else {
 
 		let elementToFill = document.getElementById(element+"-"+index);
-
-		elementToFill.value = content
+		elementToFill.value = content.replace(/\\/g, '');
 
 	}
 }
