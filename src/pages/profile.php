@@ -73,7 +73,11 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     <p class="role"><?php echo $user_info['role']; ?></p>
                 </div>
             </div>
-            <form action="/src/pages/updateProfile.php" method="post" class="classic-form">
+            <div class="bio">
+                <h3>Bio</h3>
+                <p><?php echo ($user_info['bio']==null?"Cet utilisateur n'a pas de bio":$user_info['bio']); ?></p>
+            </div>
+            <form action="/src/pages/updateProfile.php" method="post">
                 <button type="submit" class="button">Modifier mon profil</button>
             </form> 
             <div class="profile-stats">
@@ -81,6 +85,9 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                 <p class="comment-count">Commentaires : <?php echo $user_info['commentCount']; ?></p>
                 <p class="article-count">Articles : <?php echo $user_info['articleCount']; ?></p>
             </div>
+            <form action="/src/utils/logout.php" method="post" class="logout">
+                <button type="submit" class="button">Se déconnecter</button>
+            </form>
             <div class="user-content">
                 <h3>Articles</h3>
                 <div class="articles">

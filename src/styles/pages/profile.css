@@ -48,6 +48,18 @@ h2 {
   display: flex;
   gap: 0.5em;
 }
+.profile .bio h3 {
+  font-size: 1.5em;
+  font-weight: 200;
+  text-align: center;
+  padding: 2em 0 1em 0;
+}
+.profile form {
+  margin-top: 2em;
+}
+.profile .logout .button {
+  color: red;
+}
 .profile .profile-stats {
   display: flex;
   justify-content: center;
@@ -58,7 +70,7 @@ h2 {
   font-size: 1.5em;
   font-weight: 200;
   text-align: center;
-  padding-top: 2em;
+  padding: 2em 0 1em 0;
 }
 .profile .user-content .articles {
   display: grid;
