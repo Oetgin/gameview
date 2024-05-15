@@ -64,6 +64,11 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
             $article_id = -1;                       // It means it's a new article
         } else {
             $article_id = $article_id[0]["id"];     // already exists
+
+            $article = readQuery($mysqli, "SELECT * FROM article WHERE id = $article_id");
+
+            $article[0]["content"] = json_decode($article[0]["content"]);
+            $article[0]["points"] = json_decode($article[0]["points"]);
         }
         
 
@@ -73,9 +78,9 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
         $points = array(array("L\'expérience Cyberpunk 2077 sublimée", "Les interventions de la Police", "La refonte du système d'avantages et des implants"), array("L'IA ennemie toujours perfectible", "Le manque de nouveau contenu"));
 
         
-        // echo '<pre>';
-        // print_r($game_title);
-        // echo '</pre>';
+        echo '<pre>';
+        print_r($article);
+        echo '</pre>';
 
         includeHead('/src/styles/pages/article-editor.css');
     ?>

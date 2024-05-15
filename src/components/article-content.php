@@ -273,7 +273,7 @@ function includeReview($reviewer_name, $pp_path, $date, $played_time, $rating, $
             </div>
 
             <div class="review-title">
-                ' .$rating. '
+                ' .$title. '
             </div>
 
             <div class="review-content">
