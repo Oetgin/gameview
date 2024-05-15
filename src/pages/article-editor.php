@@ -309,7 +309,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                             $corpus_number ++;
 
                         } else if ($current_type == "image") {
-                            $current_content = array($value[1][0], $value[1][1], $value[1][2]);
+                            $current_content = array($value[1][0], $value[1][2], $value[1][1]);
                             $current_content = json_encode($current_content);
 
                             echo '

@@ -175,8 +175,8 @@ function includeArticleContent($game_name, $article_title, $content, $article_ra
         } else if ($type == "image") {
 
             $image_path = $element_content[0];
-            $image_caption = stripslashes($element_content[2]);
-            $image_alt = stripslashes($element_content[1]);
+            $image_caption = stripslashes($element_content[1]);
+            $image_alt = stripslashes($element_content[2]);
 
             echo '
             <div class="image-container">
