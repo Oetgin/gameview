@@ -10,15 +10,15 @@ require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
 //__________Functions__________
 
 // To create article title
-function createArticle($mysqli, $article_id, $article_title, $content, $rating, $date, $author_id, $game_id, $points) {
+function createArticle($mysqli, $article_id, $article_title, $article_description, $content, $rating, $date, $author_id, $game_id, $points) {
 
     // Create the new article (without its content and the points)
-    $query = "INSERT INTO article (title, content, rating, date, authorID_article, gameID_article, points) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO article (title, description, content, rating, date, authorID_article, gameID_article, points) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     $prepared_query = mysqli_prepare($mysqli, $query);
     $temp = "temp";     // Temporary content and points. It will be updated right after with updateArticleContent funciton
 
-    mysqli_stmt_bind_param($prepared_query, "ssdsiis", $article_title, $temp, $rating, $date, $author_id, $game_id, $temp);    
+    mysqli_stmt_bind_param($prepared_query, "sssdsiis", $article_title, $article_description, $temp, $rating, $date, $author_id, $game_id, $temp);    
 
     writeDB($prepared_query);
 
@@ -32,8 +32,9 @@ function createArticle($mysqli, $article_id, $article_title, $content, $rating, 
 
 
 // To update an entire article
-function updateArticle($mysqli, $article_id, $article_title, $article_content, $rating, $article_date, $author_id, $article_points) {
+function updateArticle($mysqli, $article_id, $article_title, $article_description, $article_content, $rating, $article_date, $author_id, $article_points) {
     updateArticleTitle($mysqli, $article_id, $article_title);
+    updateArticleDescription($mysqli, $article_id, $article_description);
     updateArticleContent($mysqli, $article_id, $article_content);
     updateArticlePoints($mysqli, $article_id, $article_points);
     updateArticleAttributes($mysqli, $article_id, $rating, $article_date, $author_id);
@@ -46,6 +47,16 @@ function updateArticleTitle($mysqli, $article_id, $article_title) {
     $prepared_query = mysqli_prepare($mysqli, $query);
 
     mysqli_stmt_bind_param($prepared_query, "si", $article_title, $article_id);
+
+    writeDB($prepared_query);
+}
+
+// To update article description
+function updateArticleDescription($mysqli, $article_id, $article_description) {
+    $query = "UPDATE article SET description = ? WHERE id = ?";
+    $prepared_query = mysqli_prepare($mysqli, $query);
+
+    mysqli_stmt_bind_param($prepared_query, "si", $article_description, $article_id);
 
     writeDB($prepared_query);
 }
