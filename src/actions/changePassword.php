@@ -72,12 +72,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         else {
             closeDB($mysqli);
-            redirect('/src/pages/login.php', 'error', 'Incorrect password');
+            redirect('/src/pages/changePassword.php', 'error', 'Incorrect password');
         }
     }
     else {
         closeDB($mysqli);
-        redirect('/src/pages/deleteAccount.php', 'error', 'Failed to delete account');
+        redirect('/src/pages/changePassword.php', 'error', 'Failed to change password');
     }
 
 }
@@ -85,5 +85,5 @@ else {
     require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
     require_once(DOCUMENT_ROOT . '/src/utils/redirect.php');
 
-    redirect('/register.php', 'error', 'Invalid request. Please use the form.');
+    redirect('src/pages/changePassword.php', 'error', 'Invalid request. Please use the form.');
 }

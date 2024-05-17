@@ -81,5 +81,5 @@ else {
     require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
     require_once(DOCUMENT_ROOT . '/src/utils/redirect.php');
 
-    redirect('/updateProfile.php', 'error', 'Invalid request. Please use the form.');
+    redirect('src/pages/updateProfile.php', 'error', 'Invalid request. Please use the form.');
 }
