@@ -133,18 +133,17 @@ function addCorpusInput() {
 
 
 function addImageInput(img_path = "") {
-    console.log(img_path);
     let allInputsContainer = document.getElementById("all-inputs-container");
 
     // We wanna recreate this structure :
     // <div class="input-container">
-    //     <label for="corpus">
-            //     Contenu texte
-                    // <a class="btn delete-btn" onclick="deleteSection(this)">
-                    //     <img src="/assets/icons/minus.svg" alt="Supprimer">
-                    //     <div class="hover-msg">Supprimer cette section</div>
-                    // </a>
-            // </label>
+    //     <label for="image-0[]">
+    //             Contenu texte
+    //                 <a class="btn delete-btn" onclick="deleteSection(this)">
+    //                     <img src="/assets/icons/minus.svg" alt="Supprimer">
+    //                     <div class="hover-msg">Supprimer cette section</div>
+    //                 </a>
+    //         </label>
     //     <div class="input all-image-attributes">
         
     //         <div class="image-attribute-container">
@@ -154,9 +153,9 @@ function addImageInput(img_path = "") {
     //                 <img class="preview" src="img_path"></img>
     //             </div>
     //             <div class="file-input-container">
-    //                  <input class="btn" id="image-file" name="image[file]" type="file">
+    //                  <input class="btn" id="image-file" name="image[file]" type="file" required>
     //             </div>
-    //        
+           
     //         </div>
 
     //         <div class="image-attribute-container">
@@ -172,6 +171,8 @@ function addImageInput(img_path = "") {
     //             </div>
     //             <input class="input" id="image-caption" name="image[caption]" type="text" maxlength="199">
     //         </div>
+
+    //          <input type="hidden" id=prefill name="image[prefill]" value="0">
 
     //     </div>
     // </div>
@@ -254,12 +255,13 @@ function addImageInput(img_path = "") {
     let fileInputContainer = document.createElement("div");
     fileInputContainer.classList.add("file-input-container");
 
-    //                  <input class="btn" id="image-file" name="image-i[file]" type="file">
+    //                  <input class="btn" id="image-file" name="image-i[file]" type="file" required>
     let inputFile = document.createElement("input");
     inputFile.classList.add("btn");
     inputFile.setAttribute("id", "image-file-"+imageNumber);
     inputFile.setAttribute("name", "image-"+imageNumber+"[file]");
     inputFile.setAttribute("type", "file");
+    inputFile.setAttribute("required", "");
     fileInputContainer.appendChild(inputFile);
 
     imageAttributeContainer1.appendChild(fileInputContainer);
@@ -309,6 +311,16 @@ function addImageInput(img_path = "") {
 
     allImageAttributes.appendChild(imageAttributeContainer3);
     
+    //          <input type="hidden" id=prefill name="image[prefill]" value="0">
+    let prefill = document.createElement("input");
+    prefill.setAttribute("type", "hidden");
+    prefill.setAttribute("id", "prefill-"+imageNumber);
+    prefill.setAttribute("name", "image-"+imageNumber+"[prefill]");
+    prefill.setAttribute("value", "-1");
+    allImageAttributes.appendChild(prefill);
+
+    //     </div>
+    
     inputContainer.appendChild(allImageAttributes);
 
     // </div>
@@ -326,13 +338,23 @@ function deleteSection(element) {
 
 
 // To fill an input
-function fillInput(element, index, content) {
+function fillInput(element, index, content, prefill = "no") {
 	
 	if (element == "image") {
 
-		let imageToFill = document.getElementById("image-file-"+index);
+        let imageToFill = document.getElementById("image-file-"+index);
 		let altToFill = document.getElementById("image-alt-"+index);
 		let captionToFill = document.getElementById("image-caption-"+index);
+
+        if (prefill == "yes") {
+
+            // The pre filled image is not required anymore.
+            imageToFill.removeAttribute("required");
+            // We set the prefill value to 1
+            let prefill = document.getElementById("prefill-"+index);
+            prefill.value = index;
+
+        }
 
 		altToFill.value = content[1].replace(/\\/g, '');
 		captionToFill.value = content[2].replace(/\\/g, '');

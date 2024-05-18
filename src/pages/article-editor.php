@@ -74,10 +74,6 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
 
         // __________Temp tests__________
-        echo '<pre>';
-        print_r($article[0]["points"]);
-        echo '</pre>';
-
         includeHead('/src/styles/pages/article-editor.css');
     ?>
 
@@ -320,7 +316,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                             echo '
                             <script type="text/javascript">
                                 addImageInput("'.$img_path.'");
-                                fillInput("image", '.$image_number.', '.$current_content.');
+                                fillInput("image", '.$image_number.', '.$current_content.', "yes");
                             </script>
                             ';
 
