@@ -64,15 +64,15 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     </div>
                     <div class="form-group">
                         <label for="old-password">Acien mot de passe</label>
-                        <input type="old-password" name="password" placeholder="Mot de passe">
+                        <input type="password" name="old-password" placeholder="Mot de passe">
                     </div>
                     <div class="form-group">
                         <label for="new-password">Nouveau mot de passe</label>
-                        <input type="new-password" name="password" placeholder="Mot de passe">
+                        <input type="password" name="new-password" placeholder="Mot de passe">
                     </div>
                     <div class="form-group">
                         <label for="confirm-password">Confirmer le mot de passe</label>
-                        <input type="confirm-password" name="password" placeholder="Mot de passe">
+                        <input type="password" name="confirm-password" placeholder="Mot de passe">
                     </div>
                     <input type="submit" class="button button-danger" value="Modifier mon mot de passe">
                 <?php
