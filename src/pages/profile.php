@@ -19,6 +19,8 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 
+require_once(DOCUMENT_ROOT . '/src/utils/user.php');
+
 
 ?>
 <!DOCTYPE html>
@@ -59,7 +61,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
             <div class="profile-main">
                 <div class="profile-user">
                     <div class="profile-picture">
-                        <img src="/assets/images/pp/pp-<?php echo $user_id; ?>.png?<?php echo intval(microtime(true)) ?>" alt="<?php echo $user_info['username']; ?>">
+                        <?php echo profilePicture(); ?>
                     </div>
                     <p class="username"><?php echo $user_info['username']; ?></p>
                 </div>
@@ -85,7 +87,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                 <p class="comment-count">Commentaires : <?php echo $user_info['commentCount']; ?></p>
                 <p class="article-count">Articles : <?php echo $user_info['articleCount']; ?></p>
             </div>
-            <a href="/src/utils/logout.php" class="logout">
+            <a href="/src/actions/logout.php" class="logout">
                 <button type="submit" class="button button-danger">Se déconnecter</button>
             </a>
             <div class="user-content">

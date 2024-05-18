@@ -19,6 +19,8 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 
+require_once(DOCUMENT_ROOT . '/src/utils/user.php');
+
 
 ?>
 <!DOCTYPE html>
@@ -61,7 +63,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                 <div class="profile-main">
                     <div class="profile-user">
                         <div class="profile-picture">
-                            <img src="/assets/images/pp/pp-<?php echo $user_id; ?>.png?<?php echo intval(microtime(true)) ?>" alt="<?php echo $user_info['username']; ?>" id="profile-picture-image">
+                            <?php echo profilePicture("profile-picture-image"); ?>
                             <div class="profile-picture-overlay">
                                 <label for="profile-picture-input">Changer de photo de profil</label>
                                 <input type="file" name="profile-picture-input" id="profile-picture-input" accept="image/png, image/jpeg">

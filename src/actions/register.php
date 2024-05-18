@@ -71,7 +71,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_stmt_bind_param($insert_user_prepared, 'ssssss', $username, $email, $hashed_password, $surname, $name, $birthdate);
     $insert_user = writeDB($insert_user_prepared);
 
-    if ($insert_user) {
+    if ($insert_user) {        
+        // Log in user
+        mysqli_stmt_bind_param($user_login_prepared, 's', $username);
+        $user_login = readDB($user_login_prepared)[0];
+        
+        session_start();
+        $_SESSION['user_id'] = $user_login['id'];
+        
         closeDB($mysqli);
         redirect('/index.php', 'success', 'Account created successfully');
     }

@@ -21,6 +21,7 @@ define('LOGO_LARGE_BLACK_PATH', '/assets/icons/logo/large/logo-text-black.svg');
 define('LOGO_LARGE_WHITE_PATH', '/assets/icons/logo/large/logo-text-white.svg');
 define('LOGO_LARGE_WHITE_BLUE_PATH', '/assets/icons/logo/large/logo-white-blue.svg');
 define('LOGO_LARGE_BLACK_BLUE_PATH', '/assets/icons/logo/large/logo-black-blue.svg');
+define('DEFAULT_PP_PATH', '/assets/images/pp/default.png');
 
 // Logo small paths
 define('LOGO_BLACK_PATH', '/assets/icons/logo/small/logo-black.png');

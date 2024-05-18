@@ -1,6 +1,7 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/utils/login.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/src/utils/user.php');
 
 function includeHeader() {
     echo '
@@ -33,15 +34,5 @@ function profileLink() {
     }
     else {
         return '/src/pages/login.php';
-    }
-}
-
-function profilePicture() {
-    if (!loggedIn()) {
-        return '<img src="/assets/icons/user-icon-hollow-black.png" alt="user" class="profile-picture">';
-    }
-    else {
-        $user_id = getId();
-        return '<img src="/assets/images/pp/pp-'.$user_id.'.png?'.intval(microtime(true)).'" alt="profile picture" class="profile-picture">'; // Add microtime to force refresh
     }
 }
