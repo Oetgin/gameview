@@ -18,3 +18,19 @@ function profilePicture($id=false) {
         }
     }
 }
+
+function isEditor() {
+    if (!loggedIn()) {
+        return false;
+    }
+    else {
+        $user_id = getId();
+        $mysqli = connectionDB();
+        $query = "SELECT role FROM user WHERE id = ?";
+        $stmt = mysqli_prepare($mysqli, $query);
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+        $role = readDB($stmt)[0]["role"];
+        mysqli_stmt_close($stmt);
+        return $role == "Éditeur";
+    }
+}

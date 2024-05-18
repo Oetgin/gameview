@@ -19,6 +19,9 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 
+require_once(DOCUMENT_ROOT . '/src/utils/login.php');
+require_once(DOCUMENT_ROOT . '/src/utils/user.php');
+
 
 ?>
 <!DOCTYPE html>
@@ -103,6 +106,18 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     </div>
                 </div>
             </div>
+
+            <?php 
+                if (loggedIn() && isEditor()) {
+            ?>    
+            <div class="create-article">
+                <a href="/src/pages/article-editor.php" class="button">
+                        Créer un article
+                </a>
+            </div>
+            <?php
+                }
+            ?>
 
         </main>
 
