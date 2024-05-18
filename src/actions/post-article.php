@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
     require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
-    require_once(DOCUMENT_ROOT . '/src/utils/article.php');
+    
 
     $points = array(array("L\'expérience Cyberpunk 2077 sublimée", "Les interventions de la Police", "La refonte du système d'avantages et des implants"), array("L'IA ennemie toujours perfectible", "Le manque de nouveau contenu"));
 
@@ -103,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // ____________Modify/create the article____________
     $mysqli = connectionDB();
+    require_once(DOCUMENT_ROOT . '/src/utils/article.php');
 
 
     // If the article already exists
@@ -161,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         // To update the content
-        updateArticle($mysqli, $article_id, $article_title, $article_description, $article_content, $rating, $date,$author_id, $article_points);
+        updateArticle($article_id, $article_title, $article_description, $article_content, $rating, $date,$author_id, $article_points);
     
     } 
     
@@ -189,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // To create the article
-        createArticle($mysqli, $article_id, $article_title, $article_description, $article_content, $rating, $date, $author_id, $game_id, $article_points);
+        createArticle($create, $article_id, $article_title, $article_description, $article_content, $rating, $date, $author_id, $game_id, $article_points);
     }
 
 

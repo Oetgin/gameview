@@ -11,7 +11,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 
 require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
 require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
-require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 require_once(DOCUMENT_ROOT . '/src/utils/article.php');
 
 require_once(DOCUMENT_ROOT . '/src/static/head.php');
@@ -31,6 +30,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
     <?php
         $mysqli = connectionDB();
+        require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
         // __________Get article id__________
         // if there is no GET param

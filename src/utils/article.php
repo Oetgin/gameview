@@ -5,79 +5,75 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 
 require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
 require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
+require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
 
 //__________Functions__________
 
 // To create article title
 function createArticle($mysqli, $article_id, $article_title, $article_description, $content, $rating, $date, $author_id, $game_id, $points) {
+    global $create_article_prepared;
 
     // Create the new article (without its content and the points)
-    $query = "INSERT INTO article (title, description, content, rating, date, authorID_article, gameID_article, points) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-    $prepared_query = mysqli_prepare($mysqli, $query);
     $temp = "temp";     // Temporary content and points. It will be updated right after with updateArticleContent funciton
 
-    mysqli_stmt_bind_param($prepared_query, "sssdsiis", $article_title, $article_description, $temp, $rating, $date, $author_id, $game_id, $temp);    
+    mysqli_stmt_bind_param($create_article_prepared, "sssdsiis", $article_title, $article_description, $temp, $rating, $date, $author_id, $game_id, $temp);    
 
-    writeDB($prepared_query);
+    writeDB($create_article_prepared);
 
     // Update the just created article
     $article_id = mysqli_insert_id($mysqli);
-    updateArticleContent($mysqli, $article_id, $content);
-    updateArticlePoints($mysqli, $article_id, $points);
+    updateArticleContent($article_id, $content);
+    updateArticlePoints($article_id, $points);
 }
 
 
 
 
 // To update an entire article
-function updateArticle($mysqli, $article_id, $article_title, $article_description, $article_content, $rating, $article_date, $author_id, $article_points) {
-    updateArticleTitle($mysqli, $article_id, $article_title);
-    updateArticleDescription($mysqli, $article_id, $article_description);
-    updateArticleContent($mysqli, $article_id, $article_content);
-    updateArticlePoints($mysqli, $article_id, $article_points);
-    updateArticleAttributes($mysqli, $article_id, $rating, $article_date, $author_id);
+function updateArticle($article_id, $article_title, $article_description, $article_content, $rating, $article_date, $author_id, $article_points) {
+    updateArticleTitle($article_id, $article_title);
+    updateArticleDescription($article_id, $article_description);
+    updateArticleContent($article_id, $article_content);
+    updateArticlePoints($article_id, $article_points);
+    updateArticleAttributes($article_id, $rating, $article_date, $author_id);
 }
 
 
 // To update article title
-function updateArticleTitle($mysqli, $article_id, $article_title) {
-    $query = "UPDATE article SET title = ? WHERE id = ?";
-    $prepared_query = mysqli_prepare($mysqli, $query);
+function updateArticleTitle($article_id, $article_title) {
+    global $update_article_title_prepared;
 
-    mysqli_stmt_bind_param($prepared_query, "si", $article_title, $article_id);
+    mysqli_stmt_bind_param($update_article_title_prepared, "si", $article_title, $article_id);
 
-    writeDB($prepared_query);
+    writeDB($update_article_title_prepared);
 }
 
 // To update article description
-function updateArticleDescription($mysqli, $article_id, $article_description) {
-    $query = "UPDATE article SET description = ? WHERE id = ?";
-    $prepared_query = mysqli_prepare($mysqli, $query);
+function updateArticleDescription($article_id, $article_description) {
+    global $update_article_description_prepared;
 
-    mysqli_stmt_bind_param($prepared_query, "si", $article_description, $article_id);
+    mysqli_stmt_bind_param($update_article_description_prepared, "si", $article_description, $article_id);
 
-    writeDB($prepared_query);
+    writeDB($update_article_description_prepared);
 }
 
 // To udpate article content
-function updateArticleContent($mysqli, $article_id, $article_content) {
+function updateArticleContent($article_id, $article_content) {
+    global $update_article_content_prepared;
     
     // Update content
     $json_formatted_content = json_encode($article_content);
 
-    $query = "UPDATE article SET content = ? WHERE id = ?";
-    $prepared_query = mysqli_prepare($mysqli, $query);
-
-    mysqli_stmt_bind_param($prepared_query, "si", $json_formatted_content, $article_id);
+    mysqli_stmt_bind_param($update_article_content_prepared, "si", $json_formatted_content, $article_id);
     
-    writeDB($prepared_query);
+    writeDB($update_article_content_prepared);
 }
 
 
 // To update article points
-function updateArticlePoints($mysqli, $article_id, $article_points) {
+function updateArticlePoints($article_id, $article_points) {
+    global $update_article_points_prepared;
 
     // We only keep the not empty points
     $new_article_points = array(array(), array());
@@ -92,24 +88,18 @@ function updateArticlePoints($mysqli, $article_id, $article_points) {
 
     $json_formatted_content = json_encode($new_article_points);
 
-    $query = "UPDATE article SET points = ? WHERE id = ?";
-    $prepared_query = mysqli_prepare($mysqli, $query);
+    mysqli_stmt_bind_param($update_article_points_prepared, "si", $json_formatted_content, $article_id);
 
-    mysqli_stmt_bind_param($prepared_query, "si", $json_formatted_content, $article_id);
-
-    writeDB($prepared_query);
+    writeDB($update_article_points_prepared);
 }
 
 // To update article attributes (date, $price, author)
-function updateArticleAttributes($mysqli, $article_id, $rating, $date, $author_id) {
+function updateArticleAttributes($article_id, $rating, $date, $author_id) {
+    global $update_article_attributes_prepared;
 
-    $query = "UPDATE article SET rating = ?, date = ?, authorID_article = ? WHERE id = ?";
+    mysqli_stmt_bind_param($update_article_attributes_prepared, "dsii", $rating, $date, $author_id, $article_id);
 
-    $prepared_query = mysqli_prepare($mysqli, $query);
-
-    mysqli_stmt_bind_param($prepared_query, "dsii", $rating, $date, $author_id, $article_id);
-
-    writeDB($prepared_query);
+    writeDB($update_article_attributes_prepared);
 
 }
 

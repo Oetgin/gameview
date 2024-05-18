@@ -83,3 +83,19 @@ $user_comments_prepared = mysqli_prepare($mysqli, $user_comments_query);
 $user_articles_prepared = mysqli_prepare($mysqli, $user_articles_query);
 $change_user_info_prepared = mysqli_prepare($mysqli, $change_user_info_query);
 $user_search_prepared = mysqli_prepare($mysqli, $user_search_query);
+
+
+// ARTICLE EDIT
+$create_article_query = "INSERT INTO article (title, description, content, rating, date, authorID_article, gameID_article, points) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+$update_article_title_query = "UPDATE article SET title = ? WHERE id = ?";
+$update_article_description_query = "UPDATE article SET description = ? WHERE id = ?";
+$update_article_content_query = "UPDATE article SET content = ? WHERE id = ?";
+$update_article_points_query = "UPDATE article SET points = ? WHERE id = ?";
+$update_article_attributes_query = "UPDATE article SET rating = ?, date = ?, authorID_article = ? WHERE id = ?";
+
+$create_article_prepared = mysqli_prepare($mysqli, $create_article_query);
+$update_article_title_prepared = mysqli_prepare($mysqli, $update_article_title_query);
+$update_article_description_prepared = mysqli_prepare($mysqli, $update_article_description_query);
+$update_article_content_prepared = mysqli_prepare($mysqli, $update_article_content_query);
+$update_article_points_prepared = mysqli_prepare($mysqli, $update_article_points_query);
+$update_article_attributes_prepared = mysqli_prepare($mysqli, $update_article_attributes_query);
