@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     echo '<pre>';
-    print_r($article_content);
+    print_r($article_points);
     echo '</pre>';
     echo 'article id: '.$article_id;
     echo 'game id: '. $game_id;

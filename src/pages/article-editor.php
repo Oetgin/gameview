@@ -75,7 +75,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
         // __________Temp tests__________
         echo '<pre>';
-        print_r($article[0]["content"]);
+        print_r($article[0]["points"]);
         echo '</pre>';
 
         includeHead('/src/styles/pages/article-editor.css');
@@ -343,7 +343,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                     }
 
                     // Fill the negative points
-                    foreach ($article[0]["points"][0] as $key => $point) {
+                    foreach ($article[0]["points"][1] as $key => $point) {
 
                         echo '<script type="text/javascript">fillInput("negative-point", '.($key+1).', "'.$point.'");</script>';
 

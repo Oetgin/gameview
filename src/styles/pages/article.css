@@ -284,6 +284,7 @@
   position: relative;
   display: flex;
   align-items: flex-start;
+  gap: 3em;
   width: 100%;
 }
 .article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container .column {
