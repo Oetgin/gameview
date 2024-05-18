@@ -1,6 +1,19 @@
 <?php
 
 function includeHead($stylesheet_path) {
+    // Update last connection date
+    require_once $_SERVER['DOCUMENT_ROOT'].'/src/config/constants.php';
+    require_once DOCUMENT_ROOT.'/src/utils/dbQueries.php';
+
+    if (loggedIn()) {
+        $mysqli = connectionDB();
+        $user_id = getId();
+        $query = "UPDATE user SET lastConnection = NOW() WHERE id = ?";
+        $stmt = mysqli_prepare($mysqli, $query);
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    }
 
     // To use the stylsheet related to the page
     if ($stylesheet_path != DEFAULT_STYLE_PATH) {
