@@ -49,6 +49,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             closeDB($mysqli);
             redirect('/src/pages/updateProfile.php', 'error', 'Please enter your name and surname');
         }
+        if (!validName($surname) || !validName($name)) {
+            closeDB($mysqli);
+            redirect('/src/pages/updateProfile.php', 'error', 'Invalid name. Please use 2-50 characters, letters, spaces and hyphens');
+        }
+        if ($birthdate == "") {
+            closeDB($mysqli);
+            redirect('/src/pages/updateProfile.php', 'error', 'Please enter your birthdate');
+        }
+        $max_birthdate = date('Y-m-d', strtotime('-15 years'));
+        if ($birthdate > $max_birthdate) {
+            closeDB($mysqli);
+            redirect('/src/pages/updateProfile.php', 'error', 'You must be at least 15 years old');
+        }
+        if ($bio == "") {
+            $bio = null;
+        }
         
         // Update user info
         mysqli_stmt_bind_param($change_user_info_prepared, 'sssssi', $email, $surname, $name, $birthdate, $bio, $user_id);
