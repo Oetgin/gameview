@@ -36,7 +36,7 @@ function includeArticleCard($article_id, $game_name, $game_id, $title, $descript
                             <p>'.$author_role.'</p>
                         </div>
                         <div class="article-card-author-image">
-                            <img src="/assets/images/pp/pp-'.$author_id.'.png?'.intval(microtime(true)).'" alt="'.$author_name.' class="profile-picture">
+                            '.profilePicture(false, $author_id).'
                         </div>
                     </div>
                 </div>
