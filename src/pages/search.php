@@ -50,7 +50,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                 mysqli_stmt_bind_param($article_search_prepared, 'ssssssssssss', $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str);
                 $article_search = readDB($article_search_prepared);
 
-                mysqli_stmt_bind_param($user_search_prepared, 'ssss', $search_str, $search_str, $search_str, $search_str);
+                mysqli_stmt_bind_param($user_search_prepared, 'sss', $search_str, $search_str, $search_str);
                 $user_search = readDB($user_search_prepared);
 
                 if (count($article_search) > 0 || count($user_search) > 0) {  

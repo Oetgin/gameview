@@ -76,7 +76,7 @@ $user_info_query = "SELECT * FROM user WHERE id = ?";
 $user_comments_query = "SELECT * FROM comment WHERE authorID_comment = ?";
 $user_articles_query = "SELECT * FROM article WHERE authorID_article = ?";
 $change_user_info_query = "UPDATE user SET email = ?, surname = ?, `name` = ?, birthdate = ?, bio = ? WHERE id = ?";
-$user_search_query = "SELECT * FROM user WHERE username LIKE ? OR surname LIKE ? OR `name` LIKE ? OR bio LIKE ?";
+$user_search_query = "SELECT * FROM user WHERE username LIKE ? OR bio LIKE ? OR id LIKE ?";
 
 $user_info_prepared = mysqli_prepare($mysqli, $user_info_query);
 $user_comments_prepared = mysqli_prepare($mysqli, $user_comments_query);
