@@ -119,6 +119,11 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                             </div>
 
                             <div class="input-container">
+                                <label for="description-0">Description</label>
+                                <input class="input" id="description-0" name="description-0" type="text" maxlength="100" value="" required>
+                            </div>
+
+                            <div class="input-container">
                                 <label for="intro-0">Introduction</label>
                                 <textarea class="input" id="intro-0" name="intro-0" rows="5" value="" required></textarea>
                             </div>

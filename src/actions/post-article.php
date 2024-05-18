@@ -42,6 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $article_title = addslashes($value);
 
+        } else if ($key == "description-0") {
+
+            $article_description = $value;
+
         } else if($key == "intro-0") {
 
             $article_content[$counter] = array("intro", addslashes($value));
@@ -124,10 +128,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // If the article already exists
     if ($article_id > -1) {
-        updateArticle($mysqli, $article_id, $article_title, $article_content, $rating, $date,$author_id, $article_points);
+        updateArticle($mysqli, $article_id, $article_title, $article_description, $article_content, $rating, $date,$author_id, $article_points);
     } else {
         echo 'L article n existe pas ';
-        createArticle($mysqli, $article_id, $article_title, $article_content, $rating, $date, $author_id, $game_id, $article_points);
+        createArticle($mysqli, $article_id, $article_title, $article_description, $article_content, $rating, $date, $author_id, $game_id, $article_points);
     }
 
 
