@@ -74,6 +74,9 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
 
         // __________Temp tests__________
+        echo '<pre>';
+        print_r($article[0]["content"]);
+        echo '</pre>';
 
         includeHead('/src/styles/pages/article-editor.css');
     ?>
@@ -324,6 +327,13 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                             $image_number ++;
                         }
                     }
+
+                    // Fill the descrpition
+                    echo '
+                    <script type="text/javascript">
+                        fillInput("description", 0, "'.$article[0]["description"].'");
+                    </script>
+                    ';
                     
                     // Fill the positive points
                     foreach ($article[0]["points"][0] as $key => $point) {

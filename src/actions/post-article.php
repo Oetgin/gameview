@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         } else if ($key == "description-0") {
 
-            $article_description = $value;
+            $article_description = addslashes($value);
 
         } else if($key == "intro-0") {
 
