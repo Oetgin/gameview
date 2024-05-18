@@ -12,3 +12,6 @@ function validPassword($password) {
     return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])(?:\S){8,100}$/', $password); // 8-100 characters, at least one lowercase, one uppercase, one digit, one special character, no whitespace
 }
 
+function validName($name) {
+    return preg_match('/^[a-zA-Z\s-]{2,50}$/', $name); // 2-50 characters, letters, spaces and hyphens
+}

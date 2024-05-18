@@ -53,6 +53,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!validUsername($username)) {
         redirect('/src/pages/register.php', 'error', 'Invalid username. Please use 3-25 characters, letters, numbers, underscores and hyphens');
     }
+
+    if (!validName($surname) || !validName($name)) {
+        redirect('/src/pages/register.php', 'error', 'Invalid name. Please use 2-50 characters, letters, spaces and hyphens');
+    }
+
+    // Check if user is at least 15 years old
+    $birthdate = date('Y-m-d', strtotime($birthdate));
+    $min_birthdate = date('Y-m-d', strtotime('-15 years'));
+    if ($birthdate > $min_birthdate) {
+        redirect('/src/pages/register.php', 'error', 'You must be at least 15 years old to register');
+    }
     
     // Check if user already exists
     mysqli_stmt_bind_param($user_exists_prepared, 'ss', $username, $email);
