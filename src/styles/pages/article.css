@@ -284,10 +284,10 @@
   position: relative;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  width: 100%;
 }
 .article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container .column {
-  max-width: 45%;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;

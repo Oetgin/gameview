@@ -343,10 +343,10 @@
                 position: relative;
                 display: flex;
                 align-items: flex-start;
-                justify-content: space-between;
+                width: 100%;
 
                 .column{
-                    max-width: 45%;
+                    width: 50%;
                     height: 100%;
                     display: flex;
                     flex-direction: column;
