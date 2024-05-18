@@ -12,46 +12,44 @@ $insert_user_prepared = mysqli_prepare($mysqli, $insert_user_query);
 
 
 // LOGIN
-$user_login_query = "SELECT * FROM user WHERE username = ? AND password = ?";
+$user_login_query = "SELECT * FROM user WHERE username = ?";
 
 $user_login_prepared = mysqli_prepare($mysqli, $user_login_query);
 
 
+// CHANGE PASSWORD
+$change_password_query = "UPDATE user SET password = ? WHERE id = ?";
+
+$change_password_prepared = mysqli_prepare($mysqli, $change_password_query);
+
+
 // ARTICLES
-// $get_articles_query = "SELECT * FROM article ORDER BY `date` DESC";
-// $insert_article_query = "INSERT INTO article (title, content, authorID_article) VALUES (?, ?, ?)";
-// $delete_article_query = "DELETE FROM article WHERE id = ?";
-// $article_search_query = "SELECT * FROM article WHERE content LIKE ? or title LIKE ? or id LIKE ? or `date` LIKE ? ORDER BY `date` DESC";
-// $article_info_query = "SELECT 
-// article.title as title, article.description as `description`, article.rating as rating, user.username as username, user.role as `role`, user.photo as pp, game.title as gameTitle, game.cover as cover, gameplatforms.platform as platform 
-// FROM article INNER JOIN game ON article.gameID_article = game.id 
-// INNER JOIN user ON article.authorID_article = user.id 
-// INNER JOIN gameplatforms ON gameplatforms.gameID_platform = game.id 
-// WHERE article.id = ?
-// ORDER BY article.date DESC";
+$get_articles_query = "SELECT * FROM article ORDER BY `date` DESC";
+$insert_article_query = "INSERT INTO article (title, content, authorID_article) VALUES (?, ?, ?)";
+$delete_article_query = "DELETE FROM article WHERE id = ?";
+$article_search_query = "SELECT article.id FROM article 
+INNER JOIN game ON article.gameID_article = game.id
+WHERE article.content LIKE ? or article.title LIKE ? or article.id LIKE ? or article.date LIKE ? OR article.rating LIKE ? OR article.points LIKE ? OR authorID_article LIKE ? OR game.title LIKE ? or game.id LIKE ? or game.synopsis LIKE ? OR game.releaseDate LIKE ? OR game.price LIKE ?
+ORDER BY `date` DESC";
+$article_info_query = "SELECT 
+article.id as id, article.title as title, article.description as `description`, article.rating as rating, user.username as username, user.role as `role`, user.id as authorId, game.title as gameTitle, game.id as gameId 
+FROM article
+INNER JOIN game ON article.gameID_article = game.id
+INNER JOIN user ON article.authorID_article = user.id
+WHERE article.id = ?
+ORDER BY article.date DESC";
 
-// $insert_article_prepared = mysqli_prepare($mysqli, $insert_article_query);
-// $delete_article_prepared = mysqli_prepare($mysqli, $delete_article_query);
-// $article_search_prepared = mysqli_prepare($mysqli, $article_search_query);
-// $article_info_prepared = mysqli_prepare($mysqli, $article_info_query);
-
-
-// ONE ARTICLE PAGE
-$get_one_article_query = "SELECT * FROM article WHERE id = ?";
-$get_article_author_query = "SELECT * FROM user WHERE id = ?";
-$article_exists_query = "SELECT COUNT(*) as count FROM article WHERE id = ?";
-
-$get_one_article_prepared = mysqli_prepare($mysqli, $get_one_article_query);
-$get_article_author_prepared = mysqli_prepare($mysqli, $get_article_author_query);
-$article_exists_prepared = mysqli_prepare($mysqli, $article_exists_query);
+$insert_article_prepared = mysqli_prepare($mysqli, $insert_article_query);
+$delete_article_prepared = mysqli_prepare($mysqli, $delete_article_query);
+$article_search_prepared = mysqli_prepare($mysqli, $article_search_query);
+$article_info_prepared = mysqli_prepare($mysqli, $article_info_query);
 
 
-// TO UPDATE OR POST ARTICLES CONTENT AND POINTS
-$update_article_content_query = "UPDATE article SET content = ? WHERE id = ?";
-$update_article_points_query = "UPDATE article SET points = ? WHERE id = ?";
+// GAMES
+$game_platform_query = "SELECT gameplatforms.platform FROM game INNER JOIN gameplatforms ON gameplatforms.gameID_platform = game.id WHERE game.id = ?";
 
-$update_article_content_prepared = mysqli_prepare($mysqli, $update_article_content_query);
-$update_article_points_prepared = mysqli_prepare($mysqli, $update_article_points_query);
+$game_platform_prepared = mysqli_prepare($mysqli, $game_platform_query);
+
 
 // COMMENTS
 $get_comments_query = "SELECT * FROM comment WHERE articleID_comment = ? ORDER BY creationDate DESC";
@@ -64,7 +62,7 @@ $delete_comment_prepared = mysqli_prepare($mysqli, $delete_comment_query);
 
 
 // DELETE ACCOUNT
-$delete_articles_query = "DELETE FROM article WHERE authorID_article = ?";
+$delete_articles_query = "DELETE article, comment FROM article INNER JOIN comment ON comment.articleId_comment = article.id WHERE authorID_article = ?";
 $delete_comments_query = "DELETE FROM comment WHERE authorID_comment = ?";
 $delete_user_query = "DELETE FROM user WHERE username = ? AND password = ?";
 
@@ -74,6 +72,14 @@ $delete_user_prepared = mysqli_prepare($mysqli, $delete_user_query);
 
 
 // USER INFO
-$get_user_info_query = "SELECT * FROM user WHERE id = ?";
+$user_info_query = "SELECT * FROM user WHERE id = ?";
+$user_comments_query = "SELECT * FROM comment WHERE authorID_comment = ?";
+$user_articles_query = "SELECT * FROM article WHERE authorID_article = ?";
+$change_user_info_query = "UPDATE user SET email = ?, surname = ?, `name` = ?, birthdate = ?, bio = ? WHERE id = ?";
+$user_search_query = "SELECT * FROM user WHERE username LIKE ? OR bio LIKE ? OR id LIKE ?";
 
-$get_user_info_prepared = mysqli_prepare($mysqli, $get_user_info_query);
+$user_info_prepared = mysqli_prepare($mysqli, $user_info_query);
+$user_comments_prepared = mysqli_prepare($mysqli, $user_comments_query);
+$user_articles_prepared = mysqli_prepare($mysqli, $user_articles_query);
+$change_user_info_prepared = mysqli_prepare($mysqli, $change_user_info_query);
+$user_search_prepared = mysqli_prepare($mysqli, $user_search_query);
