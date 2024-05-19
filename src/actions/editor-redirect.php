@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($game_info == "Nouveau jeu") {
 
-            header('Location: ../pages/game-creator.php');
+            header('Location: ../pages/game-creator.php?redirect=article-creator');
             exit();
 
         } else {

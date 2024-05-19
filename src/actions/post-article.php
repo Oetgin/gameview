@@ -37,6 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $counter = 0;                                   // Position of the content (we skip title cauz it's not part of the content)
     $prefilled_images_positions = array();                // To store the prefilled images ids
 
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>';
+
     foreach ($_POST as $key => $value) {
 
         if ($key == "title-0") {
@@ -190,14 +194,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // To create the article
-        createArticle($create, $article_id, $article_title, $article_description, $article_content, $rating, $date, $author_id, $game_id, $article_points);
+        createArticle($mysqli, $article_id, $article_title, $article_description, $article_content, $rating, $date, $author_id, $game_id, $article_points);
     }
 
 
     // Redirect
     closeDB($mysqli);
-    header('Location: ../pages/article.php?id='.$article_id);
-    exit;
+    // header('Location: ../pages/article.php?id='.$article_id);
+    // exit;
 
 }
 else {

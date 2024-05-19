@@ -84,6 +84,21 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                         Options d'édition
                     </h1>
                 </div>
+                <?php
+                    if(isset($_GET["msg"])) {
+                        $msg_visibility = "visible";
+                        $msg = $_GET["msg"];
+                    } else {
+                        $msg_visibility = "hidden";
+                        $msg = "";
+                    }
+
+                    echo '
+                        <div class="game-msg '.$msg_visibility.'">
+                            '.$msg.'
+                        </div>
+                    ';
+                ?>
             </section>
 
 

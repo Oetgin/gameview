@@ -28,6 +28,17 @@
   font-size: 4em;
   font-weight: bold;
 }
+.content-wrapper .title-section .msg {
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #03C723;
+}
+.content-wrapper .title-section .msg.visible {
+  display: block;
+}
+.content-wrapper .title-section .msg.hidden {
+  display: none;
+}
 .content-wrapper .options-section {
   width: 100%;
   display: flex;

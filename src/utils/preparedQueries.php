@@ -99,3 +99,15 @@ $update_article_description_prepared = mysqli_prepare($mysqli, $update_article_d
 $update_article_content_prepared = mysqli_prepare($mysqli, $update_article_content_query);
 $update_article_points_prepared = mysqli_prepare($mysqli, $update_article_points_query);
 $update_article_attributes_prepared = mysqli_prepare($mysqli, $update_article_attributes_query);
+
+
+// GAME CREATOR
+$create_game_query = "INSERT INTO game (title, releaseDate, price, synopsis) VALUES (?, ?, ?, ?)";
+$check_game_name_query = "SELECT id FROM game WHERE title = ?";
+$create_game_categories_query = "INSERT INTO gamecategories (gameID_category, category) VALUES (?, ?)";
+$create_game_plateforms_query = "INSERT INTO gameplatforms (gameID_platform, platform) VALUES (?, ?)";
+
+$create_game_prepared = mysqli_prepare($mysqli, $create_game_query);
+$check_game_name_prepared = mysqli_prepare($mysqli, $check_game_name_query);
+$create_game_categories_prepared = mysqli_prepare($mysqli, $create_game_categories_query);
+$create_game_plateforms_prepared = mysqli_prepare($mysqli, $create_game_plateforms_query);
