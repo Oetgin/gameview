@@ -98,13 +98,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1em;
+  gap: 2em;
 }
-.content-wrapper .form-section .option-form label {
+.content-wrapper .form-section .option-form.selected {
+  display: flex;
+}
+.content-wrapper .form-section .option-form.unselected {
+  display: none;
+}
+.content-wrapper .form-section .option-form .choice-label {
   font-weight: bold;
   font-size: 2rem;
 }
-.content-wrapper .form-section .option-form input {
+.content-wrapper .form-section .option-form .choice-input {
   border: none;
   outline: none;
   background: none;
@@ -115,11 +121,22 @@
   border-bottom: 0.1em solid #110F14;
   padding: 0.2rem;
 }
-.content-wrapper .form-section .option-form input::-moz-placeholder {
+.content-wrapper .form-section .option-form .choice-input::-moz-placeholder {
   color: rgba(0, 0, 0, 0.2);
 }
-.content-wrapper .form-section .option-form input::placeholder {
+.content-wrapper .form-section .option-form .choice-input::placeholder {
   color: rgba(0, 0, 0, 0.2);
+}
+.content-wrapper .form-section .option-form .error-msg {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #C70303;
+}
+.content-wrapper .form-section .option-form .error-msg.visible {
+  display: block;
+}
+.content-wrapper .form-section .option-form .error-msg.hidden {
+  display: none;
 }
 
 @media screen and (max-width: 1130px) {
