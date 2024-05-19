@@ -1,0 +1,129 @@
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3em;
+  width: 100%;
+  padding: 4em 0;
+}
+.content-wrapper .title-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5em;
+}
+.content-wrapper .title-section .title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.content-wrapper .title-section .title-container img {
+  height: 4em;
+}
+.content-wrapper .title-section .title-container .title {
+  font-size: 4em;
+  font-weight: bold;
+}
+.content-wrapper .options-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3em;
+  width: 100%;
+}
+.content-wrapper .options-section .option-wrapper {
+  position: relative;
+}
+.content-wrapper .options-section .option-wrapper .option-container {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  border: 0.2rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.content-wrapper .options-section .option-wrapper .option-container.selected {
+  transform: scale(1.05);
+}
+.content-wrapper .options-section .option-wrapper .option-container.selected .tick {
+  display: flex;
+}
+.content-wrapper .options-section .option-wrapper .option-container.unselected:hover {
+  transform: scale(1.05);
+}
+.content-wrapper .options-section .option-wrapper .option-container .option-icon {
+  height: 5rem;
+}
+.content-wrapper .options-section .option-wrapper .option-container .option-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.content-wrapper .options-section .option-wrapper .option-container .tick {
+  display: none;
+  position: absolute;
+  right: -1rem;
+  bottom: -1rem;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 100%;
+  background: #01aebe;
+  box-shadow: 0 0 0.5rem #01aebe;
+}
+.content-wrapper .options-section .option-wrapper .option-container .tick img {
+  width: 65%;
+}
+.content-wrapper .form-section {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.content-wrapper .form-section .option-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.content-wrapper .form-section .option-form label {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.content-wrapper .form-section .option-form input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: "Montserrat";
+  text-align: left;
+  border-bottom: 0.1em solid #110F14;
+  padding: 0.2rem;
+}
+.content-wrapper .form-section .option-form input::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+.content-wrapper .form-section .option-form input::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 1130px) {
+  .options-section {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=editor-dashboard.css.map */
