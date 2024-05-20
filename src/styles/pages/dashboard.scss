@@ -202,6 +202,49 @@
     }
 }
 
+.comments {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 750px;
+    padding: 1em;
+    border-radius: 0.5em;
+
+    
+    
+    .comment {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        align-items: center;
+        justify-content: center;
+        padding: 1em;
+        border: 1px solid #f0f0f0;
+        border-radius: 0.5em;
+        width: 100%;
+        text-align: center;
+        
+        .comment-content {
+            width: 100%;
+        }
+
+        p {
+            width: max-content;
+        }
+
+        a {
+            text-decoration: underline;
+            color: black;
+        }
+    }
+}
+
+
+
 @media screen and (max-width: 1130px) {
     .options-section{
         flex-direction: column;
