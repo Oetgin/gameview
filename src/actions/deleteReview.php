@@ -27,6 +27,13 @@ if (isset($_GET["id"])) {
     redirect('/index.php', "error", "Vous n'êtes pas autorisé à accéder à cette page directement");
 }
 
+// Get the related article id
+if (isset($_GET["article-id"])) {
+    $article_id = $_GET["article-id"];
+} else {
+    redirect('/index.php', "error", "Vous n'êtes pas autorisé à accéder à cette page directement");
+}
+
 if (!loggedIn()) {
     redirect("/index.php", "error", "Vous devez être connecté pour supprimer un commentaire");
 }
@@ -74,4 +81,5 @@ if ($count_comments[0]["count"] < 5 && isEditor()) {
 
 // Redirect
 closeDB($mysqli);
-redirect("/index.php", "success", "Commentaire supprimmé avec succès !");
+header('Location: ../pages/article.php?id='.$article_id.'&success=Commentaire%20supprimé%20avec%20succès%20!');
+exit();

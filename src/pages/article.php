@@ -164,7 +164,7 @@ require_once(DOCUMENT_ROOT . '/src/components/review.php');
                         $comment = $comments[$i];
                         mysqli_stmt_bind_param($user_info_prepared, 'i', $comment["authorID_comment"]);
                         $user = readDB($user_info_prepared)[0];
-                        includeReview($user["username"], profilePicture($user["id"]), $comment["creationDate"], $comment["hoursPlayed"], $comment["rating"], $comment["title"], $comment["content"], $game[0]["title"], $comment["id"]);
+                        includeReview($user["username"], profilePicture($user["id"]), $comment["creationDate"], $comment["hoursPlayed"], $comment["rating"], $comment["title"], $comment["content"], $game[0]["title"], $comment["id"], $article_id);
                     }
 
                     if (count($comments) == 0) {

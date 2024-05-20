@@ -1,6 +1,6 @@
 <?php
 
-function includeReview($reviewer_name, $pp, $date, $played_time, $rating, $title, $content, $game_name, $review_id) {
+function includeReview($reviewer_name, $pp, $date, $played_time, $rating, $title, $content, $game_name, $review_id, $article_id) {
     if(intval($rating) > 79) {
         $background_class = "good";
     } else if (intval($rating) < 80 && intval($rating) > 39) {
@@ -15,7 +15,7 @@ function includeReview($reviewer_name, $pp, $date, $played_time, $rating, $title
             '.
             (isAdmin() || isModerator() ?
             '<div class="delete-review">
-                <a href="/src/actions/deleteReview.php?id=' .$review_id. '">
+                <a href="/src/actions/deleteReview.php?id=' .$review_id. '&article-id='.$article_id.'">
                     <img src="/assets/icons/minus.svg" alt="Delete comment">
                 </a>
             </div>'
