@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $header_location = "../pages/editor-dashboard.php?msg=Le+jeu+a+bien+été+créé";
         }
     } else {
-        $header_location = "../actions/editor-dashboard.php?msg=Le+jeu+a+bien+été+créé";
+        $header_location = "../pages/editor-dashboard.php?msg=Le+jeu+a+bien+été+créé";
     }
 
 
