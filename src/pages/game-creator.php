@@ -22,6 +22,9 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
+require_once(DOCUMENT_ROOT . '/src/utils/login.php');
+require_once(DOCUMENT_ROOT . '/src/utils/user.php');
+
 
 ?>
 <!DOCTYPE html>
@@ -33,11 +36,14 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
         $mysqli = connectionDB();
         require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
-        // __________Get all useful info__________
-        session_start();
-        // $author_id = $_SESSION['user_id'];
-        $author_id = 1;
-        
+        // Check that the user is logged in and that he is an editor or an admin
+        if (!getRole() || (!isAdmin() && !isEditor())){
+            header('Location: ../../index.php');
+            exit;
+        }
+
+        $author_id = getId();
+
         // Prepare the redirection if the user comes from the article creation
         if(isset($_GET["redirect"])) {
             if ($_GET["redirect"] == "article-creator") {

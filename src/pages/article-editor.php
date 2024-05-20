@@ -22,6 +22,9 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
+require_once(DOCUMENT_ROOT . '/src/utils/login.php');
+require_once(DOCUMENT_ROOT . '/src/utils/user.php');
+
 
 ?>
 <!DOCTYPE html>

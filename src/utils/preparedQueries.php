@@ -92,6 +92,7 @@ $update_article_description_query = "UPDATE article SET description = ? WHERE id
 $update_article_content_query = "UPDATE article SET content = ? WHERE id = ?";
 $update_article_points_query = "UPDATE article SET points = ? WHERE id = ?";
 $update_article_attributes_query = "UPDATE article SET rating = ?, date = ?, authorID_article = ? WHERE id = ?";
+$increment_editor_counter_query = "UPDATE user SET articleCount = articleCount + 1 WHERE id = ?";
 
 $create_article_prepared = mysqli_prepare($mysqli, $create_article_query);
 $update_article_title_prepared = mysqli_prepare($mysqli, $update_article_title_query);
@@ -99,6 +100,7 @@ $update_article_description_prepared = mysqli_prepare($mysqli, $update_article_d
 $update_article_content_prepared = mysqli_prepare($mysqli, $update_article_content_query);
 $update_article_points_prepared = mysqli_prepare($mysqli, $update_article_points_query);
 $update_article_attributes_prepared = mysqli_prepare($mysqli, $update_article_attributes_query);
+$increment_editor_counter_prepared = mysqli_prepare($mysqli, $increment_editor_counter_query);
 
 
 // GAME CREATOR

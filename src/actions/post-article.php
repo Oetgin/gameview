@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
     
 
-    $points = array(array("L\'expérience Cyberpunk 2077 sublimée", "Les interventions de la Police", "La refonte du système d'avantages et des implants"), array("L'IA ennemie toujours perfectible", "Le manque de nouveau contenu"));
 
     // Get form data
     $game_id = $_GET['game_id'];
@@ -192,6 +191,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($images as $key => $value) {
             move_uploaded_file($value['file'], $dir_path.'/' . basename('img-'.$key.'.png'));
         }
+
+        // Increment the counter of the editor
+        incrementEditorCounter($author_id);
 
         // To create the article
         createArticle($mysqli, $article_id, $article_title, $article_description, $article_content, $rating, $date, $author_id, $game_id, $article_points);

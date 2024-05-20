@@ -104,6 +104,15 @@ function updateArticleAttributes($article_id, $rating, $date, $author_id) {
 }
 
 
+function incrementEditorCounter($editor_id) {
+    global $increment_editor_counter_prepared;
+
+    mysqli_stmt_bind_param($increment_editor_counter_prepared, "i", $editor_id);
+
+    writeDB($increment_editor_counter_prepared);
+}
+
+
 // To delete recursivly a dir
 function deleteDirectory($directory) {
     if (!is_dir($directory)) {
