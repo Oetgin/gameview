@@ -67,6 +67,18 @@
   -webkit-text-decoration: 1px underline;
           text-decoration: 1px underline;
 }
+.articles .pagination .pagination-nav .page-button {
+  cursor: pointer;
+}
+.articles .pagination .pagination-nav .page-button:disabled {
+  cursor: not-allowed;
+}
+.articles .pagination .pagination-nav .page-button:disabled img {
+  opacity: 0.33;
+}
+.articles .pagination .pagination-nav .page-button img {
+  height: 3rem;
+}
 
 .create-article {
   display: flex;

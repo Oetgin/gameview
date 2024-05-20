@@ -68,6 +68,21 @@
                 text-transform: capitalize;
                 text-decoration: 1px underline;
             }
+
+            .page-button{
+                cursor: pointer;
+                
+                &:disabled{
+                    cursor: not-allowed;
+                    img {
+                        opacity: 0.33;
+                    }
+                }
+
+                img{
+                    height: 3rem;
+                }
+            }
         }
     }
 }

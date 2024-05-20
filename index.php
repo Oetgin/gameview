@@ -108,10 +108,10 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
             </div>
 
             <?php 
-                if (loggedIn() && isEditor()) {
+                if (loggedIn() && (isEditor() || isAdmin())) {
             ?>    
             <div class="create-article">
-                <a href="/src/pages/article-editor.php" class="button">
+                <a href="/src/pages/editor-dashboard.php" class="button">
                         Créer un article
                 </a>
             </div>
