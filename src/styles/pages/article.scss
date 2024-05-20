@@ -426,6 +426,14 @@
 
     padding: 6em 20%;
 
+    .review-list-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8rem;
+    }
+
     .review-section-title{
         color: #FFF;
         font-size: 3em;
