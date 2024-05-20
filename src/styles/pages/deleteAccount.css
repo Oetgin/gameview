@@ -1,0 +1,53 @@
+.delete-account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.delete-account .classic-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  gap: 0.75em;
+}
+.delete-account .classic-form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5em;
+}
+.delete-account .classic-form .form-section {
+  margin-top: 1em;
+}
+.delete-account .classic-form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.delete-account .classic-form button {
+  padding: 10px;
+  width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+.delete-account .classic-form .redirect {
+  margin-top: 10px;
+}
+.delete-account .classic-form .redirect-error {
+  color: red;
+}
+
+h2 {
+  text-align: center;
+  padding: 2em 0 1em 0;
+  font-size: larger;
+  font-style: italic;
+}/*# sourceMappingURL=deleteAccount.css.map */

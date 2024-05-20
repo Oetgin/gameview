@@ -36,7 +36,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
         <?php includeHeader(); ?>
 
         <main>
-            <form action="/src/actions/login.php" method="post">
+            <form action="/src/actions/login.php" method="post" class="classic-form">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required>
@@ -54,10 +54,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     echo '<div class="from-group redirect redirect-'.htmlspecialchars($_GET['redirect']).'"><p>'.htmlspecialchars($_GET['msg']).'</p></div>';
                 }
             ?>
-                <div class="form-group">
-                    <a href="/src/pages/forgot-password.php">Forgot password?</a>
-                </div>
-                <div class="form-group">
+                <div class="form-group form-section">
                     <p>Don't have an account?</p>
                     <button type="button" onclick="window.location.href='/src/pages/register.php'">Register</button>
                 </div>

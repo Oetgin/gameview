@@ -6,9 +6,81 @@
 .section-title {
   align-self: center;
   padding: 1em 0;
+}
+.section-title h2 {
   text-align: center;
   font-size: 4em;
   letter-spacing: 1em;
   text-transform: uppercase;
   font-weight: 300;
+  width: 50%;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, 0);
+}
+
+.no-articles {
+  padding: 1em;
+}
+
+.articles {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+}
+@media (max-width: 768px) {
+  .articles {
+    grid-template-columns: auto;
+  }
+}
+.articles > * {
+  justify-self: center;
+  display: flex;
+}
+.articles .pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+}
+.articles .pagination h3 {
+  padding: 0.5em;
+  font-size: 2.5em;
+  font-weight: 200;
+  text-align: center;
+  text-transform: uppercase;
+}
+.articles .pagination .pagination-nav {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+.articles .pagination .pagination-nav h4 {
+  align-self: center;
+  padding: 0.5em 2em;
+  font-size: 1.5em;
+  font-weight: 200;
+  font-style: italic;
+  text-transform: capitalize;
+  -webkit-text-decoration: 1px underline;
+          text-decoration: 1px underline;
+}
+
+.create-article {
+  display: flex;
+  justify-content: center;
+  padding: 3em 0 0 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+button:disabled img {
+  opacity: 0.33;
+}
+
+footer {
+  margin-top: 5em;
 }/*# sourceMappingURL=index.css.map */

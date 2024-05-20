@@ -1,0 +1,124 @@
+.search-results {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5em;
+}
+.search-results > h3 {
+  text-align: center;
+  padding: 2em 0 1em 0;
+  font-size: x-large;
+  font-weight: 200;
+}
+.search-results .articles {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+}
+@media (max-width: 768px) {
+  .search-results .articles {
+    grid-template-columns: auto;
+  }
+}
+.search-results .articles > * {
+  justify-self: center;
+  display: flex;
+}
+.search-results .articles .pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+}
+.search-results .articles .pagination h3 {
+  padding: 0.5em;
+  font-size: 2.5em;
+  font-weight: 200;
+  text-align: center;
+  text-transform: uppercase;
+}
+.search-results .articles .pagination .pagination-nav {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+.search-results .articles .pagination .pagination-nav h4 {
+  align-self: center;
+  padding: 0.5em 2em;
+  font-size: 1.5em;
+  font-weight: 200;
+  font-style: italic;
+  text-transform: capitalize;
+  -webkit-text-decoration: 1px underline;
+          text-decoration: 1px underline;
+}
+.search-results .users {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+}
+@media (max-width: 768px) {
+  .search-results .users {
+    grid-template-columns: auto auto;
+  }
+}
+.search-results .users > * {
+  justify-self: center;
+  display: flex;
+}
+.search-results .users .user {
+  margin: 1em;
+}
+.search-results .users .user .user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.search-results .users .user .user-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.search-results .users .user .user-info p {
+  text-align: center;
+}
+.search-results .users .pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+}
+.search-results .users .pagination h3 {
+  padding: 0.5em;
+  font-size: 2.5em;
+  font-weight: 200;
+  text-align: center;
+  text-transform: uppercase;
+}
+.search-results .users .pagination .pagination-nav {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+.search-results .users .pagination .pagination-nav h4 {
+  align-self: center;
+  padding: 0.5em 2em;
+  font-size: 1.5em;
+  font-weight: 200;
+  font-style: italic;
+  text-transform: capitalize;
+  -webkit-text-decoration: 1px underline;
+          text-decoration: 1px underline;
+}
+
+h2 {
+  text-align: center;
+  padding: 2em 0 1em 0;
+  font-size: larger;
+  font-style: italic;
+}/*# sourceMappingURL=search.css.map */

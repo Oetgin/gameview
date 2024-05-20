@@ -1,5 +1,8 @@
-@charset "UTF-8";
 html {
+  font-family: "Montserrat", sans-serif;
+}
+
+input {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -24,16 +27,30 @@ header .search-bar {
   align-items: center;
   justify-content: space-between;
 }
-header .search-bar input {
+header .search-bar form {
+  display: flex;
+  align-items: center;
+}
+header .search-bar form button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+header .search-bar form button img {
+  height: 1em;
+  padding: 0 0.2em;
+}
+header .search-bar form input {
   border: none;
   outline: none;
   height: 1.75em;
   width: 25em;
   font-family: "Montserrat", sans-serif;
 }
-header .search-bar img {
-  height: 1em;
-  padding: 0 0.2em;
+header .profile-picture {
+  width: 2em;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 body {
@@ -161,13 +178,15 @@ footer .box {
   border-radius: 1em;
   box-shadow: 0.4em 0.1em 1em rgba(0, 0, 0, 0.2);
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   width: -moz-fit-content;
   width: fit-content;
   padding: 1em;
   margin: 2em;
-  width: 30em;
+  width: 32.5em;
   transition: transform 0.3s ease-in-out;
   /* TODO */
 }
@@ -175,16 +194,16 @@ footer .box {
   position: relative;
   border-radius: 1em;
   width: 100%;
-  /* TODO */
-  /* TRICK TO HAVE THE SAME HEIGHT AS THE IMAGE */
-  height: 11.2em;
-  /* WHY IS THE DIV NOT THE SAME HEIGHT AS THE IMAGE ? 😭 */
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
   box-shadow: inset 0.2em 0 1em rgba(0, 0, 0, 0.2);
 }
 .article-card .article-card-image img {
   position: relative;
   z-index: -1;
   width: 100%;
+  height: 100%;
   aspect-ratio: 5/2;
   -o-object-fit: cover;
      object-fit: cover;
@@ -204,16 +223,49 @@ footer .box {
 .article-card .article-card-image .article-card-image-title * {
   text-shadow: 0 0 0.5em black;
 }
+.article-card .article-card-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.article-card .article-card-content .score-bar {
+  width: 75%;
+  align-self: center;
+}
 .article-card .article-card-content .article-card-title {
   font-family: "Montaga", serif;
   font-size: x-large;
   text-align: center;
   padding: 1em;
 }
-.article-card .article-card-content .article-card-description {
+.article-card .article-card-content .article-card-bottom {
+  padding: 2em 1em 1em 1em;
+  display: flex;
+}
+.article-card .article-card-content .article-card-bottom .article-card-description {
+  width: 100%;
   padding: 1em;
   font-family: "Montserrat", sans-serif;
   font-style: italic;
+}
+.article-card .article-card-content .article-card-bottom .article-card-author {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 1em;
+  align-items: center;
+}
+.article-card .article-card-content .article-card-bottom .article-card-author .article-card-author-image {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.article-card .article-card-content .article-card-bottom .article-card-author .article-card-author-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .article-card:hover {
   transform: scale(1.025);
@@ -333,4 +385,29 @@ footer .box {
 main {
   display: flex;
   flex-direction: column;
+}
+
+.profile-picture {
+  border-radius: 50%;
+}
+
+.button {
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 1em;
+  font-weight: 200;
+  font-style: italic;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.5em;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+.button:hover {
+  background-color: #e0e0e0;
+}
+
+.button-danger {
+  color: red;
 }/*# sourceMappingURL=style.css.map */

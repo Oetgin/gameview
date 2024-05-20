@@ -12,7 +12,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
 require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
 
-
 require_once(DOCUMENT_ROOT . '/src/static/head.php');
 require_once(DOCUMENT_ROOT . '/src/static/header.php');
 require_once(DOCUMENT_ROOT . '/src/static/footer.php');
@@ -20,13 +19,16 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 
+require_once(DOCUMENT_ROOT . '/src/utils/login.php');
+require_once(DOCUMENT_ROOT . '/src/utils/user.php');
+
 
 ?>
 <!DOCTYPE html>
 
 <html lang="fr">
     
-
+    
     <?php
         $mysqli = connectionDB();
         require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
@@ -46,6 +48,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                 <h2>Nouveaux articles</h2>
             </div>
             
+            <div class="articles">
             <?php
             $page_length = 5;
 
@@ -66,23 +69,55 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                         break;
                     }
                     $article = $get_articles[$i];
+                    
                     mysqli_stmt_bind_param($article_info_prepared, "i", $article['id']);
-                    $article_info = readDB($article_info_prepared);
+                    $article_info = readDB($article_info_prepared)[0];
+
+                    mysqli_stmt_bind_param($game_platform_prepared, "i", $article_info['gameId']);
+                    $game_platform = readDB($game_platform_prepared);
+
                     includeArticleCard(
                         $article['id'],
                         $article_info['gameTitle'],
-                        $article_info['cover'],
+                        $article_info['gameId'],
                         $article_info['title'],
                         $article_info['description'],
                         $article_info['rating'],
                         $article_info['username'],
                         $article_info['role'],
-                        $article_info['pp']
+                        $article_info['authorId'],
                     );
                 }
             }
+
+            // Pagination
             ?>
+                <div class="pagination">
+                    <h3>Plus <br/> d'articles</h3>
+                    <div class="pagination-nav">
+                        <?php 
+                        $pagecount = ceil(count($get_articles)/$page_length);
+                        $lastpage = $page == $pagecount;
+
+                        echo '<button type="button" class="page-button previous-page" onclick="window.location.href=\'/index.php?page=' . ($page-1) . '\'" '. ($page==1?'disabled':'') .'><img src="/assets/icons/previous.svg" alt="Previous"></button>';
+                        echo '<h4 class="page-number">Page ' . $page . '/'. $pagecount . '</h4>';
+                        echo '<button type="button" class="page-button next-page" onclick="window.location.href=\'/index.php?page=' . ($page+1) . '\'" '. ($lastpage?'disabled':'') .'><img src="/assets/icons/next.svg" alt="Next"></button>';
+                        ?> 
+                    </div>
+                </div>
             </div>
+
+            <?php 
+                if (loggedIn() && isEditor()) {
+            ?>    
+            <div class="create-article">
+                <a href="/src/pages/article-editor.php" class="button">
+                        Créer un article
+                </a>
+            </div>
+            <?php
+                }
+            ?>
 
         </main>
 

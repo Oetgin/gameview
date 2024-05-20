@@ -1,5 +1,8 @@
 <?php
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/src/utils/login.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/src/utils/user.php');
+
 function includeHeader() {
     echo '
     <header>
@@ -9,12 +12,16 @@ function includeHeader() {
             </a>
         </div>
         <div class="search-bar">
-            <img src="/assets/icons/search.svg" alt="search">
-            <input type="text" placeholder="Search">
+            <form action="/src/pages/search.php" method="get">
+                <button type="submit">
+                    <img src="/assets/icons/search.svg" alt="search">
+                </button>
+                <input type="text" name="search" placeholder="Search">
+            </form>
         </div>
         <div class="user">
             <a href="' . profileLink() . '">
-                <img src="/assets/icons/user-icon-hollow-black.png" alt="user">
+                '. profilePicture() .'
             </a>
         </div>
     </header>
@@ -22,7 +29,6 @@ function includeHeader() {
 }
 
 function profileLink() {
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/src/utils/login.php');
     if (loggedIn()) {
         return '/src/pages/profile.php';
     }

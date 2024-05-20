@@ -27,22 +27,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $old_password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
     $surname = $_POST['surname'];
     $name = $_POST['name'];
     $birthdate = $_POST['birthdate'];
 
     // Validate form data
-    if (empty($username) || empty($email) || empty($password) || empty($password_confirm) || empty($surname) || empty($name) || empty($birthdate)) {
+    if (empty($username) || empty($email) || empty($old_password) || empty($password_confirm) || empty($surname) || empty($name) || empty($birthdate)) {
         redirect('/src/pages/register.php', 'error', 'Please fill in all fields');
     }
     
-    if ($password !== $password_confirm) {
+    if ($old_password !== $password_confirm) {
         redirect('/src/pages/register.php', 'error', 'Passwords do not match');
     }
     
-    if (!validPassword($password)) {
+    if (!validPassword($old_password)) {
         redirect('/src/pages/register.php', 'error', 'Invalid password. Please use at least 8 characters, one uppercase, one lowercase, one digit and one special character');
     }
 
@@ -52,6 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!validUsername($username)) {
         redirect('/src/pages/register.php', 'error', 'Invalid username. Please use 3-25 characters, letters, numbers, underscores and hyphens');
+    }
+
+    if (!validName($surname) || !validName($name)) {
+        redirect('/src/pages/register.php', 'error', 'Invalid name. Please use 2-50 characters, letters, spaces and hyphens');
+    }
+
+    // Check if user is at least 15 years old
+    $birthdate = date('Y-m-d', strtotime($birthdate));
+    $min_birthdate = date('Y-m-d', strtotime('-15 years'));
+    if ($birthdate > $min_birthdate) {
+        redirect('/src/pages/register.php', 'error', 'You must be at least 15 years old to register');
     }
     
     // Check if user already exists
@@ -65,13 +76,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // Hash password
-    $hashed_password = hashPassword($password);
+    $hashed_password = hashPassword($old_password);
 
     // Insert user into database
     mysqli_stmt_bind_param($insert_user_prepared, 'ssssss', $username, $email, $hashed_password, $surname, $name, $birthdate);
     $insert_user = writeDB($insert_user_prepared);
 
-    if ($insert_user) {
+    if ($insert_user) {        
+        // Log in user
+        mysqli_stmt_bind_param($user_login_prepared, 's', $username);
+        $user_login = readDB($user_login_prepared)[0];
+        
+        session_start();
+        $_SESSION['user_id'] = $user_login['id'];
+        
         closeDB($mysqli);
         redirect('/index.php', 'success', 'Account created successfully');
     }
@@ -85,5 +103,5 @@ else {
     require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
     require_once(DOCUMENT_ROOT . '/src/utils/redirect.php');
 
-    redirect('/register.php', 'error', 'Invalid request. Please use the form.');
+    redirect('src/pages/register.php', 'error', 'Invalid request. Please use the form.');
 }

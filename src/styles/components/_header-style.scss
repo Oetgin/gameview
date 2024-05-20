@@ -20,17 +20,33 @@ header {
         align-items: center;
         justify-content: space-between;
 
-        input {
-            border: none;
-            outline: none;
-            height: 1.75em;
-            width: 25em;
-            font-family: 'Montserrat', sans-serif;
-        }
+        form {
+            display: flex;
+            align-items: center;
 
-        img {
-            height: 1em;
-            padding: 0 0.2em;
+            button {
+                display: flex;
+                flex-direction: column;    
+                justify-content: center;
+            
+                img {
+                    height: 1em;
+                    padding: 0 0.2em;
+                }
+            }
+
+            input {
+                border: none;
+                outline: none;
+                height: 1.75em;
+                width: 25em;
+                font-family: 'Montserrat', sans-serif;
+            }
         }
+    }
+
+    .profile-picture {
+        width: 2em;
+        object-fit: cover;      
     }
 }
