@@ -19,11 +19,16 @@ function includeHeader() {
                 <input type="text" name="search" placeholder="Search">
             </form>
         </div>
-        <div class="user">
-            <a href="' . profileLink() . '">
-                '. profilePicture() .'
-            </a>
+        <div class="right">
+            '. editorLink() .'
+            '. moderationLink() .'
+            <div class="user">
+                <a href="' . profileLink() . '">
+                    '. profilePicture() .'
+                </a>
+            </div>
         </div>
+
     </header>
     ';
 }
@@ -34,5 +39,31 @@ function profileLink() {
     }
     else {
         return '/src/pages/login.php';
+    }
+}
+
+function editorLink() {
+    if (loggedIn() && (getUserRole() == 'Éditeur' || getUserRole() == 'Administrateur')){
+        return '
+                <a class="btn header-btn" href="/src/pages/editor-dashboard.php">
+                    Éditer
+                </a>
+                ';
+    }
+    else {
+        return '';
+    }
+}
+
+function moderationLink() {
+    if (loggedIn() && getUserRole() == 'Administrateur'){
+        return '
+                <a class="btn header-btn" href="/src/pages/moderation-dashboard.php">
+                    Modérer
+                </a>
+                ';
+    }
+    else {
+        return '';
     }
 }

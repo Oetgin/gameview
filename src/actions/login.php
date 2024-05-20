@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get user info
     mysqli_stmt_bind_param($user_login_prepared, 's', $username);
     $user_login = readDB($user_login_prepared)[0];
+    
 
     // Check if user exists
     if ($user_login) {
@@ -42,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Start session
             session_start();
             $_SESSION['user_id'] = $user_login['id'];
+            $_SESSION['role'] = $user_login['role'];
             
             redirect('/index.php', 'success', 'Logged in successfully');
         }

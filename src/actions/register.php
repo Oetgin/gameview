@@ -89,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         session_start();
         $_SESSION['user_id'] = $user_login['id'];
+        $_SESSION['role'] = $user_login['role'];
         
         closeDB($mysqli);
         redirect('/index.php', 'success', 'Account created successfully');

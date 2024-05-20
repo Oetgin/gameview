@@ -87,3 +87,23 @@
         background: rgb(0, 104, 196);
     }
 }
+
+
+.header-btn{
+    position: relative;
+
+    padding: 0.45em 1em;
+    border-radius: 0.5rem;
+
+    background: #238BE8;
+    
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #FFF;
+
+    transition: all 0.3s;
+
+    &:hover{
+        background: rgb(0, 104, 196);
+    }
+}

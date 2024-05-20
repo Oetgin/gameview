@@ -8,13 +8,14 @@ input {
 }
 
 // Style imports
-@import 'components/body-style.scss';
-@import 'components/header-style.scss';
-@import 'components/footer-style.scss';
 @import 'components/buttons-style.scss';
 @import 'components/article-card.scss';
 @import 'components/score-bar.scss';
 @import 'components/review-style.scss';
+@import 'components/body-style.scss';
+@import 'components/header-style.scss';
+@import 'components/footer-style.scss';
+
 
 // Global styles
 main {

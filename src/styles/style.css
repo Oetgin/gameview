@@ -6,101 +6,6 @@ input {
   font-family: "Montserrat", sans-serif;
 }
 
-header {
-  background-color: #333333;
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1em 2em;
-  z-index: 1000;
-}
-header img {
-  height: 2em;
-}
-header .search-bar {
-  background: white;
-  border-radius: 20px;
-  padding: 0.5em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-header .search-bar form {
-  display: flex;
-  align-items: center;
-}
-header .search-bar form button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-header .search-bar form button img {
-  height: 1em;
-  padding: 0 0.2em;
-}
-header .search-bar form input {
-  border: none;
-  outline: none;
-  height: 1.75em;
-  width: 25em;
-  font-family: "Montserrat", sans-serif;
-}
-header .profile-picture {
-  width: 2em;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-footer {
-  margin-top: auto;
-  background-color: #e1e1e1;
-  display: flex;
-  align-items: center;
-  padding: 1em 2em;
-  /* Centers the element in the middle */
-}
-footer p {
-  color: #656565;
-}
-footer b {
-  font-weight: 600;
-}
-footer .authors {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-}
-footer .box-left {
-  display: flex;
-  flex: 1;
-  align-items: center;
-}
-footer .box-left :last-child {
-  margin-right: auto;
-}
-footer .box-right {
-  display: flex;
-  flex: 1;
-  align-items: center;
-}
-footer .box-right :first-child {
-  margin-left: auto;
-}
-footer .box {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-}
-
 .btn {
   cursor: pointer;
   border-radius: 0;
@@ -171,6 +76,20 @@ footer .box {
   transition: all 0.3s;
 }
 .submit-btn:hover {
+  background: rgb(0, 104, 196);
+}
+
+.header-btn {
+  position: relative;
+  padding: 0.45em 1em;
+  border-radius: 0.5rem;
+  background: #238BE8;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #FFF;
+  transition: all 0.3s;
+}
+.header-btn:hover {
   background: rgb(0, 104, 196);
 }
 
@@ -380,6 +299,111 @@ footer .box {
 }
 .review-wrapper .review-container .reviewer-wrapper .reviewer-container .reviewer-info .reviewer-time span {
   font-weight: bold;
+}
+
+header {
+  background-color: #333333;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+  z-index: 1000;
+}
+header .logo img {
+  height: 3em;
+}
+header .search-bar {
+  background: white;
+  border-radius: 20px;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .search-bar form {
+  display: flex;
+  align-items: center;
+}
+header .search-bar form button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+header .search-bar form button img {
+  height: 1em;
+  padding: 0 0.2em;
+}
+header .search-bar form input {
+  border: none;
+  outline: none;
+  height: 1.75em;
+  width: 25em;
+  font-family: "Montserrat", sans-serif;
+}
+header .right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+header .right .profile-picture {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  overflow: hidden;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+  background-color: #e1e1e1;
+  display: flex;
+  align-items: center;
+  padding: 1em 2em;
+  /* Centers the element in the middle */
+}
+footer p {
+  color: #656565;
+}
+footer b {
+  font-weight: 600;
+}
+footer .authors {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+footer .box-left {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+footer .box-left :last-child {
+  margin-right: auto;
+}
+footer .box-right {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+footer .box-right :first-child {
+  margin-left: auto;
+}
+footer .box {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 main {

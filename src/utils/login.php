@@ -13,3 +13,10 @@ function getId() {
     session_write_close();
     return $id;
 }
+
+function getUserRole() {
+    session_start();
+    $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
+    session_write_close();
+    return $role;
+}
