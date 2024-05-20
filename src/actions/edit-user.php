@@ -38,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Redirect
     closeDB($mysqli);
-    // header('Location: ../pages/moderation-dashboard.php');
-    // exit;
+    header('Location: ../pages/moderation-dashboard.php');
+    exit;
 
 }
 else {
