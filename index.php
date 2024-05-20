@@ -33,6 +33,20 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
         $mysqli = connectionDB();
         require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
         includeHead('/src/styles/pages/index.css');
+
+        // Mario easter egg
+        $mario_apparition_probability = 10; // 5% of probability
+        $mario_apparition = rand(1, 100) <= $mario_apparition_probability;
+
+        if ($mario_apparition) {
+            $mario = '
+                    <div id="mario-container">
+                        <img src="assets/images/utils/mario.gif" alt="Mario qui marche" id="mario">
+                    </div>
+                     ';
+        } else {
+            $mario = '';
+        }
     ?>
 
     <body>
@@ -41,9 +55,7 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
 
         <main>
 
-            <div id="mario-container">
-                <img src="assets/images/utils/mario.gif" alt="Mario qui marche" id="mario">
-            </div>
+            <?php echo $mario; ?>
 
             <div class="main-logo">
                 <img src="/assets/icons/logo/full/logo-text-black-blue.svg" alt="logo">
