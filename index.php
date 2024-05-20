@@ -40,12 +40,20 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
         <?php includeHeader(); ?>
 
         <main>
+
+            <div id="mario-container">
+                <img src="assets/images/utils/mario.gif" alt="Mario qui marche" id="mario">
+            </div>
+
             <div class="main-logo">
                 <img src="/assets/icons/logo/full/logo-text-black-blue.svg" alt="logo">
             </div>
 
+            <p class="site-description">Les meilleurs reviews de tout internet</p>
+
             <div class="section-title">
-                <h2>Nouveaux articles</h2>
+                <h2>Nouveaux<br>articles</h2>
+                
             </div>
             
             <div class="articles">

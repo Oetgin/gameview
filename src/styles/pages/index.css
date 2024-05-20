@@ -1,10 +1,58 @@
+@charset "UTF-8";
+main {
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  max-width: 100vw;
+}
+
+#mario-container {
+  top: 210px;
+  width: 100%;
+  height: 0px; /* Ajuste la hauteur selon tes besoins */
+  position: relative;
+  z-index: -1;
+}
+
+#mario {
+  position: absolute;
+  bottom: 0;
+  left: -100px; /* Position initiale de Mario en dehors de l'écran */
+  height: 100px; /* Ajuste la taille selon tes besoins */
+  animation: moveMario 50s linear infinite;
+}
+
+@keyframes moveMario {
+  0% {
+    left: -100px; /* Départ en dehors de l'écran */
+  }
+  50% {
+    left: calc(100% + 100px); /* Arrivée en dehors de l'écran de l'autre côté */
+  }
+  50.01% {
+    left: -100px; /* Réapparition après avoir atteint l'autre côté */
+  }
+  100% {
+    left: calc(100% + 100px); /* Fin du cycle */
+  }
+}
 .main-logo {
-  align-self: center;
-  margin: 5em;
+  margin: 5em 5em 1em 5em;
+}
+
+.site-description {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 200;
+  font-style: italic;
+  margin-bottom: 3em;
 }
 
 .section-title {
-  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1em 0;
 }
 .section-title h2 {
@@ -13,10 +61,7 @@
   letter-spacing: 1em;
   text-transform: uppercase;
   font-weight: 300;
-  width: 50%;
-  left: 50%;
   position: relative;
-  transform: translate(-50%, 0);
 }
 
 .no-articles {
