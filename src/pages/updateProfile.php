@@ -52,9 +52,9 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
             
             else {
                 require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
-                $user_id = getId();
+                $author_id = getId();
                 
-                mysqli_stmt_bind_param($user_info_prepared, 'i', $user_id);
+                mysqli_stmt_bind_param($user_info_prepared, 'i', $author_id);
                 $user_info = readDB($user_info_prepared)[0];
         ?>
         <h2>Modifier mon profil</h2>

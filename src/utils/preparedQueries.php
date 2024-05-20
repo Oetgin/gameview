@@ -56,11 +56,13 @@ $get_comments_query = "SELECT * FROM comment WHERE articleID_comment = ? ORDER B
 $insert_comment_query = "INSERT INTO comment (title, content, rating, hoursPlayed, authorID_comment, articleID_comment) VALUES (?, ?, ?, ?, ?, ?)";
 $delete_comment_query = "DELETE FROM comment WHERE id = ?";
 $get_average_rating_query = "SELECT AVG(rating) as average FROM comment WHERE articleID_comment = ?";
+$get_comment_query = "SELECT * FROM comment WHERE id = ?";
 
 $get_comments_prepared = mysqli_prepare($mysqli, $get_comments_query);
 $insert_comment_prepared = mysqli_prepare($mysqli, $insert_comment_query);
 $delete_comment_prepared = mysqli_prepare($mysqli, $delete_comment_query);
 $get_average_rating_prepared = mysqli_prepare($mysqli, $get_average_rating_query);
+$get_comment_prepared = mysqli_prepare($mysqli, $get_comment_query);
 
 
 // DELETE ACCOUNT

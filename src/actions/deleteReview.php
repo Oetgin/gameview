@@ -23,53 +23,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     require_once(DOCUMENT_ROOT . '/src/utils/login.php');
     
-    // Get the article id
+    // Get the comment id
     if (isset($_GET["id"])) {
-        $article_id = $_GET["id"];
+        $comment_id = $_GET["id"];
     } else {
         redirect('/index.php', "error", "Vous n'êtes pas autorisé à accéder à cette page directement");
     }
 
-    // Get the user id
     if (!loggedIn()) {
-        redirect('/src/pages/article.php?id=' . $article_id, "error", "Vous devez être connecté pour poster un commentaire");
+        redirect("/index.php", "error", "Vous devez être connecté pour supprimer un commentaire");
     }
 
-    $author_id = getId();
+    // Get the comment's author id
+    mysqli_stmt_bind_param($get_comment_prepared, 'i', $comment_id);
+    $get_comment = readDB($get_comment_prepared);
 
-    // Get the comment
-    if (isset($_POST["title"])) {
-        $title = $_POST["title"];
-    } else {
-        redirect('/src/pages/article.php?id=' . $article_id, "error", "Vous n'êtes pas autorisé à accéder à cette page directement");
-    }
-    if (isset($_POST["content"])) {
-        $content = $_POST["content"];
-    } else {
-        redirect('/src/pages/article.php?id=' . $article_id, "error", "Vous n'êtes pas autorisé à accéder à cette page directement");
-    }
-    if (isset($_POST["rating"])) {
-        $rating = $_POST["rating"];
-    } else {
-        redirect('/src/pages/article.php?id=' . $article_id, "error", "Vous n'êtes pas autorisé à accéder à cette page directement");
-    }
-    if (isset($_POST["played-time"])) {
-        $played_time = $_POST["played-time"];
-    } else {
-        redirect('/src/pages/article.php?id=' . $article_id, "error", "Vous n'êtes pas autorisé à accéder à cette page directement");
-    }
-
-    // Insert the comment
-    mysqli_stmt_bind_param($insert_comment_prepared, 'ssiiii', $title, $content, $rating, $played_time, $author_id, $article_id);
-    $insert_comment = writeDB($insert_comment_prepared);
-    
-    if (!$insert_comment) {
+    if (empty($get_comment)) {
         closeDB($mysqli);
-        redirect('/src/pages/article.php?id=' . $article_id, "error", "Erreur lors de l'ajout du commentaire");
+        redirect("/index.php", "error", "Ce commentaire n'existe pas");
+    }
+
+    $author_id = $get_comment[0]["authorID_comment"];
+
+
+    // Delete the comment
+    mysqli_stmt_bind_param($delete_comment_prepared, 'i', $comment_id);
+    $delete_comment = writeDB($delete_comment_prepared);
+    
+    if (!$delete_comment) {
+        closeDB($mysqli);
+        redirect("/index.php", "error", "Erreur lors de la suppression du commentaire");
     }
 
     // Update user stats
-    $add_comment_query = "UPDATE user SET commentCount = commentcount + 1 WHERE id = ?";
+    $add_comment_query = "UPDATE user SET commentCount = commentcount - 1 WHERE id = ?";
     $add_comment_prepared = mysqli_prepare($mysqli, $add_comment_query);
     mysqli_stmt_bind_param($add_comment_prepared, 'i', $author_id);
     $add_comment = writeDB($add_comment_prepared);
@@ -81,8 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $count_comments = readDB($count_comments_prepared);
 
     // Update user role
-    if ($count_comments[0]["count"] >= 5 && isUser()) {
-        $update_role_query = "UPDATE user SET role = 'Éditeur' WHERE id = ?";
+    if ($count_comments[0]["count"] < 5 && isEditor()) {
+        $update_role_query = "UPDATE user SET role = 'Utilisateur' WHERE id = ?";
         $update_role_prepared = mysqli_prepare($mysqli, $update_role_query);
         mysqli_stmt_bind_param($update_role_prepared, 'i', $author_id);
         $update_role = writeDB($update_role_prepared);
@@ -90,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Redirect
     closeDB($mysqli);
-    redirect('/src/pages/article.php?id=' . $article_id , "success", "Commentaire posté avec succès !");
+    redirect("/index.php", "success", "Commentaire supprimmé avec succès !");
 }
 else {
     redirect('/index.php', "error", "Vous n'êtes pas autorisé à accéder à cette page directement");

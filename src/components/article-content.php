@@ -70,13 +70,13 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
         $global_rating_background_class = "na";
         $global_rating_text = "N/A";
     }
-    else if(intval($global_rating) > 7.9) {
+    else if(intval($global_rating) > 79) {
         $global_rating_background_class = "good";
         $global_rating_text = "Très favorable";
-    } else if (intval($global_rating) < 8 && intval($global_rating) > 4.9) {
+    } else if (intval($global_rating) < 80 && intval($global_rating) > 49) {
         $global_rating_background_class = "average";
         $global_rating_text = "Généralement favorable";
-    } else if (intval($global_rating) < 5 && intval($global_rating) > 3.9) {
+    } else if (intval($global_rating) < 50 && intval($global_rating) > 39) {
         $global_rating_background_class = "average";
         $global_rating_text = "Peu favorable";
     } else {

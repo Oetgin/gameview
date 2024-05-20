@@ -208,6 +208,17 @@ input {
   justify-content: flex-start;
   gap: 8em;
 }
+.review-wrapper .delete-review {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 1.5em;
+  color: #FF0000;
+  cursor: pointer;
+}
+.review-wrapper .delete-review img {
+  width: 1em;
+}
 .review-wrapper .review-container {
   position: relative;
   display: flex;

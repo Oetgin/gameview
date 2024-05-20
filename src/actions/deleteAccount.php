@@ -44,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user_login['id'];
             
             // Delete account (user, articles, comments)
-            $user_id = $user_login['id'];
-            mysqli_stmt_bind_param($delete_comments_prepared, 'i', $user_id);
-            mysqli_stmt_bind_param($delete_articles_prepared, 'i', $user_id);
-            mysqli_stmt_bind_param($delete_user_prepared, 'i', $user_id);
+            $author_id = $user_login['id'];
+            mysqli_stmt_bind_param($delete_comments_prepared, 'i', $author_id);
+            mysqli_stmt_bind_param($delete_articles_prepared, 'i', $author_id);
+            mysqli_stmt_bind_param($delete_user_prepared, 'i', $author_id);
 
             $delete_comments = writeDB($delete_comments_prepared);
             $delete_articles = writeDB($delete_articles_prepared);

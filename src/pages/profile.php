@@ -45,16 +45,16 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
             require_once(DOCUMENT_ROOT . '/src/utils/login.php');
 
             if (isset($_GET['id'])) {
-                $user_id = $_GET['id'];
+                $author_id = $_GET['id'];
 
-                if (!is_numeric($user_id)) {
+                if (!is_numeric($author_id)) {
                     require_once(DOCUMENT_ROOT . '/src/utils/redirect.php');
                     redirect('/index.php', 'error', 'Invalid user ID');
                 }
 
                 require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
-                mysqli_stmt_bind_param($user_info_prepared, 'i', $user_id);
+                mysqli_stmt_bind_param($user_info_prepared, 'i', $author_id);
                 $user_info = readDB($user_info_prepared)[0];
 
                 if (is_null($user_info)) {
@@ -87,7 +87,7 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
                 <h3>Articles</h3>
                 <div class="articles">
                     <?php
-                        mysqli_stmt_bind_param($user_articles_prepared, 'i', $user_id);
+                        mysqli_stmt_bind_param($user_articles_prepared, 'i', $author_id);
                         $user_articles = readDB($user_articles_prepared);
                         if (count($user_articles) > 0) {
                             for ($i = 0; $i < count($user_articles); $i++) {
@@ -115,14 +115,14 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
                 <h3>Commentaires</h3>
                 <div class="comments">
                     <?php
-                        mysqli_stmt_bind_param($user_comments_prepared, 'i', $user_id);
+                        mysqli_stmt_bind_param($user_comments_prepared, 'i', $author_id);
                         $user_comments = readDB($user_comments_prepared);
                         if (count($user_comments) > 0) {
                             for ($i = 0; $i < count($user_comments); $i++) {
                                 $comment = $user_comments[$i];
                                 echo '
                                 <div class="comment">
-                                    <p class="comment-content">'.$comment['content'].'</p>
+                                    <p class="comment-title">'.$comment['title'].'</p>
                                     <p class="comment-date">'.$comment['creationDate'].'</p>
                                     <a href="/src/pages/article.php?id='.$comment['articleID_comment'].'">Voir l\'article</a>
                                 </div>
@@ -146,9 +146,9 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
                 
                 else {
                     require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
-                    $user_id = getId();
+                    $author_id = getId();
                     
-                    mysqli_stmt_bind_param($user_info_prepared, 'i', $user_id);
+                    mysqli_stmt_bind_param($user_info_prepared, 'i', $author_id);
                     $user_info = readDB($user_info_prepared)[0];
         ?>
         <h2>Profil</h2>
@@ -190,7 +190,7 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
                 <h3>Articles</h3>
                 <div class="articles">
                     <?php
-                        mysqli_stmt_bind_param($user_articles_prepared, 'i', $user_id);
+                        mysqli_stmt_bind_param($user_articles_prepared, 'i', $author_id);
                         $user_articles = readDB($user_articles_prepared);
                         if (count($user_articles) > 0) {
                             for ($i = 0; $i < count($user_articles); $i++) {
@@ -218,14 +218,14 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
                 <h3>Commentaires</h3>
                 <div class="comments">
                     <?php
-                        mysqli_stmt_bind_param($user_comments_prepared, 'i', $user_id);
+                        mysqli_stmt_bind_param($user_comments_prepared, 'i', $author_id);
                         $user_comments = readDB($user_comments_prepared);
                         if (count($user_comments) > 0) {
                             for ($i = 0; $i < count($user_comments); $i++) {
                                 $comment = $user_comments[$i];
                                 echo '
                                 <div class="comment">
-                                    <p class="comment-content">'.$comment['content'].'</p>
+                                    <p class="comment-title">'.$comment['title'].'</p>
                                     <p class="comment-date">'.$comment['creationDate'].'</p>
                                     <a href="/src/pages/article.php?id='.$comment['articleID_comment'].'">Voir l\'article</a>
                                 </div>

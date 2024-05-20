@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashed_password = hashPassword($old_password);
 
             // Insert new password
-            mysqli_stmt_bind_param($change_password_prepared, 'si', $hashed_password, $user_id);
+            mysqli_stmt_bind_param($change_password_prepared, 'si', $hashed_password, $author_id);
             $insert_user = writeDB($change_password_prepared);
 
             if ($insert_user) {
