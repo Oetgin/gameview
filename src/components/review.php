@@ -1,9 +1,9 @@
 <?php
 
-function includeReview($reviewer_name, $pp, $date, $played_time, $rating, $title, $content, $game_name) {
-    if(intval($rating) > 7.9) {
+function includeReview($reviewer_name, $pp, $date, $played_time, $rating, $title, $content, $game_name, $review_id) {
+    if(intval($rating) > 79) {
         $background_class = "good";
-    } else if (intval($rating) < 8 && intval($rating) > 3.9) {
+    } else if (intval($rating) < 80 && intval($rating) > 39) {
         $background_class = "average";
     } else{
         $background_class = "bad";
@@ -12,6 +12,16 @@ function includeReview($reviewer_name, $pp, $date, $played_time, $rating, $title
     echo '
     <div class="review-wrapper">
         <div class="review-container">
+            '.
+            (isAdmin() || isModerator() ?
+            '<div class="delete-review">
+                <a href="/src/actions/deleteReview.php?id=' .$review_id. '">
+                    <img src="/assets/icons/minus.svg" alt="Delete comment">
+                </a>
+            </div>'
+            :
+            '')
+            .'
             <div class="grade ' .$background_class. '">
                 ' .$rating. '
             </div>

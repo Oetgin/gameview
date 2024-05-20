@@ -6,6 +6,19 @@
     align-items: center;
     justify-content: flex-start;
     gap: 8em;
+
+    .delete-review{
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        font-size: 1.5em;
+        color: #FF0000;
+        cursor: pointer;
+
+        img {
+            width: 1em;
+        }
+    }
     
     .review-container{
         position: relative;

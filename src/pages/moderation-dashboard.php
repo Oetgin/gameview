@@ -113,7 +113,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
                 <div class="option-wrapper">
                     <a id="game-creator-option" class="option-container <?php echo $game_creator_option_selection ?>" onclick="optionSelected(this)">
-                        <img class="option-icon" src="/assets/icons/game-creator.svg" alt="Manette de jeu vidéo">
+                        <img class="option-icon" src="/assets/icons/comments.svg" alt="Manette de jeu vidéo">
                         <div class="option-title">
                             Voir les derniers commentaires
                         </div>
@@ -204,7 +204,28 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                 </form>
 
                 <form method="post" id="game-creator-form" class="option-form <?php echo $game_creator_form_visibility ?>" action="<?php echo '../actions/editor-redirect.php?redirect=game-creator'; ?>">
-                    Option en cours de développement
+                    <div class="comments">
+                        <?php
+                            $all_comments_query = "SELECT * FROM comment";
+                            $all_comments = readQuery($mysqli, $all_comments_query);
+                            if (count($all_comments) > 0) {
+                                for ($i = 0; $i < count($all_comments); $i++) {
+                                    $comment = $all_comments[$i];
+                                    echo '
+                                    <div class="comment">
+                                        <p class="comment-title">'.$comment['title'].'</p>
+                                        <p class="comment-content">'.$comment['content'].'</p>
+                                        <p class="comment-date">'.$comment['creationDate'].'</p>
+                                        <a href="/src/pages/article.php?id='.$comment['articleID_comment'].'">Voir l\'article</a>
+                                    </div>
+                                    ';
+                                }
+                            }
+                            else {
+                                echo '<p>Aucun commentaire</p>';
+                            }
+                        ?>
+                    </div>
                 </form>
             </section>
 

@@ -6,17 +6,16 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
+require_once(DOCUMENT_ROOT . '/src/utils/redirect.php');
 
 // Check for POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<div class="process-message">
     <p>Trying to delete your account</p>
     </div>';
-    
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 
     require_once(DOCUMENT_ROOT . '/src/utils/hash.php');
-    require_once(DOCUMENT_ROOT . '/src/utils/redirect.php');
 
     require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
     require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
@@ -58,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashed_password = hashPassword($old_password);
 
             // Insert new password
-            mysqli_stmt_bind_param($change_password_prepared, 'si', $hashed_password, $user_id);
+            mysqli_stmt_bind_param($change_password_prepared, 'si', $hashed_password, $author_id);
             $insert_user = writeDB($change_password_prepared);
 
             if ($insert_user) {

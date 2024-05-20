@@ -131,7 +131,7 @@ require_once(DOCUMENT_ROOT . '/src/components/review.php');
                         </div>
                         <div class="form-group">
                             <label for="rating">Note</label>
-                            <input type="number" name="rating" placeholder="Note sur 10" min="0" max="10">
+                            <input type="number" name="rating" placeholder="Note sur 100" min="0" max="100">
                         </div>
                         <div class="form-group">
                             <label for="content">Avis</label>
@@ -164,7 +164,7 @@ require_once(DOCUMENT_ROOT . '/src/components/review.php');
                         $comment = $comments[$i];
                         mysqli_stmt_bind_param($user_info_prepared, 'i', $comment["authorID_comment"]);
                         $user = readDB($user_info_prepared)[0];
-                        includeReview($user["username"], profilePicture($user["id"]), $comment["creationDate"], $comment["hoursPlayed"], $comment["rating"], $comment["title"], $comment["content"], $game[0]["title"]);
+                        includeReview($user["username"], profilePicture($user["id"]), $comment["creationDate"], $comment["hoursPlayed"], $comment["rating"], $comment["title"], $comment["content"], $game[0]["title"], $comment["id"]);
                     }
 
                     if (count($comments) == 0) {

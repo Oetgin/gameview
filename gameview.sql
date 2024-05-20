@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 20 mai 2024 à 10:40
+-- Généré le : lun. 20 mai 2024 à 13:45
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -100,10 +100,20 @@ CREATE TABLE `comment` (
   `content` text NOT NULL,
   `rating` float NOT NULL,
   `creationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `hoursPlayed` time NOT NULL,
+  `hoursPlayed` int(11) NOT NULL,
   `authorID_comment` bigint(20) UNSIGNED NOT NULL,
   `articleID_comment` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `comment`
+--
+
+INSERT INTO `comment` (`id`, `title`, `content`, `rating`, `creationDate`, `hoursPlayed`, `authorID_comment`, `articleID_comment`) VALUES
+(1, 'Le jeu de mon enfance ', 'Honnêtement le meilleur jeu auquel j\'ai jamais joué, un classique incontournable. Véritablement goatesque.', 10, '2024-05-20 13:35:00', 248, 4, 6),
+(2, 'Peut mieux faire', 'Je m\'attendais à mieux de la part de CD Projekt Red...\r\nCela reste un bon jeu, mais le rapport qualité/prix est pas ouf...', 5, '2024-05-20 13:58:58', 21, 4, 3),
+(3, 'Sympa', 'Sympa, mais sans vraiment plus. Bon jeu pour se détendre.', 6, '2024-05-20 14:01:01', 54, 4, 2),
+(4, 'Une pépite', 'Ce nouveau chef d\'oeuvre de Rockstar est un véritable festin pour les yeux. Les graphismes sont époustouflants. Ce jeu transpire le réalisme, et marque le début d\'une nouvelle ère pour le jeu vidéo.', 9, '2024-05-20 14:09:37', 147, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -224,7 +234,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`, `password`, `email`, `role`, `name`, `surname`, `birthdate`, `bio`, `id`, `commentCount`, `articleCount`, `lastConnection`, `accountCreation`) VALUES
 ('JohnDoe_', 'azerty', 'john.doe@gmail.com', 'Éditeur', 'Doe', 'John', '1990-01-01', 'Bonjour, moi c\'est John Doe, j\'aime bien les jeux vidéo !', 1, 0, 5, '2024-05-13 19:44:44', '2024-05-18 15:00:07'),
-('010', '$2y$10$PCsdXMvpsnWxCzW5h0cAxuD.c9KpDlDfUNggbIovK8oKH5yJu7S5u', 'nooway@gmail.com', 'Éditeur', 'Owane', 'Ima', '1997-07-29', 'The only 1', 4, 0, 0, '2024-05-20 12:32:36', '2024-05-18 15:00:07');
+('010', '$2y$10$PCsdXMvpsnWxCzW5h0cAxuD.c9KpDlDfUNggbIovK8oKH5yJu7S5u', 'nooway@gmail.com', 'Administrateur', 'Owane', 'Ima', '1997-07-29', 'The only 1', 4, 4, 0, '2024-05-20 15:45:21', '2024-05-18 15:00:07');
 
 --
 -- Index pour les tables déchargées
@@ -298,7 +308,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `game`
