@@ -66,13 +66,17 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
         $article_rating_text = "Défavorable";
     }
 
-    if(intval($global_rating) > 79) {
+    if ($global_rating == null) {
+        $global_rating_background_class = "na";
+        $global_rating_text = "N/A";
+    }
+    else if(intval($global_rating) > 7.9) {
         $global_rating_background_class = "good";
         $global_rating_text = "Très favorable";
-    } else if (intval($global_rating) < 80 && intval($global_rating) > 49) {
+    } else if (intval($global_rating) < 8 && intval($global_rating) > 4.9) {
         $global_rating_background_class = "average";
         $global_rating_text = "Généralement favorable";
-    } else if (intval($global_rating) < 50 && intval($global_rating) > 39) {
+    } else if (intval($global_rating) < 5 && intval($global_rating) > 3.9) {
         $global_rating_background_class = "average";
         $global_rating_text = "Peu favorable";
     } else {
@@ -255,53 +259,3 @@ function includeArticleContent($article_id, $game_name, $article_title, $content
         </section>
     ';
 }
-
-
-
-function includeReview($reviewer_name, $pp_path, $date, $played_time, $rating, $title, $content) {
-    if(intval($rating) > 79) {
-        $background_class = "good";
-    } else if (intval($rating) < 80 && intval($rating) > 39) {
-        $background_class = "average";
-    } else{
-        $background_class = "bad";
-    }
-
-    echo '
-    <div class="review-wrapper">
-        <div class="review-container">
-            <div class="grade ' .$background_class. '">
-                ' .$rating. '
-            </div>
-
-            <div class="review-title">
-                ' .$title. '
-            </div>
-
-            <div class="review-content">
-                ' .$content. '
-            </div>
-
-            <div class="review-divider"></div>
-
-            <div class="reviewer-wrapper">
-                <div class="review-date">
-                    Le ' .$date. ' par :
-                </div>
-
-                <div class="reviewer-container">
-                    <div class="reviewer-pp">
-                        <img src="' .$pp_path. '" alt="User profile pic">
-                    </div>
-                    
-                    <div class="reviewer-info">
-                        <div class="reviewer-name">' .stripslashes($reviewer_name). '</div>
-                        <div class="reviewer-time">A joué <span>' .$played_time. ' h</span> à Cyberpunk 2077</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    ';
-}
-

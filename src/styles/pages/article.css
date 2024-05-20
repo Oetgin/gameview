@@ -161,6 +161,10 @@
   background: #FD0000;
   box-shadow: 0 0 0.7rem #FD0000;
 }
+.recap-section .reviews-container .grade-container .grade.na {
+  background: #818181;
+  box-shadow: 0 0 0.7rem #818181;
+}
 .recap-section .reviews-container .grade-container .grades-info-container {
   display: flex;
   flex-direction: column;
@@ -280,6 +284,10 @@
   background: #FD0000;
   box-shadow: 0 0 0.7rem #FD0000;
 }
+.article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .final-grade-container .grade.na {
+  background: #818181;
+  box-shadow: 0 0 0.7rem #818181;
+}
 .article-section .final-grade-plus-minus-wrapper .plus-minus-wrapper .plus-minus-container {
   position: relative;
   display: flex;
@@ -342,6 +350,65 @@
   color: #FFF;
   font-size: 3em;
   font-weight: bold;
+}
+.review-section .no-review {
+  color: #FFF;
+  font-size: 1.5em;
+  font-weight: 200;
+}
+
+.add-review-container {
+  display: flex;
+  flex-direction: column;
+}
+.add-review-container .add-review-title {
+  font-size: 3em;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+.add-review-container .add-review-form {
+  display: flex;
+  flex-direction: column;
+}
+.add-review-container .add-review-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+.add-review-container .add-review-form .form-group label {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: white;
+}
+.add-review-container .add-review-form .form-group input {
+  padding: 0.5em;
+  font-size: 1em;
+  border-radius: 0.5em;
+  border: none;
+  background: #333;
+  color: white;
+}
+.add-review-container .add-review-form .form-group textarea {
+  padding: 0.5em;
+  font-size: 1em;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 0.5em;
+  border: none;
+  background: #333;
+  color: white;
+  resize: vertical;
+}
+.add-review-container .add-review-form .form-group .button {
+  padding: 0.5em;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 0.5em;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1260px) {

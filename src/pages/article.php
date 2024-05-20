@@ -12,6 +12,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 require_once(DOCUMENT_ROOT . '/src/config/dbConfig.php');
 require_once(DOCUMENT_ROOT . '/src/utils/dbQueries.php');
 require_once(DOCUMENT_ROOT . '/src/utils/article.php');
+require_once(DOCUMENT_ROOT . '/src/utils/login.php');
+require_once(DOCUMENT_ROOT . '/src/utils/user.php');
 
 require_once(DOCUMENT_ROOT . '/src/static/head.php');
 require_once(DOCUMENT_ROOT . '/src/static/header.php');
@@ -20,16 +22,15 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
-
+require_once(DOCUMENT_ROOT . '/src/components/review.php');
 
 ?>
 <!DOCTYPE html>
 
 <html lang="fr">
     
-
+    
     <?php
-        $mysqli = connectionDB();
         require_once(DOCUMENT_ROOT . '/src/utils/preparedQueries.php');
 
         // __________Get article id__________
@@ -71,6 +72,15 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
         $article[0]["content"] = json_decode($article[0]["content"]);
         $article[0]["points"] = json_decode($article[0]["points"]);
 
+        mysqli_stmt_bind_param($get_average_rating_prepared, 'i', $article_id);
+        $average_rating = readDB($get_average_rating_prepared)[0];
+
+        if (!is_null($average_rating) && isset($average_rating["average"])) {
+            $average_rating = $average_rating["average"];
+        }
+        else {
+            $average_rating = null;
+        }
 
         // __________Temp tests__________
 
@@ -85,7 +95,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
             <?php 
                 includeArticleHeader($game[0]["id"], $game[0]["title"], $article[0]["title"], $author[0]["username"]);
 
-                includeArticleRecap($game[0]["title"], $game[0]["releaseDate"], $game[0]["categories"], $game[0]["price"], $game[0]["synopsis"], $game[0]["cover-path"], $article[0]["rating"], 95, $platforms);
+                includeArticleRecap($game[0]["title"], $game[0]["releaseDate"], $game[0]["categories"], $game[0]["price"], $game[0]["synopsis"], $game[0]["cover-path"], $article[0]["rating"], $average_rating, $platforms);
             ?>
 
 
@@ -101,6 +111,44 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
 
             <section class="review-section">
+
+                <div class="add-review-container">
+                    <div class="add-review-title">
+                        Vous avez joué à ce jeu ? <br/> Donnez votre avis !
+                    </div>
+
+                    <?php 
+                        if (!loggedIn()) {
+                            echo '<div class="add-review-login">Vous devez être connecté pour poster un avis</div>';
+                            echo '<a href="src/pages/login.php" class="button">Se connecter</a>';
+                        }
+                        else {
+                    ?>
+                    <form action="/src/actions/addReview.php?id=<?php echo $article_id ?>" method="post" class="add-review-form">
+                        <div class="form-group">
+                            <label for="title">Titre</label>
+                            <input type="text" name="title" placeholder="Titre de votre avis">
+                        </div>
+                        <div class="form-group">
+                            <label for="rating">Note</label>
+                            <input type="number" name="rating" placeholder="Note sur 10" min="0" max="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Avis</label>
+                            <textarea name="content" placeholder="Votre avis"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="played-time">Temps de jeu</label>
+                            <input type="number" name="played-time" placeholder="Temps de jeu en heures" min="0">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="button">Publier</button>
+                        </div>
+                    </form>
+                    <?php
+                        }
+                    ?>
+                </div>
                 
                 <div class="review-section-title">
                     Avis des internautes
@@ -109,7 +157,19 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
                 <div class="review-list-container">
 
                 <?php
-                    includeReview("Nagui", "/assets/images/pp/nagui.jpg", "12 janvier 2024", "11", "09", "Nul.", "Cyberpunk 2077 ? Plus un foutu désastre qu'un jeu. Ces enfoirés de chez CD Projekt Red ont réussi à nous balancer un tas de merde mal finie au visage et à appeler ça un chef d\'oeuvre. Des putains de bugs à chaque putain de coin de rue, des graphismes qui ressemblent à du vomi numérique, et une histoire aussi plate qu\'une vieille bière laissée au soleil. Sur console ? C\'est comme essayer de jouer sur une console en carton. J\'ai plus perdu mon temps avec ce jeu qu'à essayer de trouver du PQ pendant le confinement. Évitez cette bouse comme la peste, sérieux.")
+                    mysqli_stmt_bind_param($get_comments_prepared, 'i', $article_id);
+                    $comments = readDB($get_comments_prepared);
+
+                    for ($i = 0; $i < count($comments); $i++) {
+                        $comment = $comments[$i];
+                        mysqli_stmt_bind_param($user_info_prepared, 'i', $comment["authorID_comment"]);
+                        $user = readDB($user_info_prepared)[0];
+                        includeReview($user["username"], profilePicture($user["id"]), $comment["creationDate"], $comment["hoursPlayed"], $comment["rating"], $comment["title"], $comment["content"], $game[0]["title"]);
+                    }
+
+                    if (count($comments) == 0) {
+                        echo '<div class="no-review">Aucun avis pour le moment...</div>';
+                    }
                 ?>
 
                 </div>

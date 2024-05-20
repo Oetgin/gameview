@@ -193,6 +193,10 @@
                     background: #FD0000;
                     box-shadow: 0 0 0.7rem #FD0000;
                 }
+                &.na{
+                    background: #818181;
+                    box-shadow: 0 0 0.7rem #818181;
+                }
             }
 
             .grades-info-container{
@@ -336,6 +340,11 @@
                         background: #FD0000;
                         box-shadow: 0 0 0.7rem #FD0000;
                     }
+
+                    &.na{
+                        background: #818181;
+                        box-shadow: 0 0 0.7rem #818181;
+                    }
                 }
             }
 
@@ -415,10 +424,75 @@
         font-size: 3em;
         font-weight: bold;
     }
+
+    .no-review {
+        color: #FFF;
+        font-size: 1.5em;
+        font-weight: 200;
+    }
 }
 
 
+.add-review-container {
+    display: flex;
+    flex-direction: column;
 
+    .add-review-title {
+        font-size: 3em;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        padding: 1em;
+    }
+
+    .add-review-form {
+        display: flex;
+        flex-direction: column;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin: 1em;
+
+            label {
+                font-size: 1.5em;
+                font-weight: 600;
+                color: white;
+            }
+
+            input {
+                padding: 0.5em;
+                font-size: 1em;
+                border-radius: 0.5em;
+                border: none;
+                background: #333;
+                color: white;
+            }
+
+            textarea {
+                padding: 0.5em;
+                font-size: 1em;
+                font-family: 'Montserrat', sans-serif;
+                border-radius: 0.5em;
+                border: none;
+                background: #333;
+                color: white;
+                resize: vertical;
+            }
+
+            .button {
+                padding: 0.5em;
+                font-size: 1em;
+                font-weight: 600;
+                border-radius: 0.5em;
+                border: none;
+                background: #333;
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+}
 
 
 
