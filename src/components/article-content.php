@@ -100,7 +100,7 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
         
         <div class="game-info-container">
             <p class="game-title">' .stripslashes($title). '</p>
-            <p class="release-date"><span class="underline">Date de sortie :</span> ' .$date. '</p>
+            <p class="release-date"><span class="underline">Date de sortie :</span> ' .phpDateToFrenchDate($date). '</p>
             <p class="devs"><span class="underline">Prix :</span> ' .$price. '</p>
             <p class="game-type"><span class="underline">Genre :</span> ' .stripslashes($categories_string). '</p>
             <p class="-game-description">'.stripslashes(nl2br($synopsis)).'</p>
@@ -132,7 +132,7 @@ function includeArticleRecap($title, $date, $categories, $price, $synopsis, $cov
 }
 
 
-function includeArticleContent($article_id, $game_name, $article_title, $content, $article_rating, $points) {
+function includeArticleContent($article_id, $game_name, $article_title, $article_date, $content, $article_rating, $points) {
     // Grade display
     if(intval($article_rating) > 79) {
         $article_rating_background_class = "good";
@@ -145,6 +145,7 @@ function includeArticleContent($article_id, $game_name, $article_title, $content
     echo '
         <section class="article-section">
             <h3 class="article-catch">' .stripslashes($game_name). ' : ' .stripslashes($article_title). '</h3>
+            <p class="article-date">Dernière modification le '.phpDateToFrenchDate($article_date).'</p>
 
     ';
     $img_number = 0;

@@ -28,7 +28,7 @@ function includeReview($reviewer_name, $pp, $date, $played_time, $rating, $title
 
             <div class="reviewer-wrapper">
                 <div class="review-date">
-                    Le ' .$date. ' par :
+                    Le ' .phpDateToFrenchDate($date). ' par :
                 </div>
 
                 <div class="reviewer-container">

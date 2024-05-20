@@ -217,6 +217,12 @@
   font-size: 2.5em;
   font-weight: 800;
 }
+.article-section .article-date {
+  margin-top: -1.25rem;
+  font-size: 1em;
+  font-weight: 300;
+  font-style: italic;
+}
 .article-section .intro {
   font-weight: 600;
   line-height: 1.75;

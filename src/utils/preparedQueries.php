@@ -121,3 +121,31 @@ $create_game_plateforms_prepared = mysqli_prepare($mysqli, $create_game_platefor
 $edit_user_role_query = "UPDATE user SET role = ? WHERE username = ?";
 
 $edit_user_role_prepared = mysqli_prepare($mysqli, $edit_user_role_query);
+
+
+
+// USEFUL FUNCTION IN EVERY PAGE SO I PUT IT HERE
+function phpDateToFrenchDate($date) {
+    $date = new DateTime($date);
+
+    $months = array(
+        'January' => 'Janvier',
+        'February' => 'Février',
+        'March' => 'Mars',
+        'April' => 'Avril',
+        'May' => 'Mai',
+        'June' => 'Juin',
+        'July' => 'Juillet',
+        'August' => 'Août',
+        'September' => 'Septembre',
+        'October' => 'Octobre',
+        'November' => 'Novembre',
+        'December' => 'Décembre'
+    );
+
+    $month = $months[$date->format('F')];
+    $day = $date->format('d');
+    $year = $date->format('Y');
+
+    return $day . ' ' . $month . ' ' . $year;
+}

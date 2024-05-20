@@ -103,7 +103,7 @@ require_once(DOCUMENT_ROOT . '/src/components/review.php');
 
 
             <?php
-                includeArticleContent($article_id, $game[0]["title"], $article[0]["title"], $article[0]["content"], $article[0]["rating"], $article[0]["points"])
+                includeArticleContent($article_id, $game[0]["title"], $article[0]["title"], $article[0]["date"], $article[0]["content"], $article[0]["rating"], $article[0]["points"])
             ?>
 
 
