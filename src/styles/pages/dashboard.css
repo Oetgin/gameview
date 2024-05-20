@@ -79,6 +79,7 @@
 .content-wrapper .options-section .option-wrapper .option-container .option-title {
   font-weight: bold;
   font-size: 1.5rem;
+  text-align: center;
 }
 .content-wrapper .options-section .option-wrapper .option-container .tick {
   display: none;
@@ -138,6 +139,15 @@
 .content-wrapper .form-section .option-form .choice-input::placeholder {
   color: rgba(0, 0, 0, 0.2);
 }
+.content-wrapper .form-section .option-form .select-input {
+  position: relative;
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  padding: 1em;
+}
 .content-wrapper .form-section .option-form .error-msg {
   font-size: 1rem;
   font-weight: 500;
@@ -154,4 +164,4 @@
   .options-section {
     flex-direction: column;
   }
-}/*# sourceMappingURL=editor-dashboard.css.map */
+}/*# sourceMappingURL=dashboard.css.map */

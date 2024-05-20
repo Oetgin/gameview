@@ -113,3 +113,9 @@ $create_game_prepared = mysqli_prepare($mysqli, $create_game_query);
 $check_game_name_prepared = mysqli_prepare($mysqli, $check_game_name_query);
 $create_game_categories_prepared = mysqli_prepare($mysqli, $create_game_categories_query);
 $create_game_plateforms_prepared = mysqli_prepare($mysqli, $create_game_plateforms_query);
+
+
+// EDIT USER
+$edit_user_role_query = "UPDATE user SET role = ? WHERE username = ?";
+
+$edit_user_role_prepared = mysqli_prepare($mysqli, $edit_user_role_query);

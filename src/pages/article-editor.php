@@ -32,6 +32,12 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
     <?php
         $mysqli = connectionDB();
 
+        // Check that the user is logged in and that he is an editor or an admin
+        if (!getRole() || (!isAdmin() && !isEditor())){
+            header('Location: ../../index.php');
+            exit;
+        }
+
         // __________Get concerned game id__________
         // if there is no GET param
         if (isset($_GET["id"])) {
@@ -45,9 +51,8 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
         // __________Get all useful info__________
         $game_title = readQuery($mysqli, "SELECT title FROM game WHERE id = $game_id");
         $game_cover_path = COVERS_FOLDER_PATH . 'cover-' . $game_id . '.png';
-        session_start();
-        // $author_id = $_SESSION['user_id'];
-        $author_id = 1;
+
+        $author_id = getId();
 
         // if the article isnt in the db
         if (empty($game_title)) {

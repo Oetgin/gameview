@@ -102,6 +102,7 @@
                 .option-title{
                     font-weight: bold;
                     font-size: 1.5rem;
+                    text-align: center;
                 }
 
                 .tick{
@@ -171,6 +172,17 @@
                 &::placeholder{
                     color: rgba(0,0,0,0.2);
                 }
+            }
+
+            .select-input{
+                position: relative;
+                font-family: 'Montserrat';
+                font-weight: 500;
+                font-size: 1.25rem;
+
+                border-radius: 0.5rem;
+                border: 0.1rem solid rgba(0,0,0,0.1);
+                padding: 1em;
             }
 
             .error-msg{
