@@ -41,8 +41,8 @@ function isModerator() {
     return getRole() == 'Modérateur';
 }
 
-function isMember() {
-    return getRole() == 'Membre';
+function isUser() {
+    return getRole() == 'Utilisateur';
 }
 
 function getRole() {

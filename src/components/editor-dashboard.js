@@ -68,5 +68,9 @@ function addOptionForm(optionID) {
         form = document.getElementById('game-creator-form');
         form.classList.remove('unselected');
         form.classList.add('selected');
+    } else if (optionID === 'role-option') {
+        form = document.getElementById('role-form');
+        form.classList.remove('unselected');
+        form.classList.add('selected');
     }
 }

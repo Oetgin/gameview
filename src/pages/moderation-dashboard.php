@@ -21,9 +21,6 @@ require_once(DOCUMENT_ROOT . '/src/static/nav.php');
 require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
 require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
 
-require_once(DOCUMENT_ROOT . '/src/utils/login.php');
-require_once(DOCUMENT_ROOT . '/src/utils/user.php');
-
 
 ?>
 <!DOCTYPE html>
@@ -34,8 +31,8 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
     <?php
         $mysqli = connectionDB();
 
-        // Check that the user is an editor or an admin
-        if (!getRole() || (!isEditor() && !isAdmin())){
+        // Check that the user is an admin
+        if (!getRole() || !isAdmin()){
             header('Location: ../../index.php');
             exit;
         }
@@ -88,9 +85,9 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
 
             <section class="title-section">
                 <div class="title-container">
-                    <img src="/assets/icons/edit.svg" alt="Icone éditer">
+                    <img src="/assets/icons/shield.png" alt="Icone éditer">
                     <h1 class="title">
-                        Options d'édition
+                        Modération
                     </h1>
                 </div>
                 <?php
@@ -118,7 +115,7 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
                     <a id="game-creator-option" class="option-container <?php echo $game_creator_option_selection ?>" onclick="optionSelected(this)">
                         <img class="option-icon" src="/assets/icons/game-creator.svg" alt="Manette de jeu vidéo">
                         <div class="option-title">
-                            Ajouter un jeu
+                            Voir les derniers commentaires
                         </div>
                         <div class="tick">
                             <img src="/assets/icons/tick.svg" alt="tick">
@@ -128,10 +125,10 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
                 </div>
 
                 <div class="option-wrapper">
-                    <a id="article-creator-option" class="option-container <?php echo $article_creator_option_selection ?>" onclick="optionSelected(this)">
-                        <img class="option-icon" src="/assets/icons/article-creator.svg" alt="Manette de jeu vidéo">
+                    <a id="role-option" class="option-container <?php echo $article_creator_option_selection ?>" onclick="optionSelected(this)">
+                        <img class="option-icon" src="/assets/icons/role.png" alt="Profil utilisateur role">
                         <div class="option-title">
-                            Ajouter un article
+                            Modifier un rôle
                         </div>
                         <div class="tick">
                             <img src="/assets/icons/tick.svg" alt="tick">
@@ -156,29 +153,29 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
 
 
             <section class="form-section">
-                <form method="post" id="article-creator-form" class="option-form <?php echo $article_creator_form_visibility ?>" action="<?php echo '../actions/editor-redirect.php?redirect=article-creator'; ?>">
-                    <label class="choice-label" for="article-creator">Ajouter un article sur :</label>
-                    <input class="choice-input" id="game" name="article-creator" list="games" required autocomplete="off" placeholder="Choix du jeu...">
-                    <datalist id="games">
+                <form method="post" id="role-form" class="option-form <?php echo $article_creator_form_visibility ?>" action="<?php echo '../actions/edit-user.php'; ?>">
+                    <label class="choice-label" for="role">Attribuer le rôle :</label>
+                    <select class="select-input" name="role" id="role">
+                        <option value="Utilisateur">Utilisateur</option>
+                        <option value="Éditeur">Éditeur</option>
+                        <option value="Administrateur">Administrateur</option>
+                    </select>
+
+                    <label class="choice-label" for="user">À l'utilisateur :</label>
+                    <select class="select-input" name="user" id="user">
                         <?php
-                            echo '<option value="Nouveau jeu"></option>';
-                            foreach($games as $key => $value) {
-                                $current_game_title = stripslashes($value["title"]);
-                                $current_game_id = $value["id"];
-                                echo '<option value="' .$current_game_title.' - ('.$current_game_id.')'.'"></option>';
+                            $all_users = readQuery($mysqli, "SELECT id, username FROM user");
+                            foreach($all_users as $key => $value) {
+                                $current_user_username = $value["username"];
+                                echo '<option value="' .$current_user_username. '">'.$current_user_username.'</option>';
                             }
                         ?>
-                    </datalist>
-                    <div class="error-msg <?php echo $article_creator_error_visibility ?>">
-                        <?php
-                            if(isset($_GET["error"])) {
-                                echo $_GET["error"]; 
-                            }   
-                        ?>
-                    </div>
+                    </select>
+
                     <div class="submit-container">
-                        <input class="btn submit-btn" type="submit" value="Continuer">
+                        <input class="btn submit-btn" type="submit" value="Valider">
                     </div>
+                    
                 </form>
 
                 <form method="post" id="article-editor-form" class="option-form <?php echo $article_editor_form_visibility ?>" action="<?php echo '../actions/editor-redirect.php?redirect=article-editor'; ?>">
@@ -207,11 +204,7 @@ require_once(DOCUMENT_ROOT . '/src/utils/user.php');
                 </form>
 
                 <form method="post" id="game-creator-form" class="option-form <?php echo $game_creator_form_visibility ?>" action="<?php echo '../actions/editor-redirect.php?redirect=game-creator'; ?>">
-                    <p class="choice-label" for="game-creator">Ajouter un jeu</p>
-                    
-                    <div class="submit-container">
-                        <input class="btn submit-btn" type="submit" value="Continuer">
-                    </div>
+                    Option en cours de développement
                 </form>
             </section>
 

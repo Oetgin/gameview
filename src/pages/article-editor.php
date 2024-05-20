@@ -33,7 +33,7 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
         $mysqli = connectionDB();
 
         // Check that the user is logged in and that he is an editor or an admin
-        if (!isset($_SESSION['id']) || !isset($_SESSION['role']) || ($_SESSION['role'] != 'Éditeur' && $_SESSION['role'] != 'Administrateur')){
+        if (!getRole() || (!isAdmin() && !isEditor())){
             header('Location: ../../index.php');
             exit;
         }
@@ -53,7 +53,6 @@ require_once(DOCUMENT_ROOT . '/src/components/article-content.php');
         $game_cover_path = COVERS_FOLDER_PATH . 'cover-' . $game_id . '.png';
 
         $author_id = getId();
-        echo $author_id;
 
         // if the article isnt in the db
         if (empty($game_title)) {

@@ -200,8 +200,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Redirect
     closeDB($mysqli);
-    // header('Location: ../pages/article.php?id='.$article_id);
-    // exit;
+    header('Location: ../pages/article.php?id='.$article_id);
+    exit;
 
 }
 else {

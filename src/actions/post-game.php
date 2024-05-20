@@ -106,8 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Redirect
     closeDB($mysqli);
-    // header('Location: '.$header_location);
-    // exit;
+    header('Location: '.$header_location);
+    exit;
 
 }
 else {
