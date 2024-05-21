@@ -3,7 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 
 
-function includeArticleHeader($game_id, $game_name, $title, $author_name) {
+function includeArticleHeader($game_id, $game_name, $title, $author_name, $author_id) {
 
     $background_video_type = 'mp4';
     $background_video_path = '/assets/videos/article-backgrounds/background-' .$game_id.'.' .$background_video_type. '';  
@@ -15,7 +15,7 @@ function includeArticleHeader($game_id, $game_name, $title, $author_name) {
         <div class="title-content">
             <h2 class="game">' .stripslashes($game_name). '</h2>
             <p class="title">"' .stripslashes($title). '"</p>
-            <p class="reviewer">Review par ' .stripslashes($author_name). '</p>
+            <a class="reviewer btn" href="/src/pages/profile.php?id='.$author_id.'">Review par ' .stripslashes($author_name). '</a>
         </div>
         <div class="background-video">
             <video class="boomerang" id="background-video" autoplay loop muted plays-inline>

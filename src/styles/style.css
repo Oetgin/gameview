@@ -295,7 +295,8 @@ input {
   border: 0.2em solid #B7DDFF;
 }
 .review-wrapper .review-container .reviewer-wrapper .reviewer-container .reviewer-pp img {
-  width: 100%;
+  position: relative;
+  height: 100%;
 }
 .review-wrapper .review-container .reviewer-wrapper .reviewer-container .reviewer-info {
   height: 100%;

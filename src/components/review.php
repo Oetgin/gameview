@@ -43,12 +43,12 @@ function includeReview($reviewer_id, $reviewer_name, $pp, $date, $played_time, $
                 </div>
 
                 <div class="reviewer-container">
-                    <div class="reviewer-pp">
+                    <a class="reviewer-pp profile-btn btn" href="/src/pages/profile.php?id='.$reviewer_id.'">
                         '. $pp .'
-                    </div>
+                    </a>
                     
                     <div class="reviewer-info">
-                        <div class="reviewer-name">' .stripslashes($reviewer_name). '</div>
+                        <a class="reviewer-name btn" href="/src/pages/profile.php?id='.$reviewer_id.'">' .stripslashes($reviewer_name). '</a>
                         <div class="reviewer-time">A joué <span>' .$played_time. ' h</span> à '. $game_name .'</div>
                     </div>
                 </div>
