@@ -57,6 +57,27 @@ input {
   height: 100%;
 }
 
+.edit-btn:hover .hover-msg {
+  display: block;
+}
+.edit-btn .hover-msg {
+  display: none;
+  position: absolute;
+  top: -1em;
+  left: 5em;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5em 1em;
+  font-size: 0.5em;
+  background: #FFF;
+  border-radius: 0.5em;
+  box-shadow: 0 0 1em rgba(255, 255, 255, 0.8);
+  color: black;
+}
+.edit-btn img {
+  height: 100%;
+}
+
 .submit-btn {
   display: flex;
   flex-direction: row;

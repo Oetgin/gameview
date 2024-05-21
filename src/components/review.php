@@ -19,6 +19,16 @@ function includeReview($reviewer_id, $reviewer_name, $pp, $date, $played_time, $
                     <img src="/assets/icons/minus.svg" alt="Delete comment">
                     <div class="hover-msg">Supprimer ce commentaire</div>
                 </a>
+                '.
+                (getId() == $reviewer_id ?
+                
+                '<a class="edit-btn">
+                    <img src="/assets/icons/edit.svg" alt="Edit comment">
+                    <div class="hover-msg">Modifier ce commentaire</div>
+                </a>'
+                :
+                '')
+                .'
             </div>'
             :
             '')
