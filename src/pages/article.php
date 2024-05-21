@@ -76,7 +76,7 @@ require_once(DOCUMENT_ROOT . '/src/components/review.php');
         $average_rating = readDB($get_average_rating_prepared)[0];
 
         if (!is_null($average_rating) && isset($average_rating["average"])) {
-            $average_rating = $average_rating["average"];
+            $average_rating = intval($average_rating["average"]);
         }
         else {
             $average_rating = null;
