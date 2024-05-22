@@ -74,7 +74,7 @@ $get_comment_prepared = mysqli_prepare($mysqli, $get_comment_query);
 $delete_article_comments_query = "DELETE FROM comment WHERE articleID_comment = ?";
 $delete_articles_query = "DELETE FROM article WHERE authorID_article = ?";
 $delete_comments_query = "DELETE FROM comment WHERE authorID_comment = ?";
-$delete_user_query = "DELETE FROM user WHERE username = ?";
+$delete_user_query = "DELETE FROM user WHERE id = ?";
 
 $delete_article_comments_prepared = mysqli_prepare($mysqli, $delete_article_comments_query);
 $delete_articles_prepared = mysqli_prepare($mysqli, $delete_articles_query);
