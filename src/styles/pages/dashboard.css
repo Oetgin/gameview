@@ -185,6 +185,9 @@
 }
 .comments .comment .comment-content {
   width: 100%;
+  max-height: 10em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .comments .comment p {
   width: -moz-max-content;

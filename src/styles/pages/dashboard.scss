@@ -230,6 +230,9 @@
         
         .comment-content {
             width: 100%;
+            max-height: 10em;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         p {
