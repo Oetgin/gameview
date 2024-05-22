@@ -71,10 +71,12 @@ $get_comment_prepared = mysqli_prepare($mysqli, $get_comment_query);
 
 
 // DELETE ACCOUNT
-$delete_articles_query = "DELETE article, comment FROM article INNER JOIN comment ON comment.articleId_comment = article.id WHERE authorID_article = ?";
+$delete_article_comments_query = "DELETE FROM comment WHERE articleID_comment = ?";
+$delete_articles_query = "DELETE FROM article WHERE authorID_article = ?";
 $delete_comments_query = "DELETE FROM comment WHERE authorID_comment = ?";
-$delete_user_query = "DELETE FROM user WHERE username = ? AND password = ?";
+$delete_user_query = "DELETE FROM user WHERE username = ?";
 
+$delete_article_comments_prepared = mysqli_prepare($mysqli, $delete_article_comments_query);
 $delete_articles_prepared = mysqli_prepare($mysqli, $delete_articles_query);
 $delete_comments_prepared = mysqli_prepare($mysqli, $delete_comments_query);
 $delete_user_prepared = mysqli_prepare($mysqli, $delete_user_query);

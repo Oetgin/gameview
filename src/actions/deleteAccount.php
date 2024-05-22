@@ -1,5 +1,12 @@
 <?php
 
+// Show errors for debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+mysqli_report(MYSQLI_REPORT_ERROR );
+
+
 require_once($_SERVER['DOCUMENT_ROOT'] . '/src/config/constants.php');
 require_once(DOCUMENT_ROOT . '/src/utils/redirect.php');
 
@@ -30,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user_login) {
         // Check password
         if (password_verify($old_password, $user_login['password'])) {
-            closeDB($mysqli);
             
             // Start session
             session_start();
@@ -38,6 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Delete account (user, articles, comments)
             $author_id = $user_login['id'];
+            mysqli_stmt_bind_param($user_articles_prepared, 'i', $author_id);
+            $articles = readDB($user_articles_prepared);
+            for ($i = 0; $i < count($articles); $i++) {
+                $article_id = $articles[$i]['id'];
+                mysqli_stmt_bind_param($delete_article_comments_prepared, 'i', $article_id);
+                $delete_article_comments = writeDB($delete_article_comments_prepared);
+            }
             mysqli_stmt_bind_param($delete_comments_prepared, 'i', $author_id);
             mysqli_stmt_bind_param($delete_articles_prepared, 'i', $author_id);
             mysqli_stmt_bind_param($delete_user_prepared, 'i', $author_id);
@@ -46,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $delete_articles = writeDB($delete_articles_prepared);
             $delete_user = writeDB($delete_user_prepared);
         
-
-            redirect('/index.php', 'success', 'Account deleted successfully');
+            closeDB($mysqli);
+            redirect('/src/actions/logout.php', 'success', 'Account deleted successfully');
         }
         else {
             closeDB($mysqli);
