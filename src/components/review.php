@@ -9,9 +9,11 @@ function includeReview($reviewer_id, $reviewer_name, $pp, $date, $played_time, $
         $background_class = "bad";
     }
 
+    echo '<script src="/src/components/review.js"></script>';
+
     echo '
     <div class="review-wrapper">
-        <div class="review-container">
+        <div class="review-container" id="review-'.$review_id.'" data-rating="'.$rating.'" data-title="'.$title.'" data-content="'.$content.'" data-canedit="'.(isAdmin() || getId() == $reviewer_id ? 'true' : 'false').'" data-candelete="'.(isAdmin() || isModerator() || getId() == $reviewer_id ? 'true' : 'false').'" data-reviewer_id="'.$reviewer_id.'" data-reviewer_name="'.$reviewer_name.'" data-date="'.phpDateToFrenchDate($date).'" data-played_time="'.$played_time.'" data-game_name="'.$game_name.'" data-background_class="'.$background_class.'" data-article_id="'.$article_id.'">
             '.
             (isAdmin() || isModerator() || getId() == $reviewer_id ?
             '<div class="delete-review">
@@ -20,12 +22,12 @@ function includeReview($reviewer_id, $reviewer_name, $pp, $date, $played_time, $
                     <div class="hover-msg">Supprimer ce commentaire</div>
                 </a>
                 '.
-                (getId() == $reviewer_id ?
+                (isAdmin() || getId() == $reviewer_id ?
                 
-                '<a class="edit-btn">
+                '<button class="edit-btn" onclick="editReview('.$review_id.')">
                     <img src="/assets/icons/edit.svg" alt="Edit comment">
                     <div class="hover-msg">Modifier ce commentaire</div>
-                </a>'
+                </button>'
                 :
                 '')
                 .'
