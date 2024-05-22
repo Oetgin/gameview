@@ -452,6 +452,11 @@
     display: flex;
     flex-direction: column;
 
+    .button-login {
+        width: fit-content;
+        align-self: center;
+    }
+
     .add-review-title {
         font-size: 3em;
         font-weight: bold;

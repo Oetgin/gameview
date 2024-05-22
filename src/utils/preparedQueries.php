@@ -29,7 +29,8 @@ $insert_article_query = "INSERT INTO article (title, content, authorID_article) 
 $delete_article_query = "DELETE FROM article WHERE id = ?";
 $article_search_query = "SELECT article.id FROM article 
 INNER JOIN game ON article.gameID_article = game.id
-WHERE article.content LIKE ? or article.title LIKE ? or article.id LIKE ? or article.date LIKE ? OR article.rating LIKE ? OR article.points LIKE ? OR authorID_article LIKE ? OR game.title LIKE ? or game.id LIKE ? or game.synopsis LIKE ? OR game.releaseDate LIKE ? OR game.price LIKE ?
+INNER JOIN gamecategories ON game.id = gamecategories.gameID_category
+WHERE article.content LIKE ? or article.title LIKE ? or article.id LIKE ? or article.date LIKE ? OR article.rating LIKE ? OR article.points LIKE ? OR authorID_article LIKE ? OR game.title LIKE ? or game.id LIKE ? or game.synopsis LIKE ? OR game.releaseDate LIKE ? OR game.price LIKE ? OR gamecategories.category LIKE ?
 ORDER BY `date` DESC";
 $article_info_query = "SELECT 
 article.id as id, article.title as title, article.description as `description`, article.rating as rating, user.username as username, user.role as `role`, user.id as authorId, game.title as gameTitle, game.id as gameId 

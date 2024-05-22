@@ -39,13 +39,25 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                     exit();
                 }
 
-                $search_str = '%' . $search . '%'; // Permet de rechercher des articles contenant le terme de recherche (et non seulement ceux qui sont exactement égaux)
+                $search_words = explode(' ', $search);
+                $article_search = array();
+                $user_search = array();
 
-                mysqli_stmt_bind_param($article_search_prepared, 'ssssssssssss', $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str, $search_str);
-                $article_search = readDB($article_search_prepared);
+                for ($i = 0; $i < count($search_words); $i++) {
+                    $search_words[$i] = '%' . $search_words[$i] . '%';
+                    mysqli_stmt_bind_param($article_search_prepared, 'sssssssssssss', $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i], $search_words[$i]);
+                    // Append to article search
+                    $article_search = array_merge($article_search, readDB($article_search_prepared));                    
+                }
+                // Remove duplicates
+                $article_search = array_unique($article_search, SORT_REGULAR);
 
-                mysqli_stmt_bind_param($user_search_prepared, 'sss', $search_str, $search_str, $search_str);
-                $user_search = readDB($user_search_prepared);
+                for ($i = 0; $i < count($search_words); $i++) {
+                    mysqli_stmt_bind_param($user_search_prepared, 'sss', $search_words[$i], $search_words[$i], $search_words[$i]);
+                    $user_search = array_merge($user_search, readDB($user_search_prepared));
+                }
+                // Remove duplicates
+                $user_search = array_unique($user_search, SORT_REGULAR);
 
                 if (count($article_search) > 0 || count($user_search) > 0) {  
                     echo '<h2>Résultats de la recherche pour : ' . $search . '</h2>';
@@ -56,6 +68,9 @@ require_once(DOCUMENT_ROOT . '/src/components/article-card.php');
                         for ($i = 0; $i < count($article_search); $i++) {
                             mysqli_stmt_bind_param($article_info_prepared, 'i', $article_search[$i]['id']);
                             $article_info = readDB($article_info_prepared)[0];
+                            if (empty($article_info)) {
+                                continue;
+                            }
                             includeArticleCard(
                                 $article_info['id'],
                                 $article_info['gameTitle'],

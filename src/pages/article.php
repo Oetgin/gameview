@@ -114,7 +114,7 @@ require_once(DOCUMENT_ROOT . '/src/components/review.php');
                     <?php 
                         if (!loggedIn()) {
                             echo '<div class="add-review-login">Vous devez être connecté pour poster un avis</div>';
-                            echo '<a href="src/pages/login.php" class="button">Se connecter</a>';
+                            echo '<a href="src/pages/login.php" class="button button-login">Se connecter</a>';
                         }
                         else {
                     ?>
